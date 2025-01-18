@@ -40,6 +40,9 @@ func _generate_map() -> void:
 			room.generate(location)
 			level_map[location] = room
 
+	for room in level_map.keys():
+		level_map[room].close_doors(_get_adjacent_vacant_room_directions(room))
+
 func _get_room_candidates() -> Array[Vector2i]:
 	var vacant_rooms: Array[Vector2i] = []
 	for room: Vector2i in level_map.keys():
@@ -54,6 +57,11 @@ func _get_adjacent_vacant_rooms(room: Vector2i) -> Array[Vector2i]:
 		if _is_room_vacant(adjacent_room):
 			vacant_rooms.append(adjacent_room)
 	return vacant_rooms
+
+func _get_adjacent_vacant_room_directions(room: Vector2i) -> Array[Vector2i]:
+	var adjacent_rooms: Array[Vector2i]
+	adjacent_rooms.assign(_get_adjacent_vacant_rooms(room).map(func(r): return Vector2i(r.x - room.x, r.y - room.y)))
+	return adjacent_rooms
 
 func _get_adjacent_rooms(room: Vector2i) -> Array[Vector2i]:
 	return [
