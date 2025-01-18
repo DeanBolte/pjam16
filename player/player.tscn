@@ -1,9 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://didohvmx332uq"]
+[gd_scene load_steps=5 format=3 uid="uid://didohvmx332uq"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_s8bvr"]
 [ext_resource type="Texture2D" uid="uid://dfvtyrddd1sxe" path="res://assets/Development/basic_sword.png" id="2_7eyd8"]
-[ext_resource type="Texture2D" uid="uid://cr3kg716rd3vb" path="res://assets/BasicSprites/player-hand.png" id="3_jvnai"]
-[ext_resource type="Texture2D" uid="uid://dce4ivf4ok3qc" path="res://assets/BasicSprites/player-body.png" id="4_d7lvc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0sbrh"]
 radius = 9.0
@@ -32,12 +30,10 @@ texture = ExtResource("2_7eyd8")
 [node name="left_hand" type="Sprite2D" parent="sword"]
 position = Vector2(7.00026, 68.436)
 rotation = -1.5708
-texture = ExtResource("3_jvnai")
 
 [node name="right_hand" type="Sprite2D" parent="sword"]
 position = Vector2(-8.99974, 68.436)
 rotation = -1.5708
-texture = ExtResource("3_jvnai")
 
 [node name="sword_tip" type="Node2D" parent="."]
 position = Vector2(131.436, 0.999985)
@@ -51,4 +47,3 @@ metadata/_edit_lock_ = true
 [node name="Sprite2D" type="Sprite2D" parent="peasant"]
 position = Vector2(-7.15256e-07, -7.15256e-07)
 scale = Vector2(0.8125, 0.8125)
-texture = ExtResource("4_d7lvc")
