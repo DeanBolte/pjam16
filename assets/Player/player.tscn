@@ -14,7 +14,9 @@ radius = 26.0
 radius = 5.0
 
 [node name="player" type="CharacterBody2D"]
+z_index = 100
 position = Vector2(-73, 223)
+collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_s8bvr")
 

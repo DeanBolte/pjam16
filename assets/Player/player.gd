@@ -16,17 +16,17 @@ func _physics_process(delta: float) -> void:
 	var mouse_position = get_global_mouse_position()
 	var mouse_direction = global_position.direction_to(mouse_position)
 	var distanceFromMouse = $sword_tip.global_position.distance_to(mouse_position)
-	
+
 	velocity = mouse_direction * min(max_speed, (distanceFromMouse + base_speed) * speed_multiplier)
-	
+
 	if distanceFromMouse > 20 and mouse_is_in_window:
 		if not Input.is_action_pressed("stop_moving"):
 			move_and_slide()
 
-		rotation = lerp_angle(rotation, mouse_direction.angle(), rotation_speed) 
-	
+		rotation = lerp_angle(rotation, mouse_direction.angle(), rotation_speed)
+
 func _notification(event):
-	# TODO We probably wont to remove this later for an actual pause mechanic, I have this here for easier testing. 
+	# TODO We probably wont to remove this later for an actual pause mechanic, I have this here for easier testing.
 	match event:
 		NOTIFICATION_WM_MOUSE_EXIT:
 			mouse_is_in_window = false
