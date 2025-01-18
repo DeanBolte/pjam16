@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://didohvmx332uq"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_s8bvr"]
+[ext_resource type="Texture2D" uid="uid://dfvtyrddd1sxe" path="res://assets/Development/basic_sword.png" id="2_7eyd8"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0sbrh"]
+radius = 9.0
+height = 62.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qanm4"]
+radius = 26.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kyggd"]
+radius = 5.0
+
+[node name="player" type="CharacterBody2D"]
+position = Vector2(-73, 223)
+motion_mode = 1
+script = ExtResource("1_s8bvr")
+
+[node name="sword_collision_box" type="CollisionShape2D" parent="."]
+position = Vector2(103.436, 0.999985)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_0sbrh")
+metadata/_edit_lock_ = true
+
+[node name="sword_sprite" type="Sprite2D" parent="."]
+position = Vector2(83.9882, 0.988194)
+rotation = 0.785398
+scale = Vector2(0.477193, 0.477193)
+texture = ExtResource("2_7eyd8")
+metadata/_edit_lock_ = true
+
+[node name="sword_tip" type="Node2D" parent="."]
+position = Vector2(135.436, 0.999985)
+metadata/_edit_lock_ = true
+
+[node name="peasant" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
+shape = SubResource("CircleShape2D_qanm4")
+debug_color = Color(0.806225, 0.848261, 0.982562, 0.42)
+metadata/_edit_lock_ = true
+
+[node name="left_hand" type="CollisionShape2D" parent="peasant"]
+position = Vector2(34, 11)
+shape = SubResource("CircleShape2D_kyggd")
+debug_color = Color(0.859776, 0.971126, 1, 0.42)
+
+[node name="right_hand" type="CollisionShape2D" parent="peasant"]
+position = Vector2(33, -8)
+shape = SubResource("CircleShape2D_kyggd")
+debug_color = Color(0.859776, 0.971126, 1, 0.42)
