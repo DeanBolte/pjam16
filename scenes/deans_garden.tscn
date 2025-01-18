@@ -27,6 +27,5 @@ texture = ExtResource("4_k5djn")
 
 [node name="RoomCamera" parent="." instance=ExtResource("2_iqi8r")]
 zoom = Vector2(1, 1)
-position_smoothing_enabled = true
 
 [node name="Room" parent="." instance=ExtResource("3_tfnt4")]

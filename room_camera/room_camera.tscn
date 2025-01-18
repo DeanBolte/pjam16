@@ -5,18 +5,21 @@
 
 [node name="RoomCamera" type="Camera2D"]
 zoom = Vector2(0.1, 0.1)
+position_smoothing_enabled = true
 script = ExtResource("1_4ouwj")
 
-[node name="SideCutInLeft" type="Sprite2D" parent="."]
+[node name="Control" type="CanvasLayer" parent="."]
+
+[node name="SideCutInRight" type="Sprite2D" parent="Control"]
 z_index = 100
-position = Vector2(-448, 0)
+position = Vector2(1024, 320)
 texture = ExtResource("2_gcxas")
 region_enabled = true
 region_rect = Rect2(0, 0, 256, 640)
 
-[node name="SideCutInRight" type="Sprite2D" parent="."]
+[node name="SideCutInLeft" type="Sprite2D" parent="Control"]
 z_index = 100
-position = Vector2(448, 0)
+position = Vector2(128, 320)
 texture = ExtResource("2_gcxas")
 region_enabled = true
 region_rect = Rect2(0, 0, 256, 640)
