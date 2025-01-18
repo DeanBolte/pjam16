@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=4 uid="uid://k6ra4mvps7no"]
+
+[ext_resource type="Script" path="res://levelgen/room/room.gd" id="1_6jt68"]
+[ext_resource type="Texture2D" uid="uid://bdbs8w6bbuq0r" path="res://assets/BasicSprites/backgroundtile.png" id="1_pcs8o"]
+[ext_resource type="Texture2D" uid="uid://qto7j3m6hfee" path="res://assets/BasicSprites/forewall.png" id="2_s1825"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hs7wj"]
+texture = ExtResource("2_s1825")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_bhh6t"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_hs7wj")
+
+[node name="Room" type="Node2D"]
+script = ExtResource("1_6jt68")
+SPAWN_AREA_WIDTH = 324
+SPAWN_AREA_HEIGHT = 324
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("1_pcs8o")
+region_enabled = true
+region_rect = Rect2(0, 0, 640, 640)
+
+[node name="BaseWalls" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD9//b/AAAAAAAAAAD8//b/AAAAAAAAAAD7//b/AAAAAAAAAAD6//b/AAAAAAAAAAD5//b/AAAAAAAAAAD4//b/AAAAAAAAAAD3//b/AAAAAAAAAAD2//b/AAAAAAAAAAD2//f/AAAAAAAAAAD2//j/AAAAAAAAAAD2//n/AAAAAAAAAAD2//r/AAAAAAAAAAD2//v/AAAAAAAAAAD2//z/AAAAAAAAAAD2//3/AAAAAAAAAAD2/wIAAAAAAAAAAAD2/wMAAAAAAAAAAAD2/wQAAAAAAAAAAAD2/wUAAAAAAAAAAAD2/wYAAAAAAAAAAAD2/wcAAAAAAAAAAAD2/wgAAAAAAAAAAAD2/wkAAAAAAAAAAAD3/wkAAAAAAAAAAAD4/wkAAAAAAAAAAAD5/wkAAAAAAAAAAAD6/wkAAAAAAAAAAAD7/wkAAAAAAAAAAAD8/wkAAAAAAAAAAAD9/wkAAAAAAAAAAAACAAkAAAAAAAAAAAADAAkAAAAAAAAAAAAEAAkAAAAAAAAAAAAFAAkAAAAAAAAAAAAGAAkAAAAAAAAAAAAHAAkAAAAAAAAAAAAIAAkAAAAAAAAAAAAJAAkAAAAAAAAAAAAJAAgAAAAAAAAAAAAJAAcAAAAAAAAAAAAJAAYAAAAAAAAAAAAJAAUAAAAAAAAAAAAJAAQAAAAAAAAAAAAJAAMAAAAAAAAAAAAJAAIAAAAAAAAAAAAJAP3/AAAAAAAAAAAJAPz/AAAAAAAAAAAJAPv/AAAAAAAAAAAJAPr/AAAAAAAAAAAJAPn/AAAAAAAAAAAJAPj/AAAAAAAAAAAJAPf/AAAAAAAAAAAJAPb/AAAAAAAAAAAIAPb/AAAAAAAAAAAHAPb/AAAAAAAAAAAGAPb/AAAAAAAAAAAFAPb/AAAAAAAAAAAEAPb/AAAAAAAAAAADAPb/AAAAAAAAAAACAPb/AAAAAAAAAAA=")
+tile_set = SubResource("TileSet_bhh6t")
+
+[node name="Objects" type="Node2D" parent="."]
+
+[node name="LeftDoor" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD2//7/AAAAAAAAAAD2////AAAAAAAAAAD2/wAAAAAAAAAAAAD2/wEAAAAAAAAAAAA=")
+enabled = false
+tile_set = SubResource("TileSet_bhh6t")
+
+[node name="RightDoor" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAJAP7/AAAAAAAAAAAJAP//AAAAAAAAAAAJAAAAAAAAAAAAAAAJAAEAAAAAAAAAAAA=")
+enabled = false
+tile_set = SubResource("TileSet_bhh6t")
+
+[node name="BottomDoor" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD+/wkAAAAAAAAAAAD//wkAAAAAAAAAAAAAAAkAAAAAAAAAAAABAAkAAAAAAAAAAAA=")
+enabled = false
+tile_set = SubResource("TileSet_bhh6t")
+
+[node name="TopDoor" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD+//b/AAAAAAAAAAD///b/AAAAAAAAAAAAAPb/AAAAAAAAAAABAPb/AAAAAAAAAAA=")
+enabled = false
+tile_set = SubResource("TileSet_bhh6t")
