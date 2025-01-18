@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://drvq2g3di805i"]
 
-[ext_resource type="PackedScene" uid="uid://didohvmx332uq" path="res://assets/Player/player.tscn" id="1_cwl6g"]
+[ext_resource type="PackedScene" uid="uid://didohvmx332uq" path="res://player/player.tscn" id="1_cwl6g"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1b1fu"]
 
