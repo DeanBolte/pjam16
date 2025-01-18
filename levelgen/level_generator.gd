@@ -2,7 +2,7 @@ extends Node
 
 var ROOM_RESOURCE = preload("res://levelgen/room/room.tscn")
 
-@export var MAX_ROOMS := 30
+@export var MAX_ROOMS := 7
 @export var RETRY_ROOM_ADJACENCY_ATTEMPTS = 4
 @export var ROOM_ADJACENCYRETRY_SCALAR = 3
 @export var MINIMUM_ADJACENT_ROOMS = 2
@@ -15,7 +15,7 @@ func _ready() -> void:
 	var base_room: Room = ROOM_RESOURCE.instantiate()
 	add_child(base_room)
 
-	base_room.generate(Vector2i.ZERO)
+	base_room.generate(Vector2i.ZERO, false)
 	level_map[Vector2i.ZERO] = base_room
 
 	_generate_map()
@@ -37,7 +37,7 @@ func _generate_map() -> void:
 					vacant_rooms.shuffle()
 					location = vacant_rooms.front()
 
-			room.generate(location)
+			room.generate(location, MAX_ROOMS - level_map.size() == 1)
 			level_map[location] = room
 
 	for room in level_map.keys():
