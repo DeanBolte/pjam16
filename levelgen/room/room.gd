@@ -13,10 +13,10 @@ var ROOM_HEIGHT := 640
 @onready var BottomDoor := $BottomDoor
 @onready var TopDoor := $TopDoor
 
-@export var MAX_CRATES := 4
+@export var MAX_CRATES := 5
 
-@export var SPAWN_AREA_WIDTH: int
-@export var SPAWN_AREA_HEIGHT: int
+@export var SPAWN_AREA_WIDTH: int = 540
+@export var SPAWN_AREA_HEIGHT: int = 540
 
 var _leftDoorConnected := true
 var _rightDoorConnected := true

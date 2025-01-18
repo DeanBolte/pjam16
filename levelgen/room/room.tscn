@@ -23,8 +23,6 @@ size = Vector2(600, 600)
 
 [node name="Room" type="Node2D"]
 script = ExtResource("1_6jt68")
-SPAWN_AREA_WIDTH = 324
-SPAWN_AREA_HEIGHT = 324
 
 [node name="Background" type="Sprite2D" parent="."]
 texture = ExtResource("1_pcs8o")
