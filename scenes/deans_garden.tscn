@@ -7,3 +7,4 @@
 [node name="LevelGenerator" parent="." instance=ExtResource("1_dwhmm")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.3, 0.3)
