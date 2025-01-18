@@ -5,24 +5,6 @@
 [sub_resource type="GDScript" id="GDScript_5ddlf"]
 script/source = "extends CanvasLayer
 
-@export var inventory_size := 10
-
-var items_load = [
-	\"res://ui/sword.tres\"
-]
-
-func _ready():
-	self.visible = false
-	
-	for i in inventory_size:
-		var slot := InventorySlot.new()
-		slot.init(ItemData.Type.MAIN, Vector2(64, 64))
-		%Inv.add_child(slot)
-	
-	for i in items_load.size():
-		var item := InventoryItem.new()
-		item.init(load(items_load[i]))
-		%Inv.get_child(i).add_child(item)
 
 func _process(delta):
 	if Input.is_action_just_pressed(\"inventory\"):
@@ -40,16 +22,10 @@ zoom = Vector2(0.1, 0.1)
 script = SubResource("GDScript_5ddlf")
 
 [node name="Background" type="Panel" parent="Inventory"]
-offset_left = 128.0
-offset_top = 96.0
-offset_right = 1024.0
-offset_bottom = 536.0
-metadata/_edit_lock_ = true
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="Inv" type="GridContainer" parent="Inventory"]
 unique_name_in_owner = true
-offset_left = 448.0
-offset_top = 160.0
-offset_right = 704.0
-offset_bottom = 472.0
-columns = 5
+offset_right = 40.0
+offset_bottom = 40.0
