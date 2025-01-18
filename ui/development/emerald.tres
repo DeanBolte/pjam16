@@ -7,6 +7,8 @@
 script = ExtResource("1_3iwwf")
 type = 0
 name = "Emerald"
-description = "Unbreaking I
-Efficiency III"
+description = "A shiny green gem."
 texture = ExtResource("2_4qqhu")
+damage = -1
+move_speed = 10
+range = 0

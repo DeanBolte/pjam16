@@ -9,7 +9,15 @@ func _ready():
 	expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	texture = data.texture
-	tooltip_text = "%s\n%s" % [data.name, data.description]
+	tooltip_text = "%s\n%s\n" % [data.name, data.description]
+
+	
+	if data.damage != 0:
+		tooltip_text += "\n%s%d damage" % ["+" if data.damage > 0 else "", data.damage]
+	if data.move_speed != 0:
+		tooltip_text += "\n%s%d move speed" % ["+" if data.move_speed > 0 else "", data.move_speed]
+	if data.range != 0:
+		tooltip_text += "\n%s%d range" % ["+" if data.range > 0 else "", data.range]
 
 
 func _get_drag_data(at_position: Vector2):

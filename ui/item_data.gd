@@ -6,3 +6,8 @@ enum Type { MAIN }
 @export var name: String
 @export_multiline var description: String
 @export var texture: Texture2D
+
+# Dummy stats, not final
+@export var damage: int
+@export var move_speed: int
+@export var range: int
