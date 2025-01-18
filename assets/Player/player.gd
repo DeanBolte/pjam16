@@ -22,7 +22,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity = mouse_direction * min(max_speed, (distanceFromMouse + base_speed) * speed_multiplier)
 	
-	if distanceFromMouse > 20 and mouse_is_in_window:
+	if (distanceFromMouse > 20 and global_position.distance_to(mouse_position) > 20) and mouse_is_in_window:
 		rotation = lerp_angle(rotation, mouse_direction.angle(), rotation_speed) 
 		move_and_slide()
 	
