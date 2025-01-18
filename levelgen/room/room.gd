@@ -45,8 +45,8 @@ func generate(location: Vector2i) -> void:
 
 	_generate_objects()
 
-func close_doors() -> void:
-	TopDoor.enabled = not _topDoorConnected
-	BottomDoor.enabled = not _bottomDoorConnected
-	RightDoor.enabled = not _rightDoorConnected
-	LeftDoor.enabled = not _leftDoorConnected
+func close_doors(door_locations: Array[Vector2i]) -> void:
+	TopDoor.enabled = door_locations.has(Vector2i.UP)
+	BottomDoor.enabled = door_locations.has(Vector2i.DOWN)
+	RightDoor.enabled = door_locations.has(Vector2i.RIGHT)
+	LeftDoor.enabled = door_locations.has(Vector2i.LEFT)
