@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 Signals="*res://Singletons/signals.tscn"
 
+[display]
+
+window/size/viewport_height=640
+
 [input]
 
 stop_moving={

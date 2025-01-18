@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dn1b258vpo4kg"]
+[gd_scene load_steps=7 format=3 uid="uid://dn1b258vpo4kg"]
 
 [ext_resource type="PackedScene" uid="uid://d1wjc1scifet6" path="res://levelgen/level_generator.tscn" id="1_dwhmm"]
 [ext_resource type="PackedScene" uid="uid://p847824ux4ub" path="res://room_camera/room_camera.tscn" id="2_iqi8r"]
+[ext_resource type="PackedScene" uid="uid://k6ra4mvps7no" path="res://levelgen/room/room.tscn" id="3_tfnt4"]
 [ext_resource type="Script" path="res://scenes/temp_player.gd" id="4_2uudr"]
 [ext_resource type="Texture2D" uid="uid://dfvtyrddd1sxe" path="res://assets/Development/basic_sword.png" id="4_k5djn"]
 
@@ -26,3 +27,6 @@ texture = ExtResource("4_k5djn")
 
 [node name="RoomCamera" parent="." instance=ExtResource("2_iqi8r")]
 zoom = Vector2(1, 1)
+position_smoothing_enabled = true
+
+[node name="Room" parent="." instance=ExtResource("3_tfnt4")]

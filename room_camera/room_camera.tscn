@@ -1,7 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://p847824ux4ub"]
+[gd_scene load_steps=3 format=3 uid="uid://p847824ux4ub"]
 
 [ext_resource type="Script" path="res://room_camera/room_camera.gd" id="1_4ouwj"]
+[ext_resource type="Texture2D" uid="uid://iyri13fn31l2" path="res://assets/BasicSprites/backwall.png" id="2_gcxas"]
 
 [node name="RoomCamera" type="Camera2D"]
 zoom = Vector2(0.1, 0.1)
 script = ExtResource("1_4ouwj")
+
+[node name="SideCutInLeft" type="Sprite2D" parent="."]
+z_index = 100
+position = Vector2(-448, 0)
+texture = ExtResource("2_gcxas")
+region_enabled = true
+region_rect = Rect2(0, 0, 256, 640)
+
+[node name="SideCutInRight" type="Sprite2D" parent="."]
+z_index = 100
+position = Vector2(448, 0)
+texture = ExtResource("2_gcxas")
+region_enabled = true
+region_rect = Rect2(0, 0, 256, 640)
