@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://drvq2g3di805i"]
+
+[ext_resource type="PackedScene" uid="uid://didohvmx332uq" path="res://assets/Player/player.tscn" id="1_cwl6g"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1b1fu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sdspp"]
+size = Vector2(136, 602)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d1ln5"]
+radius = 33.2866
+
+[node name="player_sandbox" type="Node2D"]
+position = Vector2(553, 324)
+
+[node name="player" parent="." instance=ExtResource("1_cwl6g")]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-262, -92)
+physics_material_override = SubResource("PhysicsMaterial_1b1fu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(58, 87)
+shape = SubResource("RectangleShape2D_sdspp")
+debug_color = Color(0.0785268, 0.591384, 0.73407, 0.42)
+metadata/_edit_lock_ = true
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(106, -104)
+physics_material_override = SubResource("PhysicsMaterial_1b1fu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(58, 87)
+shape = SubResource("RectangleShape2D_sdspp")
+debug_color = Color(0.0785268, 0.591384, 0.73407, 0.42)
+metadata/_edit_lock_ = true
+
+[node name="enemy" type="CollisionShape2D" parent="."]
+position = Vector2(36, -202)
+shape = SubResource("CircleShape2D_d1ln5")
+debug_color = Color(0.945166, 0.208735, 0.282903, 0.42)
