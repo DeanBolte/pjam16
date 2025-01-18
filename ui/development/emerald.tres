@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://dhdq11jeaxqxp"]
+
+[ext_resource type="Script" path="res://ui/item_data.gd" id="1_3iwwf"]
+[ext_resource type="Texture2D" uid="uid://cw7m0qw0kouvt" path="res://assets/Development/emerald.png" id="2_4qqhu"]
+
+[resource]
+script = ExtResource("1_3iwwf")
+type = 0
+name = "Emerald"
+description = "Unbreaking I
+Efficiency III"
+texture = ExtResource("2_4qqhu")

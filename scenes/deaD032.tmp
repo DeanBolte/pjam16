@@ -8,9 +8,8 @@ script/source = "extends CanvasLayer
 @export var inventory_size := 10
 
 var items_load = [
-	\"res://ui/development/sword.tres\",
-	\"res://ui/development/emerald.tres\",
-	\"res://ui/development/diamond.tres\"
+	\"res://ui/sword.tres\",
+	\"res://ui/emerald.tres\"
 ]
 
 func _ready():
