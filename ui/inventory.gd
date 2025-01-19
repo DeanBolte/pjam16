@@ -1,15 +1,21 @@
-extends Control
+extends CanvasLayer
+
+@onready var open_close_sfx = get_node("OpenCloseSfx")
 
 @export var inventory_size := 10
 @export var selected_size := 3
 
-signal update_count
+var open_sfx = preload("res://assets/sfx/ui_open.wav")
+var close_sfx = preload("res://assets/sfx/ui_close.wav")
 
+var inv_items: Array[InventoryItem] = []
+var selected_items: Array[InventoryItem] = []
+
+# Dummy items for initial load, remove these once ready.
 var items_load = [
 	"res://ui/development/sword.tres",
 	"res://ui/development/emerald.tres"
 ]
-
 var selected_items_load = [
 	"res://ui/development/diamond.tres"
 ]
@@ -36,9 +42,15 @@ func _ready():
 		var selected_item := InventoryItem.new()
 		selected_item.init(load(selected_items_load[i]))
 		%SelectedItems.get_child(i).add_child(selected_item)
-	
-	%InvCount.text = "%s/%s" % [items_load.size(), inventory_size]
 
 func _process(delta):
-	if Input.is_action_just_pressed("inventory"):
+	if Input.is_action_just_pressed("inventory"):		
+		if self.visible:
+			open_close_sfx.stream = close_sfx
+		else:
+			open_close_sfx.stream = open_sfx
+		open_close_sfx.play()
 		self.visible = !self.visible
+	
+	# Enable the button when all SelectedItems slots are filled.
+	%SelectButton.disabled = !%SelectedItems.get_children().all(func(child): return child.get_child_count() > 0)

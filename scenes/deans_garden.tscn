@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://dn1b258vpo4kg"]
+[gd_scene load_steps=5 format=3 uid="uid://dn1b258vpo4kg"]
 
 [ext_resource type="PackedScene" uid="uid://d1wjc1scifet6" path="res://levelgen/level_generator.tscn" id="1_dwhmm"]
+[ext_resource type="PackedScene" uid="uid://cwa5r6we5q7sf" path="res://ui/inventory.tscn" id="1_l703y"]
 [ext_resource type="PackedScene" uid="uid://p847824ux4ub" path="res://room_camera/room_camera.tscn" id="2_iqi8r"]
 [ext_resource type="PackedScene" uid="uid://didohvmx332uq" path="res://player/player.tscn" id="4_ilxjj"]
 
 [node name="DeansGarden" type="Node2D"]
+
+[node name="Inventory" parent="." instance=ExtResource("1_l703y")]
 
 [node name="LevelGenerator" parent="." instance=ExtResource("1_dwhmm")]
 
