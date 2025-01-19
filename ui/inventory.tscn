@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://hd3v1d7tso47"]
+[gd_scene load_steps=3 format=3 uid="uid://hd3v1d7tso47"]
 
 [ext_resource type="Script" path="res://ui/inventory.gd" id="1_fikyh"]
+[ext_resource type="AudioStream" uid="uid://cwcjb1j67lg71" path="res://assets/sfx/pop.wav" id="2_6l5kf"]
 
 [node name="Inventory" type="Control"]
 layout_mode = 3
@@ -56,3 +57,7 @@ offset_top = 384.0
 offset_right = 960.0
 offset_bottom = 512.0
 columns = 3
+
+[node name="DropSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_6l5kf")
+volume_db = -15.0
