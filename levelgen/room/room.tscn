@@ -1,26 +1,26 @@
-[gd_scene load_steps=6 format=4 uid="uid://k6ra4mvps7no"]
+[gd_scene load_steps=8 format=4 uid="uid://k6ra4mvps7no"]
 
 [ext_resource type="Script" path="res://levelgen/room/room.gd" id="1_6jt68"]
 [ext_resource type="Texture2D" uid="uid://bdbs8w6bbuq0r" path="res://assets/BasicSprites/backgroundtile.png" id="1_pcs8o"]
 [ext_resource type="Texture2D" uid="uid://qto7j3m6hfee" path="res://assets/BasicSprites/forewall.png" id="2_s1825"]
+[ext_resource type="Script" path="res://levelgen/room/player_detection_zone.gd" id="4_pgt05"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hs7wj"]
 texture = ExtResource("2_s1825")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
-1:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 
 [sub_resource type="TileSet" id="TileSet_bhh6t"]
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_hs7wj")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_43tfm"]
+size = Vector2(600, 600)
+
 [node name="Room" type="Node2D"]
 script = ExtResource("1_6jt68")
-SPAWN_AREA_WIDTH = 324
-SPAWN_AREA_HEIGHT = 324
 
 [node name="Background" type="Sprite2D" parent="."]
 texture = ExtResource("1_pcs8o")
@@ -52,3 +52,13 @@ tile_set = SubResource("TileSet_bhh6t")
 tile_map_data = PackedByteArray("AAD+//b/AAAAAAAAAAD///b/AAAAAAAAAAAAAPb/AAAAAAAAAAABAPb/AAAAAAAAAAA=")
 enabled = false
 tile_set = SubResource("TileSet_bhh6t")
+
+[node name="PlayerDetectionZone" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("4_pgt05")
+
+[node name="Collision2D" type="CollisionShape2D" parent="PlayerDetectionZone"]
+shape = SubResource("RectangleShape2D_43tfm")
+
+[connection signal="body_entered" from="PlayerDetectionZone" to="PlayerDetectionZone" method="_on_body_entered"]

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://clmuc8ois256r"]
+
+[ext_resource type="Script" path="res://Singletons/signals.gd" id="1_geu6t"]
+
+[node name="Signals" type="Node2D"]
+script = ExtResource("1_geu6t")
