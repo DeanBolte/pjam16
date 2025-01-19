@@ -51,3 +51,6 @@ func _process(delta):
 			open_close_sfx.stream = open_sfx
 		open_close_sfx.play()
 		self.visible = !self.visible
+	
+	# Enable the button when all SelectedItems slots are filled.
+	%SelectButton.disabled = !%SelectedItems.get_children().all(func(child): return child.get_child_count() > 0)
