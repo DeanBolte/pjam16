@@ -2,11 +2,11 @@ extends Control
 
 @onready var open_close_sfx = get_node("/root/Inventory/OpenCloseSfx")
 
-var open_sfx = preload("res://assets/sfx/ui_open.wav")
-var close_sfx = preload("res://assets/sfx/ui_close.wav")
-
 @export var inventory_size := 10
 @export var selected_size := 3
+
+var open_sfx = preload("res://assets/sfx/ui_open.wav")
+var close_sfx = preload("res://assets/sfx/ui_close.wav")
 
 var inv_items: Array[InventoryItem] = []
 var selected_items: Array[InventoryItem] = []
