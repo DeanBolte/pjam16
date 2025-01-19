@@ -12,3 +12,5 @@ texture = ExtResource("2_kn4xx")
 damage = 7
 move_speed = 0
 range = 2
+colour = 1
+shape = 2
