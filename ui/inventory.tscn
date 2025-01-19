@@ -1,0 +1,58 @@
+[gd_scene load_steps=2 format=3 uid="uid://hd3v1d7tso47"]
+
+[ext_resource type="Script" path="res://ui/inventory.gd" id="1_fikyh"]
+
+[node name="Inventory" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_fikyh")
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 96.0
+offset_right = 1024.0
+offset_bottom = 536.0
+metadata/_edit_lock_ = true
+
+[node name="InvLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 120.0
+offset_right = 272.0
+offset_bottom = 144.0
+text = "Inventory"
+
+[node name="InvCount" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 828.0
+offset_top = 315.0
+offset_right = 887.0
+offset_bottom = 355.0
+
+[node name="Inv" type="GridContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 192.0
+offset_top = 152.0
+offset_right = 960.0
+offset_bottom = 312.0
+columns = 5
+
+[node name="SelectedItemsLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 352.0
+offset_right = 272.0
+offset_bottom = 376.0
+text = "Selected"
+
+[node name="SelectedItems" type="GridContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 192.0
+offset_top = 384.0
+offset_right = 960.0
+offset_bottom = 512.0
+columns = 3

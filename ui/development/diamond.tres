@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://dkyr42hfxdy8x"]
+
+[ext_resource type="Script" path="res://ui/item_data.gd" id="1_gqhkl"]
+[ext_resource type="Texture2D" uid="uid://dl36k0rx25he3" path="res://assets/Development/diamond.png" id="2_kf08r"]
+
+[resource]
+script = ExtResource("1_gqhkl")
+type = 0
+name = "Diamond"
+description = "Definitely NOT a mana gem."
+texture = ExtResource("2_kf08r")
+damage = 10
+move_speed = 0
+range = -5
+colour = 4
+shape = 0
