@@ -1,4 +1,4 @@
-extends Node2D
+extends CharacterBody2D
 
 @export var speed: int = 10000
 @export var health: int = 3
@@ -12,8 +12,8 @@ func _process(delta):
 	patrol(delta)
 
 func patrol(delta):
-	$CharacterBody2D.velocity = randomDirection * speed * delta
-	$CharacterBody2D.move_and_slide()
+	velocity = randomDirection * speed * delta
+	move_and_slide()
 
 	if should_change_direction():
 		set_random_direction()
