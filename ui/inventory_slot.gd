@@ -1,7 +1,7 @@
 class_name InventorySlot extends PanelContainer
 
 @export var type: ItemData.Type
-@onready var drop_sfx = get_node("/root/Inventory/DropSfx")
+@onready var drop_sfx = get_node("../../DropSfx")
 
 func init(t: ItemData.Type, cms: Vector2) -> void:
 	type = t

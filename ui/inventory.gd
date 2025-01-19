@@ -1,6 +1,6 @@
-extends Control
+extends CanvasLayer
 
-@onready var open_close_sfx = get_node("/root/Inventory/OpenCloseSfx")
+@onready var open_close_sfx = get_node("OpenCloseSfx")
 
 @export var inventory_size := 10
 @export var selected_size := 3
@@ -44,7 +44,7 @@ func _ready():
 		%SelectedItems.get_child(i).add_child(selected_item)
 
 func _process(delta):
-	if Input.is_action_just_pressed("inventory"):
+	if Input.is_action_just_pressed("inventory"):		
 		if self.visible:
 			open_close_sfx.stream = close_sfx
 		else:
