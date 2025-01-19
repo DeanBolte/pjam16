@@ -3,6 +3,8 @@ extends Control
 @export var inventory_size := 10
 @export var selected_size := 3
 
+signal update_count
+
 var items_load = [
 	"res://ui/development/sword.tres",
 	"res://ui/development/emerald.tres"
@@ -34,6 +36,8 @@ func _ready():
 		var selected_item := InventoryItem.new()
 		selected_item.init(load(selected_items_load[i]))
 		%SelectedItems.get_child(i).add_child(selected_item)
+	
+	%InvCount.text = "%s/%s" % [items_load.size(), inventory_size]
 
 func _process(delta):
 	if Input.is_action_just_pressed("inventory"):

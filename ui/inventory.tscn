@@ -23,6 +23,14 @@ offset_right = 272.0
 offset_bottom = 144.0
 text = "Inventory"
 
+[node name="InvCount" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 828.0
+offset_top = 315.0
+offset_right = 887.0
+offset_bottom = 355.0
+
 [node name="Inv" type="GridContainer" parent="."]
 unique_name_in_owner = true
 layout_mode = 0
