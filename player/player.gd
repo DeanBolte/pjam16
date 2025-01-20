@@ -47,7 +47,8 @@ func _input(event):
 
 
 func _on_weapon_hit(object_hit: Area2D) -> void:
-	Signals.player_sword_hit.emit(object_hit)
+	if object_hit.has_method("process_hit"):
+		object_hit.process_hit(object_hit)
 
 
 func _on_peasant_damage_hitbox_area_entered(area: Area2D) -> void:

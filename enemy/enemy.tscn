@@ -1,18 +1,33 @@
-[gd_scene load_steps=4 format=3 uid="uid://w7ajh8n7e0yk"]
+[gd_scene load_steps=6 format=3 uid="uid://w7ajh8n7e0yk"]
 
 [ext_resource type="Script" path="res://enemy/enemy.gd" id="1_vw6hr"]
 [ext_resource type="Texture2D" uid="uid://1e650ak2qvjh" path="res://icon.svg" id="1_wrbh6"]
+[ext_resource type="Script" path="res://enemy/hitbox.gd" id="3_da2x8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hxd01"]
+size = Vector2(66, 68)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2wkcg"]
 size = Vector2(73, 74)
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="enemy" type="CharacterBody2D"]
 script = ExtResource("1_vw6hr")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="sprite" type="Sprite2D" parent="."]
 scale = Vector2(0.515625, 0.515625)
 texture = ExtResource("1_wrbh6")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="body" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_hxd01")
+debug_color = Color(0.344434, 0.484909, 1, 0.42)
+
+[node name="hitbox" type="Area2D" parent="." groups=["enemies"]]
+collision_layer = 4
+collision_mask = 8
+script = ExtResource("3_da2x8")
+
+[node name="hitbox" type="CollisionShape2D" parent="hitbox"]
 position = Vector2(-0.5, 1)
 shape = SubResource("RectangleShape2D_2wkcg")
+
+[node name="invincibility_timer" type="Timer" parent="."]
