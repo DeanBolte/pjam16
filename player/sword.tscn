@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bak5nlut0s6ud"]
+[gd_scene load_steps=6 format=3 uid="uid://d2cbduhlkxwcu"]
 
 [ext_resource type="Script" path="res://player/sword.gd" id="1_bqtey"]
 [ext_resource type="Texture2D" uid="uid://dfvtyrddd1sxe" path="res://assets/Development/basic_sword.png" id="2_hlylj"]
@@ -18,7 +18,7 @@ position = Vector2(-0.000115871, -32)
 rotation = -1.5708
 
 [node name="sword_edge_hitbox" type="Area2D" parent="."]
-collision_layer = 3
+collision_layer = 8
 metadata/_edit_lock_ = true
 
 [node name="sword_edge_shape" type="CollisionShape2D" parent="sword_edge_hitbox"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://didohvmx332uq"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_s8bvr"]
-[ext_resource type="PackedScene" uid="uid://bak5nlut0s6ud" path="res://player/sword.tscn" id="2_7cnl1"]
+[ext_resource type="PackedScene" uid="uid://d2cbduhlkxwcu" path="res://player/sword.tscn" id="2_7cnl1"]
 [ext_resource type="Texture2D" uid="uid://cr3kg716rd3vb" path="res://assets/BasicSprites/player-hand.png" id="3_jvnai"]
 [ext_resource type="Texture2D" uid="uid://dce4ivf4ok3qc" path="res://assets/BasicSprites/player-body.png" id="4_d7lvc"]
 
@@ -43,9 +43,10 @@ scale = Vector2(0.8125, 0.8125)
 texture = ExtResource("4_d7lvc")
 
 [node name="peasant_damage_hitbox" type="Area2D" parent="peasant"]
+collision_layer = 2
+collision_mask = 16
 
 [node name="peasant_damage_hitbox_shape" type="CollisionShape2D" parent="peasant/peasant_damage_hitbox"]
 shape = SubResource("CircleShape2D_qanm4")
 
-[connection signal="weapon_hit" from="weapon" to="." method="_on_weapon_hit"]
 [connection signal="area_entered" from="peasant/peasant_damage_hitbox" to="." method="_on_peasant_damage_hitbox_area_entered"]
