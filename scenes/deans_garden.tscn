@@ -7,7 +7,7 @@
 
 [node name="DeansGarden" type="Node2D"]
 
-[node name="Ui" parent="." instance=ExtResource("1_cv68o")]
+[node name="UserInterface" parent="." instance=ExtResource("1_cv68o")]
 layer = 12
 
 [node name="LevelGenerator" parent="." instance=ExtResource("1_dwhmm")]

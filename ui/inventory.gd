@@ -20,7 +20,8 @@ var items_load = [
 	"res://ui/development/emerald.tres"
 ]
 var selected_items_load = [
-	"res://ui/development/diamond.tres"
+	"res://ui/development/diamond.tres",
+	"res://ui/development/basic_crystal.tres"
 ]
 
 func _ready():
