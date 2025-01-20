@@ -17,10 +17,6 @@ func _ready() -> void:
 
 	Signals.player_reached_level_transition.connect(_next_level)
 
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("ui_end"):
-		_next_level()
-
 # ------- map generation
 func _generate_map() -> void:
 	rooms_node = Node.new()

@@ -1,11 +1,62 @@
-[gd_scene load_steps=3 format=3 uid="uid://p847824ux4ub"]
+[gd_scene load_steps=6 format=3 uid="uid://p847824ux4ub"]
 
 [ext_resource type="Script" path="res://room_camera/room_camera.gd" id="1_4ouwj"]
 [ext_resource type="Texture2D" uid="uid://iyri13fn31l2" path="res://assets/BasicSprites/backwall.png" id="2_gcxas"]
 
+[sub_resource type="Animation" id="Animation_n7dvi"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/LevelFader:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.966667),
+"transitions": PackedFloat32Array(1, 2.07053, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.478431), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_transition_complete"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_y1rp1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/LevelFader:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_65ddp"]
+_data = {
+"RESET": SubResource("Animation_y1rp1"),
+"fade_in": SubResource("Animation_n7dvi")
+}
+
 [node name="RoomCamera" type="Camera2D"]
 zoom = Vector2(0.1, 0.1)
 position_smoothing_enabled = true
+position_smoothing_speed = 10.0
 script = ExtResource("1_4ouwj")
 
 [node name="Control" type="CanvasLayer" parent="."]
@@ -23,3 +74,20 @@ position = Vector2(128, 320)
 texture = ExtResource("2_gcxas")
 region_enabled = true
 region_rect = Rect2(0, 0, 256, 640)
+
+[node name="LevelFader" type="ColorRect" parent="Control"]
+visible = false
+z_index = 110
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+color = Color(0, 0, 0, 1)
+
+[node name="TransitionPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_65ddp")
+}
