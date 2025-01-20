@@ -26,11 +26,13 @@ func _ready():
 	for i in inventory_size:
 		var slot := InventorySlot.new()
 		slot.init(ItemData.Type.MAIN, Vector2(64, 64))
+		slot.update_inventory.connect(test)
 		%Inv.add_child(slot)
 	
 	for i in selected_size:
 		var selected_slot := InventorySlot.new()
 		selected_slot.init(ItemData.Type.MAIN, Vector2(96, 96))	
+		selected_slot.update_inventory.connect(test)
 		%SelectedItems.add_child(selected_slot)
 	
 	for i in items_load.size():
@@ -54,3 +56,8 @@ func _process(delta):
 	
 	# Enable the button when all SelectedItems slots are filled.
 	%SelectButton.disabled = !%SelectedItems.get_children().all(func(child): return child.get_child_count() > 0)
+	
+func test():
+	for i in %Inv.get_child_count() - 1:
+		print("%s: %s" % [i, %Inv.get_child(i).get_child_count()])
+	print("a")
