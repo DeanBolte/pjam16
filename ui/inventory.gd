@@ -6,6 +6,9 @@ extends CanvasLayer
 @export var selected_size := 3
 
 var open_sfx = preload("res://assets/sfx/ui_open.wav")
+var open_icon = preload("res://assets/ui/chest-open.png")
+var closed_icon = preload("res://assets/ui/chest.png")
+
 var close_sfx = preload("res://assets/sfx/ui_close.wav")
 
 var inv_items: Array[InventoryItem] = []
@@ -49,8 +52,10 @@ func _process(delta):
 	if Input.is_action_just_pressed("inventory"):		
 		if self.visible:
 			open_close_sfx.stream = close_sfx
+			%InventoryIcon.texture = closed_icon
 		else:
 			open_close_sfx.stream = open_sfx
+			%InventoryIcon.texture = open_icon
 		open_close_sfx.play()
 		self.visible = !self.visible
 	

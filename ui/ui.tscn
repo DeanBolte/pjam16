@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://de7hk88yjl6gw"]
+
+[ext_resource type="PackedScene" uid="uid://cwa5r6we5q7sf" path="res://ui/inventory.tscn" id="1_08hm3"]
+[ext_resource type="Texture2D" uid="uid://be3u37x0progx" path="res://assets/ui/chest.png" id="1_y6xot"]
+
+[node name="Ui" type="CanvasLayer"]
+
+[node name="Inventory" parent="." instance=ExtResource("1_08hm3")]
+layer = 3
+
+[node name="BoxContainer" type="BoxContainer" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="InventoryIcon" type="Sprite2D" parent="BoxContainer"]
+unique_name_in_owner = true
+position = Vector2(40, 0)
+scale = Vector2(4.5, 4.5)
+texture = ExtResource("1_y6xot")
