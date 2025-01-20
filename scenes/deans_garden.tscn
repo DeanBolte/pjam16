@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dn1b258vpo4kg"]
 
-[ext_resource type="PackedScene" uid="uid://de7hk88yjl6gw" path="res://ui/ui.tscn" id="1_cv68o"]
+[ext_resource type="PackedScene" path="res://ui/ui.tscn" id="1_cv68o"]
 [ext_resource type="PackedScene" uid="uid://d1wjc1scifet6" path="res://levelgen/level_generator.tscn" id="1_dwhmm"]
 [ext_resource type="PackedScene" uid="uid://p847824ux4ub" path="res://room_camera/room_camera.tscn" id="2_iqi8r"]
 [ext_resource type="PackedScene" uid="uid://didohvmx332uq" path="res://player/player.tscn" id="4_ilxjj"]
