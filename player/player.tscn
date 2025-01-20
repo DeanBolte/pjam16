@@ -49,4 +49,5 @@ collision_mask = 16
 [node name="peasant_damage_hitbox_shape" type="CollisionShape2D" parent="peasant/peasant_damage_hitbox"]
 shape = SubResource("CircleShape2D_qanm4")
 
+[connection signal="weapon_hit" from="weapon" to="." method="_on_weapon_hit"]
 [connection signal="area_entered" from="peasant/peasant_damage_hitbox" to="." method="_on_peasant_damage_hitbox_area_entered"]
