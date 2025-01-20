@@ -58,6 +58,6 @@ func _process(delta):
 	%SelectButton.disabled = !%SelectedItems.get_children().all(func(child): return child.get_child_count() > 0)
 	
 func test():
-	for i in %Inv.get_child_count() - 1:
-		print("%s: %s" % [i, %Inv.get_child(i).get_child_count()])
+	#for i in %Inv.get_child_count() - 1:
+		#print("%s: %s" % [i, %Inv.get_child(i).get_child_count()])
 	print("a")
