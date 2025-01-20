@@ -53,13 +53,14 @@ func die():
 	queue_free()
 
 func start_invincibility():
-	is_invincible = true
-	$invincibility_timer.start()
-	$invincibility_timer.timeout.connect(Callable(self, "end_invincibility"))
+	if not is_invincible:
+		is_invincible = true
+		$invincibility_timer.start()
+		$invincibility_timer.timeout.connect(Callable(self, "end_invincibility"))
 
-	# We don't have to show vulnerability this way - we can do other ways. This shade of white is just obvious for now.
-	# Slightly white shade to show invincibility
-	$sprite.modulate = Color(1, 1, 1, 0.5)
+		# We don't have to show vulnerability this way - we can do other ways. This shade of white is just obvious for now.
+		# Slightly white shade to show invincibility
+		$sprite.modulate = Color(1, 1, 1, 0.5)
 
 func end_invincibility():
 	is_invincible = false
