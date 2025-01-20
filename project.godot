@@ -23,6 +23,10 @@ Signals="*res://Singletons/signals.tscn"
 
 window/stretch/mode="canvas_items"
 
+[gui]
+
+theme/custom_font="res://assets/ui/1980v23P01.ttf"
+
 [input]
 
 stop_moving={
