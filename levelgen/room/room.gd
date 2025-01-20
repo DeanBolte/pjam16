@@ -18,11 +18,6 @@ var ROOM_HEIGHT := 640
 @export var SPAWN_AREA_WIDTH: int = 540
 @export var SPAWN_AREA_HEIGHT: int = 540
 
-var _leftDoorConnected := true
-var _rightDoorConnected := true
-var _topDoorConnected := true
-var _bottomDoorConnected := true
-
 func _generate_objects() -> void:
 	_generate_crates()
 

@@ -9,25 +9,35 @@ var ROOM_RESOURCE = preload("res://levelgen/room/room.tscn")
 
 # a Map of 2D Vector keys representing the room grid
 var level_map: Dictionary = {}
-
+var rooms_node: Node
+var level := 1
 
 func _ready() -> void:
+	_generate_map()
+
+	Signals.player_reached_level_transition.connect(_next_level)
+
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("ui_end"):
+		_next_level()
+
+# ------- map generation
+func _generate_map() -> void:
+	rooms_node = Node.new()
+	add_child(rooms_node)
+
 	var base_room: Room = ROOM_RESOURCE.instantiate()
-	add_child(base_room)
+	rooms_node.add_child(base_room)
 
 	base_room.generate(Vector2i.ZERO, false)
 	level_map[Vector2i.ZERO] = base_room
 
-	_generate_map()
-
-# ------- map generation
-func _generate_map() -> void:
 	while MAX_ROOMS - level_map.size() > 0:
 		var vacant_rooms := _get_room_candidates()
 		vacant_rooms.shuffle()
 
 		var room: Room = ROOM_RESOURCE.instantiate()
-		add_child(room)
+		rooms_node.add_child(room)
 
 		if (not vacant_rooms.is_empty()):
 			var location = vacant_rooms.front()
@@ -76,3 +86,14 @@ func _does_room_exist(room_location: Vector2i) -> bool:
 
 func _is_room_vacant(room_location: Vector2i) -> bool:
 	return not level_map.has(room_location)
+
+func _next_level() -> void:
+	_destroy_level()
+	call_deferred("_generate_map")
+
+	level += 1
+	Signals.new_level_reached.emit()
+
+func _destroy_level() -> void:
+	rooms_node.queue_free()
+	level_map = {}

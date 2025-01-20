@@ -23,6 +23,7 @@ size = Vector2(600, 600)
 script = ExtResource("1_6jt68")
 
 [node name="Background" type="Sprite2D" parent="."]
+z_index = -100
 texture = ExtResource("1_pcs8o")
 region_enabled = true
 region_rect = Rect2(0, 0, 640, 640)
