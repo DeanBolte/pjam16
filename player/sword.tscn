@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cwn15l6rnimdh" path="res://assets/Development/sword_blade.png" id="4_55ew7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0sbrh"]
+radius = 12.0
 height = 68.0
 
 [node name="sword" type="CollisionShape2D"]
@@ -18,7 +19,8 @@ position = Vector2(-0.000115871, -32)
 rotation = -1.5708
 
 [node name="sword_edge_hitbox" type="Area2D" parent="."]
-collision_layer = 3
+collision_layer = 8
+collision_mask = 4
 metadata/_edit_lock_ = true
 
 [node name="sword_edge_shape" type="CollisionShape2D" parent="sword_edge_hitbox"]
