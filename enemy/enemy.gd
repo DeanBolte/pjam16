@@ -42,6 +42,7 @@ func on_hit():
 
 func take_damage(amount: int):
 	health -= amount
+	$hit_sound.play()
 	print("Enemy took ", amount, " dmg")
 	if health <= 0:
 		die()

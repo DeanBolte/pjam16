@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://w7ajh8n7e0yk"]
+[gd_scene load_steps=7 format=3 uid="uid://w7ajh8n7e0yk"]
 
 [ext_resource type="Script" path="res://enemy/enemy.gd" id="1_vw6hr"]
 [ext_resource type="Texture2D" uid="uid://1e650ak2qvjh" path="res://icon.svg" id="1_wrbh6"]
 [ext_resource type="Script" path="res://enemy/hitbox.gd" id="3_da2x8"]
+[ext_resource type="AudioStream" uid="uid://bigdatnk5bx4e" path="res://assets/sfx/enemy_damage.wav" id="4_82c56"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hxd01"]
 size = Vector2(66, 68)
@@ -31,3 +32,7 @@ position = Vector2(-0.5, 1)
 shape = SubResource("RectangleShape2D_2wkcg")
 
 [node name="invincibility_timer" type="Timer" parent="."]
+
+[node name="hit_sound" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_82c56")
