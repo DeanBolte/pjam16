@@ -25,7 +25,7 @@ window/stretch/mode="canvas_items"
 
 [gui]
 
-theme/custom_font="res://assets/ui/1980v23P01.ttf"
+theme/custom_font="res://assets/ui/QuinqueFive.ttf"
 
 [input]
 

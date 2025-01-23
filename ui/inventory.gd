@@ -2,14 +2,14 @@ extends CanvasLayer
 
 @onready var open_close_sfx = get_node("OpenCloseSfx")
 
-@export var inventory_size := 10
+@export var inventory_size := 9
 @export var selected_size := 3
 
-var open_sfx = preload("res://assets/sfx/ui_open.wav")
+var open_sfx = preload("res://audio/sfx/ui_open.wav")
 var open_icon = preload("res://assets/ui/chest-open.png")
 var closed_icon = preload("res://assets/ui/chest.png")
 
-var close_sfx = preload("res://assets/sfx/ui_close.wav")
+var close_sfx = preload("res://audio/sfx/ui_close.wav")
 
 var inv_items: Array[InventoryItem] = []
 var selected_items: Array[InventoryItem] = []
@@ -29,13 +29,13 @@ func _ready():
 	
 	for i in inventory_size:
 		var slot := InventorySlot.new()
-		slot.init(ItemData.Type.MAIN, Vector2(64, 64))
+		slot.init(ItemData.Type.MAIN, Vector2(96, 96))
 		slot.update_inventory.connect(test)
 		%Inv.add_child(slot)
 	
 	for i in selected_size:
 		var selected_slot := InventorySlot.new()
-		selected_slot.init(ItemData.Type.MAIN, Vector2(96, 96))	
+		selected_slot.init(ItemData.Type.MAIN, Vector2(128, 128))	
 		selected_slot.update_inventory.connect(test)
 		%SelectedItems.add_child(selected_slot)
 	

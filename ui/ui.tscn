@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://de7hk88yjl6gw"]
+[gd_scene load_steps=4 format=3 uid="uid://de7hk88yjl6gw"]
 
 [ext_resource type="PackedScene" uid="uid://cwa5r6we5q7sf" path="res://ui/inventory.tscn" id="1_08hm3"]
+[ext_resource type="Material" uid="uid://co3shlfue63hr" path="res://assets/shaders/crt_material.tres" id="1_oe5a7"]
 [ext_resource type="Texture2D" uid="uid://be3u37x0progx" path="res://assets/ui/chest.png" id="1_y6xot"]
 
 [node name="Ui" type="CanvasLayer"]
@@ -21,3 +22,11 @@ unique_name_in_owner = true
 position = Vector2(40, 0)
 scale = Vector2(4.5, 4.5)
 texture = ExtResource("1_y6xot")
+
+[node name="crt_effect" type="ColorRect" parent="."]
+material = ExtResource("1_oe5a7")
+offset_right = 1152.0
+offset_bottom = 640.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
