@@ -5,11 +5,11 @@ extends CanvasLayer
 @export var inventory_size := 10
 @export var selected_size := 3
 
-var open_sfx = preload("res://assets/sfx/ui_open.wav")
+var open_sfx = preload("res://audio/sfx/ui_open.wav")
 var open_icon = preload("res://assets/ui/chest-open.png")
 var closed_icon = preload("res://assets/ui/chest.png")
 
-var close_sfx = preload("res://assets/sfx/ui_close.wav")
+var close_sfx = preload("res://audio/sfx/ui_close.wav")
 
 var inv_items: Array[InventoryItem] = []
 var selected_items: Array[InventoryItem] = []
