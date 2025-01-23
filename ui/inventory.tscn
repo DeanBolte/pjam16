@@ -27,37 +27,37 @@ scale = Vector2(7, 7)
 texture = ExtResource("2_84jk4")
 
 [node name="InvLabel" type="RichTextLabel" parent="."]
-offset_left = 472.0
-offset_top = 104.0
-offset_right = 672.0
-offset_bottom = 160.0
+offset_left = 216.0
+offset_top = 136.0
+offset_right = 416.0
+offset_bottom = 192.0
 theme_override_fonts/normal_font = ExtResource("3_sopc3")
 theme_override_font_sizes/normal_font_size = 64
 text = "Inventory"
 
 [node name="Inv" type="GridContainer" parent="."]
 unique_name_in_owner = true
-offset_left = 192.0
-offset_top = 152.0
-offset_right = 960.0
-offset_bottom = 312.0
-columns = 5
+offset_left = 216.0
+offset_top = 192.0
+offset_right = 536.0
+offset_bottom = 472.0
+columns = 3
 
 [node name="SelectedItemsLabel" type="RichTextLabel" parent="."]
-offset_left = 192.0
-offset_top = 344.0
-offset_right = 336.0
-offset_bottom = 384.0
+offset_left = 576.0
+offset_top = 136.0
+offset_right = 760.0
+offset_bottom = 192.0
 theme_override_fonts/normal_font = ExtResource("3_sopc3")
-theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/normal_font_size = 64
 text = "Selected"
 
 [node name="SelectedItems" type="GridContainer" parent="."]
 unique_name_in_owner = true
-offset_left = 192.0
-offset_top = 384.0
-offset_right = 960.0
-offset_bottom = 512.0
+offset_left = 576.0
+offset_top = 192.0
+offset_right = 896.0
+offset_bottom = 320.0
 columns = 3
 
 [node name="DropSfx" type="AudioStreamPlayer" parent="."]
@@ -69,11 +69,10 @@ volume_db = -5.0
 
 [node name="SelectButton" type="Button" parent="."]
 unique_name_in_owner = true
-offset_left = 792.0
-offset_top = 448.0
-offset_right = 976.0
-offset_bottom = 499.0
-theme_override_fonts/font = ExtResource("3_sopc3")
-theme_override_font_sizes/font_size = 32
+offset_left = 576.0
+offset_top = 336.0
+offset_right = 973.0
+offset_bottom = 392.0
+theme_override_font_sizes/font_size = 18
 disabled = true
-text = "Select Upgrade"
+text = "Select upgrade"

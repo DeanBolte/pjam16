@@ -6,14 +6,6 @@
 
 [node name="Ui" type="CanvasLayer"]
 
-[node name="crt_effect" type="ColorRect" parent="."]
-material = ExtResource("1_oe5a7")
-offset_right = 1152.0
-offset_bottom = 640.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-mouse_filter = 2
-
 [node name="Inventory" parent="." instance=ExtResource("1_08hm3")]
 layer = 3
 
@@ -30,3 +22,11 @@ unique_name_in_owner = true
 position = Vector2(40, 0)
 scale = Vector2(4.5, 4.5)
 texture = ExtResource("1_y6xot")
+
+[node name="crt_effect" type="ColorRect" parent="."]
+material = ExtResource("1_oe5a7")
+offset_right = 1152.0
+offset_bottom = 640.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
