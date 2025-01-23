@@ -23,6 +23,10 @@ Signals="*res://Singletons/signals.tscn"
 
 window/stretch/mode="canvas_items"
 
+[global_group]
+
+Players=""
+
 [gui]
 
 theme/custom_font="res://assets/ui/QuinqueFive.ttf"

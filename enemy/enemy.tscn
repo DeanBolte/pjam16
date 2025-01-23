@@ -12,6 +12,7 @@ size = Vector2(66, 68)
 size = Vector2(73, 74)
 
 [node name="enemy" type="CharacterBody2D"]
+position = Vector2(-2, 0)
 script = ExtResource("1_vw6hr")
 
 [node name="sprite" type="Sprite2D" parent="."]
@@ -36,3 +37,14 @@ shape = SubResource("RectangleShape2D_2wkcg")
 [node name="hit_sound" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("4_82c56")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 5.0
+target_desired_distance = 5.0
+path_postprocessing = 1
+avoidance_enabled = true
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(0.884314, 3.20069e-06, 1.15514e-06, 1)
+
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
