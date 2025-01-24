@@ -30,6 +30,7 @@ func calc_path():
 		return
 
 	$NavigationAgent2D.target_position = target_position
+	look_at(target_position)
 
 	var current_position = global_position
 	var next_path_position = $NavigationAgent2D.get_next_path_position()
@@ -68,14 +69,19 @@ func start_invincibility():
 		is_invincible = true
 		$invincibility_timer.start()
 		$invincibility_timer.timeout.connect(Callable(self, "end_invincibility"))
-
-		# We don't have to show vulnerability this way - we can do other ways. This shade of white is just obvious for now.
-		# Slightly white shade to show invincibility
-		$sprite.modulate = Color(1, 1, 1, 0.5)
+		modulate_sprites(Color(1, 1, 1, 0.5))
 
 func end_invincibility():
 	is_invincible = false
-	$sprite.modulate = Color(1, 1, 1, 1)
+	modulate_sprites(Color(1, 1, 1, 1))
+	
+# We don't have to show vulnerability this way - we can do other ways. This shade of white is just obvious for now.
+# Slightly white shade to show invincibility
+func modulate_sprites(color: Color):
+	var sprites = find_children("", "Sprite2D")
+	#var sprites = get_children().filter(func(child): return child is Sprite2D) # Use this if you only want direct children, not descendents.
+	for sprite in sprites:
+		sprite.modulate = color
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 	velocity = safe_velocity
