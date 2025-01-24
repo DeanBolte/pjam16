@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://jfxmvvhqdtr6"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://cx0wss7g75cle"]
 
 [ext_resource type="Script" path="res://ui/item_data.gd" id="1_geqfn"]
 [ext_resource type="Texture2D" uid="uid://vumu1iknyxdb" path="res://assets/crystals/base_crystal.png" id="2_7e7di"]
@@ -12,5 +12,5 @@ texture = ExtResource("2_7e7di")
 damage = 1
 move_speed = 1
 range = 1
-colour = 4
-shape = 0
+colour = 5
+shape = 1

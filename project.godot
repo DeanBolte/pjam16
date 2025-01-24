@@ -18,9 +18,11 @@ config/icon="res://icon.svg"
 [autoload]
 
 Signals="*res://Singletons/signals.tscn"
+PeasantData="*res://player/peasant_data.gd"
 
 [display]
 
+window/size/viewport_height=640
 window/stretch/mode="canvas_items"
 
 [global_group]
