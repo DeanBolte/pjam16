@@ -15,19 +15,20 @@ func _ready():
 	$invincibility_timer.one_shot = true
 
 func _physics_process(delta: float) -> void:
-	calc_path()
-		
+	#calc_path()
+	pass
+
 func calc_path():
 	var target_position = player.global_position
 	$NavigationAgent2D.target_position = target_position
-	
+
 	var current_position = global_position
 	var next_path_position = $NavigationAgent2D.get_next_path_position()
 	var new_velocity = current_position.direction_to(next_path_position) * speed
-	
+
 	if ($NavigationAgent2D.is_navigation_finished()):
 		return
-	
+
 	if ($NavigationAgent2D.avoidance_enabled):
 		$NavigationAgent2D.set_velocity(new_velocity)
 	else:
