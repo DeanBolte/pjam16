@@ -4,7 +4,7 @@ class_name InventorySlot extends PanelContainer
 @onready var drop_sfx = get_node("../../DropSfx")
 var texture_rect: TextureRect
 
-signal update_inventory
+signal update_inventory(item: ItemData, newType: String)
 
 func init(t: ItemData.Type, cms: Vector2) -> void:
 	type = t
@@ -12,7 +12,7 @@ func init(t: ItemData.Type, cms: Vector2) -> void:
 
 func _can_drop_data(_at_position: Vector2, data: Variant):
 	if data is InventoryItem:
-		if type == ItemData.Type.MAIN:
+		if type == ItemData.Type.MAIN || type == ItemData.Type.SELECTED:
 			if get_child_count() == 0:
 				return true
 			else:
@@ -20,7 +20,7 @@ func _can_drop_data(_at_position: Vector2, data: Variant):
 					return true
 			return get_child(0).data.type == data.data.type
 		else:
-			return data.data.type == type
+			return data.data.type == type		
 
 func _drop_data(at_position: Vector2, data: Variant):
 	if get_child_count() > 0:
@@ -30,4 +30,4 @@ func _drop_data(at_position: Vector2, data: Variant):
 		item.reparent(data.get_parent())
 	drop_sfx.play()
 	data.reparent(self)
-	update_inventory.emit()
+	update_inventory.emit(data.data, data.get_parent().type)
