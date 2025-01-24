@@ -4,6 +4,11 @@ extends CharacterBody2D
 @export var health: int = 3
 @export var invincibility_time: float = 2 # seconds of invincibility after being hit
 
+# We can remove a detection radius concept in favour of 'enemies must be in the same room'; this is
+#	just easier to implement right now.
+@export var detection_radius: float = 400.0
+const SHOW_DETECTION_RADIUS: bool = false
+
 var is_invincible: bool = false
 
 var player: CharacterBody2D = null
@@ -15,11 +20,15 @@ func _ready():
 	$invincibility_timer.one_shot = true
 
 func _physics_process(delta: float) -> void:
-	#calc_path()
+	calc_path()
 	pass
 
 func calc_path():
 	var target_position = player.global_position
+	var distance = global_position.distance_to(target_position)
+	if (distance > detection_radius):
+		return
+
 	$NavigationAgent2D.target_position = target_position
 
 	var current_position = global_position
@@ -33,6 +42,7 @@ func calc_path():
 		$NavigationAgent2D.set_velocity(new_velocity)
 	else:
 		_on_navigation_agent_2d_velocity_computed(new_velocity)
+
 	move_and_slide()
 
 func on_hit():
@@ -70,3 +80,8 @@ func end_invincibility():
 func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 	velocity = safe_velocity
 	pass
+	
+func _draw():
+	if (!SHOW_DETECTION_RADIUS):
+		return
+	draw_circle(Vector2.ZERO, detection_radius, Color(1, 0, 0, 0.5))
