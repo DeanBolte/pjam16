@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://w7ajh8n7e0yk"]
+[gd_scene load_steps=10 format=3 uid="uid://w7ajh8n7e0yk"]
 
 [ext_resource type="Script" path="res://enemy/enemy.gd" id="1_vw6hr"]
 [ext_resource type="Texture2D" uid="uid://bcp1d4sjws45m" path="res://assets/enemies/pitchfork.png" id="2_6x4pr"]
@@ -8,6 +8,9 @@
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nvpn0"]
 load_path = "res://.godot/imported/schnoz.png-b82a72d84107f2a81a5e94089dd989c2.ctex"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mue5m"]
+size = Vector2(34, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hxd01"]
 size = Vector2(66, 68)
@@ -24,9 +27,16 @@ rotation = -1.57079
 scale = Vector2(0.0161133, 0.0161133)
 texture = SubResource("CompressedTexture2D_nvpn0")
 
-[node name="weapon" type="Node2D" parent="."]
+[node name="weapon_hitbox" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 2
 
-[node name="pitchfork" type="Sprite2D" parent="weapon"]
+[node name="weapon_hitbox" type="CollisionShape2D" parent="weapon_hitbox"]
+position = Vector2(87, 26)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_mue5m")
+
+[node name="pitchfork" type="Sprite2D" parent="weapon_hitbox"]
 position = Vector2(65, 26)
 rotation = 1.57079
 scale = Vector2(0.0140542, 0.030195)
@@ -67,4 +77,5 @@ debug_enabled = true
 debug_use_custom = true
 debug_path_custom_color = Color(0.884314, 3.20069e-06, 1.15514e-06, 1)
 
+[connection signal="area_entered" from="weapon_hitbox" to="." method="_on_weapon_hitbox_area_entered"]
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
