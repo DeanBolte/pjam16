@@ -10,7 +10,6 @@ func _ready():
 	stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	texture = data.texture
 	tooltip_text = "%s\n%s\n" % [data.name, data.description]
-
 	
 	if data.damage != 0:
 		tooltip_text += "\n%s%d damage" % ["+" if data.damage > 0 else "", data.damage]

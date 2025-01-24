@@ -7,8 +7,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sdspp"]
 size = Vector2(136, 602)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_d1ln5"]
-radius = 33.2866
+[sub_resource type="CircleShape2D" id="CircleShape2D_d23rs"]
+radius = 27.074
 
 [node name="player_sandbox" type="Node2D"]
 position = Vector2(553, 324)
@@ -35,7 +35,9 @@ shape = SubResource("RectangleShape2D_sdspp")
 debug_color = Color(0.0785268, 0.591384, 0.73407, 0.42)
 metadata/_edit_lock_ = true
 
-[node name="enemy" type="CollisionShape2D" parent="."]
+[node name="enemy" type="Area2D" parent="."]
 position = Vector2(36, -202)
-shape = SubResource("CircleShape2D_d1ln5")
-debug_color = Color(0.945166, 0.208735, 0.282903, 0.42)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy"]
+shape = SubResource("CircleShape2D_d23rs")
+debug_color = Color(0.928846, 0.219528, 0.391212, 0.42)

@@ -1,58 +1,78 @@
-[gd_scene load_steps=2 format=3 uid="uid://hd3v1d7tso47"]
+[gd_scene load_steps=5 format=3 uid="uid://cwa5r6we5q7sf"]
 
 [ext_resource type="Script" path="res://ui/inventory.gd" id="1_fikyh"]
+[ext_resource type="Texture2D" uid="uid://ilwq54hsw0p0" path="res://assets/ui/inventory.png" id="2_84jk4"]
+[ext_resource type="AudioStream" uid="uid://wvvf8424vd3o" path="res://audio/sfx/inv_drop.wav" id="2_yq82q"]
+[ext_resource type="FontFile" uid="uid://dxaajckg16ylw" path="res://assets/ui/1980v23P01.ttf" id="3_sopc3"]
 
-[node name="Inventory" type="Control"]
-layout_mode = 3
-anchors_preset = 0
+[node name="Inventory" type="CanvasLayer"]
 script = ExtResource("1_fikyh")
 
-[node name="Background" type="Panel" parent="."]
-layout_mode = 0
-offset_left = 128.0
-offset_top = 96.0
-offset_right = 1024.0
-offset_bottom = 536.0
-metadata/_edit_lock_ = true
+[node name="BoxContainer" type="BoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -448.0
+offset_top = -228.0
+offset_right = 448.0
+offset_bottom = 220.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="BoxContainer"]
+position = Vector2(448, 224)
+scale = Vector2(7, 7)
+texture = ExtResource("2_84jk4")
 
 [node name="InvLabel" type="RichTextLabel" parent="."]
-layout_mode = 0
-offset_left = 192.0
-offset_top = 120.0
-offset_right = 272.0
-offset_bottom = 144.0
+offset_left = 216.0
+offset_top = 136.0
+offset_right = 416.0
+offset_bottom = 192.0
+theme_override_fonts/normal_font = ExtResource("3_sopc3")
+theme_override_font_sizes/normal_font_size = 64
 text = "Inventory"
-
-[node name="InvCount" type="RichTextLabel" parent="."]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 828.0
-offset_top = 315.0
-offset_right = 887.0
-offset_bottom = 355.0
 
 [node name="Inv" type="GridContainer" parent="."]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 192.0
-offset_top = 152.0
-offset_right = 960.0
-offset_bottom = 312.0
-columns = 5
+offset_left = 216.0
+offset_top = 192.0
+offset_right = 536.0
+offset_bottom = 472.0
+columns = 3
 
 [node name="SelectedItemsLabel" type="RichTextLabel" parent="."]
-layout_mode = 0
-offset_left = 192.0
-offset_top = 352.0
-offset_right = 272.0
-offset_bottom = 376.0
+offset_left = 576.0
+offset_top = 136.0
+offset_right = 760.0
+offset_bottom = 192.0
+theme_override_fonts/normal_font = ExtResource("3_sopc3")
+theme_override_font_sizes/normal_font_size = 64
 text = "Selected"
 
 [node name="SelectedItems" type="GridContainer" parent="."]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 192.0
-offset_top = 384.0
-offset_right = 960.0
-offset_bottom = 512.0
+offset_left = 576.0
+offset_top = 192.0
+offset_right = 896.0
+offset_bottom = 320.0
 columns = 3
+
+[node name="DropSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_yq82q")
+volume_db = -15.0
+
+[node name="OpenCloseSfx" type="AudioStreamPlayer" parent="."]
+volume_db = -5.0
+
+[node name="SelectButton" type="Button" parent="."]
+unique_name_in_owner = true
+offset_left = 576.0
+offset_top = 336.0
+offset_right = 973.0
+offset_bottom = 392.0
+theme_override_font_sizes/font_size = 18
+disabled = true
+text = "Select upgrade"

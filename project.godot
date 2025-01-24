@@ -21,7 +21,11 @@ Signals="*res://Singletons/signals.tscn"
 
 [display]
 
-window/size/viewport_height=640
+window/stretch/mode="canvas_items"
+
+[gui]
+
+theme/custom_font="res://assets/ui/QuinqueFive.ttf"
 
 [input]
 
@@ -39,4 +43,11 @@ inventory={
 [layer_names]
 
 2d_physics/layer_1="World"
-2d_physics/layer_2="Player"
+2d_physics/layer_2="Player Hitbox"
+2d_physics/layer_3="Enemy Hitbox"
+2d_physics/layer_4="Player Weapon"
+2d_physics/layer_5="Enemy Weapon"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
