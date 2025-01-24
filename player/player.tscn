@@ -8,7 +8,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_qanm4"]
 radius = 26.0
 
-[node name="player" type="CharacterBody2D"]
+[node name="player" type="CharacterBody2D" groups=["Players"]]
 z_index = 100
 collision_layer = 3
 motion_mode = 1
