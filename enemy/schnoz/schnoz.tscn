@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=3 uid="uid://w7ajh8n7e0yk"]
 
-[ext_resource type="Script" path="res://enemy/enemy.gd" id="1_vw6hr"]
-[ext_resource type="Texture2D" uid="uid://bcp1d4sjws45m" path="res://assets/enemies/pitchfork.png" id="2_6x4pr"]
-[ext_resource type="Texture2D" uid="uid://dl5jnehfyeby7" path="res://assets/enemies/schnoz_hand.png" id="2_l3mut"]
-[ext_resource type="Script" path="res://enemy/hitbox.gd" id="3_da2x8"]
-[ext_resource type="AudioStream" uid="uid://bigdatnk5bx4e" path="res://audio/sfx/enemy_damage.wav" id="4_82c56"]
+[ext_resource type="Script" path="res://enemy/schnoz/schnoz.gd" id="1_ijp8e"]
+[ext_resource type="Texture2D" uid="uid://bcp1d4sjws45m" path="res://assets/enemies/schnoz/pitchfork.png" id="2_deqkm"]
+[ext_resource type="Texture2D" uid="uid://dl5jnehfyeby7" path="res://assets/enemies/schnoz/schnoz_hand.png" id="3_jelet"]
+[ext_resource type="Script" path="res://enemy/schnoz/hitbox.gd" id="4_o41ub"]
+[ext_resource type="AudioStream" uid="uid://bigdatnk5bx4e" path="res://audio/sfx/enemy_damage.wav" id="5_tfo0u"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nvpn0"]
 load_path = "res://.godot/imported/schnoz.png-b82a72d84107f2a81a5e94089dd989c2.ctex"
@@ -20,7 +20,7 @@ size = Vector2(73, 74)
 
 [node name="enemy" type="CharacterBody2D"]
 position = Vector2(-2, 0)
-script = ExtResource("1_vw6hr")
+script = ExtResource("1_ijp8e")
 
 [node name="schnoz" type="Sprite2D" parent="."]
 rotation = -1.57079
@@ -39,12 +39,12 @@ shape = SubResource("RectangleShape2D_mue5m")
 position = Vector2(65, 26)
 rotation = 1.57079
 scale = Vector2(0.0140542, 0.030195)
-texture = ExtResource("2_6x4pr")
+texture = ExtResource("2_deqkm")
 
 [node name="hand" type="Sprite2D" parent="."]
 position = Vector2(30, 26)
 scale = Vector2(0.0117187, 0.0117187)
-texture = ExtResource("2_l3mut")
+texture = ExtResource("3_jelet")
 
 [node name="body" type="CollisionShape2D" parent="."]
 visible = false
@@ -54,7 +54,7 @@ debug_color = Color(0.344434, 0.484909, 1, 0.42)
 [node name="hitbox" type="Area2D" parent="." groups=["enemies"]]
 collision_layer = 4
 collision_mask = 8
-script = ExtResource("3_da2x8")
+script = ExtResource("4_o41ub")
 
 [node name="hitbox" type="CollisionShape2D" parent="hitbox"]
 visible = false
@@ -65,7 +65,7 @@ shape = SubResource("RectangleShape2D_2wkcg")
 
 [node name="hit_sound" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
-stream = ExtResource("4_82c56")
+stream = ExtResource("5_tfo0u")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 5.0

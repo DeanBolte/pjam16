@@ -32,6 +32,7 @@ func _ready() -> void:
 	hands_starting_x = $hands.position.x
 	$invincibility_timer.wait_time = invincibility_time
 	$invincibility_timer.one_shot = true
+	$invincibility_timer.timeout.connect(Callable(self, "end_invincibility"))
 	Signals.apply_upgrade.connect(_apply_upgrade)
 
 func _physics_process(delta: float) -> void:
@@ -106,7 +107,6 @@ func die():
 func start_invincibility():
 	is_invincible = true
 	$invincibility_timer.start()
-	$invincibility_timer.timeout.connect(Callable(self, "end_invincibility"))
 	modulate_sprites(Color(1, 1, 1, 0.5))
 
 func end_invincibility():
