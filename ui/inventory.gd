@@ -93,7 +93,6 @@ func _on_select_button_pressed() -> void:
 	# remove the selected one from the loot pool
 
 func add_item_to_inv(item: ItemData):
-	inv_items.append(item) # TODO This doesnt actually work
 	var invenItem := InventoryItem.new()
 	invenItem.init(item)
 	invenItem.data.type = ItemData.Type.MAIN
@@ -101,9 +100,7 @@ func add_item_to_inv(item: ItemData):
 	for node in %Inv.get_children(): 
 		if node.get_child_count() == 0:
 			node.add_child(invenItem)
-			Signals.upgrade_picked_up_post.emit(item)
-			# im too lazy to fix rn but the game still works
-			# inventory.gd:103 @ add_item_to_inv(): Can't add child '@TextureRect@113' to '@PanelContainer@6', already has a parent '@PanelContainer@5'.
+			break
 
 # Enable the button when all SelectedItems slots are filled.
 func update_upgrade_button():
