@@ -67,8 +67,13 @@ func generate_upgrade(rarity: int):
 	var item: ItemData = _generate_upgrade_stats(rarity)
 	item.colour = ItemData.Colour.values().pick_random()
 	item.shape = ItemData.Shape.values().pick_random()
-	item.name = POSSIBLE_NAMES.pick_random() #todo: probably want names and textures to align aye
-	item.texture = POSSIBLE_TEXTURES.pick_random() # TODO Align gem shape and colour to their texture
+	
+	if item.name == null:
+		item.name = POSSIBLE_NAMES.pick_random() #todo: probably want names and textures to align aye
+	
+	if item.texture == null:
+		item.texture = POSSIBLE_TEXTURES.pick_random() # TODO Align gem shape and colour to their texture
+		
 	return item
 	
 
@@ -86,7 +91,7 @@ func _generate_upgrade_stats(rarity: int) -> ItemData:
 				return _generate_random_upgrade_stats(STAT_SCALES[2], [100, 100], [-1, 50])
 		[3, ..]:
 			if randi_range(0, 1) < 0.7:
-				return TIER_THREE_ITEMS[randi_range(0, TIER_TWO_ITEMS.size() - 1)]
+				return TIER_THREE_ITEMS[randi_range(0, TIER_THREE_ITEMS.size() - 1)]
 			return _generate_random_upgrade_stats(STAT_SCALES[3], [100, 100, 50], [-1, -1, 50])
 			
 	assert("Recieved an unknown rarity, this shouldnt happen.")
