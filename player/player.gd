@@ -32,6 +32,7 @@ func _ready() -> void:
 	hands_starting_x = $hands.position.x
 	$invincibility_timer.wait_time = invincibility_time
 	$invincibility_timer.one_shot = true
+	Signals.apply_upgrade.connect(_apply_upgrade)
 
 func _physics_process(delta: float) -> void:
 	var mouse_position = get_global_mouse_position()
@@ -48,6 +49,7 @@ func _physics_process(delta: float) -> void:
 	if distanceFromMouse > 20 and global_position.distance_to(mouse_position) > 20:
 		rotation = lerp_angle(rotation, mouse_direction.angle(), rotation_speed)
 		move_and_slide()
+		Signals.player_moved.emit(self)
 
 func _input(event):
 	if event is InputEventKey and event.pressed:
@@ -59,13 +61,28 @@ func _input(event):
 			$weapon.increase_weapon_width(0.25)
 		elif event.keycode == KEY_4:
 			$weapon.decrease_weapon_width(0.25)
+			
+func _apply_upgrade(upgrade: ItemData):
+	if(upgrade.weapon_length):
+		$weapon.change_weapon_length(upgrade.weapon_length)
+	if(upgrade.weapon_width):
+		$weapon.change_weapon_width(upgrade.weapon_width)
+	if(upgrade.move_speed):
+		base_speed += upgrade.move_speed
+		max_speed += upgrade.move_speed * speed_multiplier
+	if(upgrade.damage):
+		damage += upgrade.damage
 
 func _on_weapon_hit(object_hit: Area2D) -> void:
 	if object_hit.has_method("process_hit"):
 		object_hit.process_hit(damage)
+		Signals.enemy_hit.emit(self, object_hit, null) # TODO Get the intersection point
 
 func _on_peasant_damage_hitbox_area_entered(area: Area2D) -> void:
-	Signals.player_hit.emit(area)
+	var intersection_point = (self.global_position + area.global_position) / 2
+	 # TODO This intersection point is not even close to accurate and I give up trying to find 
+	# the correct one. 
+	Signals.player_hit.emit(area, intersection_point)
 
 func on_hit_by_enemy(damage: float) -> void:
 	if is_invincible:

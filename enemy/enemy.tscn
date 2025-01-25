@@ -33,7 +33,6 @@ collision_mask = 2
 
 [node name="weapon_hitbox" type="CollisionShape2D" parent="weapon_hitbox"]
 position = Vector2(87, 26)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_mue5m")
 
 [node name="pitchfork" type="Sprite2D" parent="weapon_hitbox"]

@@ -5,8 +5,6 @@ var colourPrefVal = []
 var shapePrefKey = []
 var colourPrefKey = []
 
-var peasants_items: Array[ItemData] = []
-
 func _ready() -> void:
 	Signals.select_upgrade.connect(_pickUpgrade)
 
@@ -39,5 +37,5 @@ func _pickUpgrade(inventoryItems: Array[ItemData]):
 			topUpgradeVal = shapeVal + colourVal
 			
 	print("The item the peasant prefers: " + topUpgrade.name)
-	peasants_items.append(topUpgrade)
+	Signals.apply_upgrade.emit(topUpgrade)
 	return topUpgrade
