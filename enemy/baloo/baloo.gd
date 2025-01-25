@@ -10,7 +10,7 @@ extends CharacterBody2D
 # We can remove a detection radius concept in favour of 'enemies must be in the same room'; this is
 #	just easier to implement right now.
 const SHOW_DETECTION_RADIUS: bool = false
-const SHOW_MIN_DISTANCE: bool = true
+const SHOW_MIN_DISTANCE: bool = false
 const DETECTION_RADIUS = 500.0  # Maximum range where enemy detects the player
 const MIN_DISTANCE = 150.0  # Distance where enemy starts running away
 
