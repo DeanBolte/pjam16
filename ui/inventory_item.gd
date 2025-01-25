@@ -19,6 +19,8 @@ func _ready():
 		tooltip_text += "\n%s%d weapon length" % ["+" if data.weapon_length > 0 else "", data.weapon_length]
 	if data.weapon_width != 0:
 		tooltip_text += "\n%s%d weapon width" % ["+" if data.weapon_width > 0 else "", data.weapon_width]
+	if data.upgrade_behaviour != null:
+		tooltip_text += "\n" + data.upgrade_behaviour.behaviour_description
 
 
 func _get_drag_data(at_position: Vector2):
