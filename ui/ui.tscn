@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://de7hk88yjl6gw"]
+[gd_scene load_steps=7 format=3 uid="uid://de7hk88yjl6gw"]
 
 [ext_resource type="PackedScene" uid="uid://dokp788mpuh1e" path="res://ui/inventory.tscn" id="1_08hm3"]
 [ext_resource type="Material" uid="uid://co3shlfue63hr" path="res://assets/shaders/crt_material.tres" id="1_oe5a7"]
 [ext_resource type="Texture2D" uid="uid://be3u37x0progx" path="res://assets/ui/chest.png" id="1_y6xot"]
+[ext_resource type="Script" path="res://ui/game_timer.gd" id="4_u2wej"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e24qb"]
 bg_color = Color(0.273873, 0.273873, 0.273873, 1)
@@ -58,3 +59,12 @@ offset_bottom = 640.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
+
+[node name="game_timer" type="Label" parent="."]
+offset_left = 19.0
+offset_top = 20.0
+offset_right = 158.0
+offset_bottom = 49.0
+theme_override_font_sizes/font_size = 12
+text = "00:00:00"
+script = ExtResource("4_u2wej")
