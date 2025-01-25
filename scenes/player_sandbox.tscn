@@ -1,43 +1,60 @@
-[gd_scene load_steps=5 format=3 uid="uid://drvq2g3di805i"]
+[gd_scene load_steps=7 format=3 uid="uid://drvq2g3di805i"]
 
 [ext_resource type="PackedScene" uid="uid://didohvmx332uq" path="res://player/player.tscn" id="1_cwl6g"]
+[ext_resource type="PackedScene" uid="uid://w7ajh8n7e0yk" path="res://enemy/enemy.tscn" id="2_cbr58"]
+[ext_resource type="Script" path="res://upgrades/upgrade_generator.gd" id="3_al7ga"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1b1fu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sdspp"]
-size = Vector2(136, 602)
+size = Vector2(136, 669)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_d23rs"]
-radius = 27.074
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pkaff"]
+size = Vector2(1189, 83)
 
 [node name="player_sandbox" type="Node2D"]
-position = Vector2(553, 324)
 
 [node name="player" parent="." instance=ExtResource("1_cwl6g")]
+position = Vector2(-444, 225)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(-262, -92)
+position = Vector2(-653, -108)
 physics_material_override = SubResource("PhysicsMaterial_1b1fu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(58, 87)
 shape = SubResource("RectangleShape2D_sdspp")
 debug_color = Color(0.0785268, 0.591384, 0.73407, 0.42)
-metadata/_edit_lock_ = true
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
 position = Vector2(106, -104)
 physics_material_override = SubResource("PhysicsMaterial_1b1fu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2(58, 87)
+position = Vector2(545, 106.5)
 shape = SubResource("RectangleShape2D_sdspp")
 debug_color = Color(0.0785268, 0.591384, 0.73407, 0.42)
-metadata/_edit_lock_ = true
 
-[node name="enemy" type="Area2D" parent="."]
-position = Vector2(36, -202)
+[node name="enemy" parent="." instance=ExtResource("2_cbr58")]
+position = Vector2(435, -224)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy"]
-shape = SubResource("CircleShape2D_d23rs")
-debug_color = Color(0.928846, 0.219528, 0.391212, 0.42)
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(106, -104)
+physics_material_override = SubResource("PhysicsMaterial_1b1fu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(-66.5, -242)
+shape = SubResource("RectangleShape2D_pkaff")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+position = Vector2(106, -104)
+physics_material_override = SubResource("PhysicsMaterial_1b1fu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2(-76, 433)
+shape = SubResource("RectangleShape2D_pkaff")
+
+[node name="loot_drop_manager" type="Node2D" parent="."]
+script = ExtResource("3_al7ga")
+
+[node name="Camera2D" type="Camera2D" parent="."]

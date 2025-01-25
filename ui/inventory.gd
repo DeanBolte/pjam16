@@ -25,9 +25,10 @@ var selected_items_load = [
 ]
 
 func _ready():
+	Signals.upgrade_picked_up.connect(add_item_to_inv)
 	self.visible = false
 	Signals.health_updated.connect(_on_health_udpated)
-	
+
 	for i in inventory_size:
 		var slot := InventorySlot.new()
 		slot.init(ItemData.Type.MAIN, Vector2(96, 96))
@@ -54,17 +55,17 @@ func _ready():
 		selected_item.data.type = ItemData.Type.SELECTED
 		selected_items.append(selected_item.data)
 		%SelectedItems.get_child(i).add_child(selected_item)
-	
+
 	calculate_inv_count()
 
 func _process(delta):
 	if Input.is_action_just_pressed("inventory"):		
 		open_close_sfx.stream = close_sfx if self.visible else open_sfx
 		%InventoryIcon.texture = closed_icon if self.visible else open_icon
-			
+
 		open_close_sfx.play()
 		self.visible = !self.visible
-	
+
 func move_item(item, newType):
 	if (item.type == newType):
 		return
@@ -77,7 +78,7 @@ func move_item(item, newType):
 		inv_items.erase(item)
 	item.type = newType	
 	calculate_inv_count()
-	
+
 	# Enable the button when all SelectedItems slots are filled.
 	update_upgrade_button()
 
@@ -91,12 +92,15 @@ func _on_select_button_pressed() -> void:
 	update_upgrade_button()
 	# remove the selected one from the loot pool
 
+func add_item_to_inv(item: ItemData):
+	inv_items.append(item) # TODO This doesnt actually work
+
 # Enable the button when all SelectedItems slots are filled.
 func update_upgrade_button():
 	%SelectButton.disabled = selected_items.size() != selected_size
 
 func calculate_inv_count():
 	%InventoryCount.text = "%s/%s" % [inv_items.size(), inventory_size]
-	
+
 func _on_health_udpated(health: int):
 	%HealthBar.value = health
