@@ -39,6 +39,7 @@ func _ready():
 		selected_slot.update_inventory.connect(move_item)
 		%SelectedItems.add_child(selected_slot)
 	
+	# TODO: Remove these once the game is ready! These are solely for testing!!!
 	for i in items_load.size():
 		var item := InventoryItem.new()
 		item.init(load(items_load[i]))
@@ -52,20 +53,16 @@ func _ready():
 		selected_item.data.type = ItemData.Type.SELECTED
 		selected_items.append(selected_item.data)
 		%SelectedItems.get_child(i).add_child(selected_item)
+	
+	calculate_inv_count()
 
 func _process(delta):
 	if Input.is_action_just_pressed("inventory"):		
-		if self.visible:
-			open_close_sfx.stream = close_sfx
-			%InventoryIcon.texture = closed_icon
-		else:
-			open_close_sfx.stream = open_sfx
-			%InventoryIcon.texture = open_icon
+		open_close_sfx.stream = close_sfx if self.visible else open_sfx
+		%InventoryIcon.texture = closed_icon if self.visible else open_icon
+			
 		open_close_sfx.play()
 		self.visible = !self.visible
-	
-	# Enable the button when all SelectedItems slots are filled.
-	%SelectButton.disabled = !%SelectedItems.get_children().all(func(child): return child.get_child_count() > 0)
 	
 func move_item(item, newType):
 	if (item.type == newType):
@@ -78,6 +75,10 @@ func move_item(item, newType):
 		selected_items.append(item)
 		inv_items.erase(item)
 	item.type = newType	
+	calculate_inv_count()
+	
+	# Enable the button when all SelectedItems slots are filled.
+	%SelectButton.disabled = selected_items.size() != selected_size
 
 func _on_select_button_pressed() -> void:
 	Signals.select_upgrade.emit(selected_items)
@@ -87,3 +88,6 @@ func _on_select_button_pressed() -> void:
 	
 	selected_items.clear()
 	# remove the selected one from the loot pool
+
+func calculate_inv_count():
+	%InventoryCount.text = "%s/%s" % [inv_items.size(), inventory_size]
