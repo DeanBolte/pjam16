@@ -76,3 +76,5 @@ offset_bottom = 392.0
 theme_override_font_sizes/font_size = 18
 disabled = true
 text = "Select upgrade"
+
+[connection signal="pressed" from="SelectButton" to="." method="_on_select_button_pressed"]

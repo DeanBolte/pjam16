@@ -1,4 +1,4 @@
 extends Area2D
 
-func process_hit(other: Area2D) -> void:
-	get_parent().on_hit()
+func process_hit(damage: float) -> void:
+	get_parent().on_hit(damage)

@@ -14,14 +14,8 @@ func offset_weapon(offset: float) -> void:
 func get_weapon_tip() -> Vector2:
 	return $weapon_tip.global_position
 	
-func increase_weapon_length(amount: float) -> void:
+func change_weapon_width(amount: float) -> void:
 	pass
 	
-func increase_weapon_width(amount: float) -> void:
-	pass
-	
-func decrease_weapon_length(amount: float) -> void:
-	pass
-	
-func decrease_weapon_width(amount: float) -> void:
+func change_weapon_length(amount: float) -> void:
 	pass

@@ -1,6 +1,6 @@
 class_name ItemData extends Resource
 
-enum Type { MAIN }
+enum Type { MAIN, SELECTED}
 enum Colour { RED, ORANGE, YELLOW, GREEN, BLUE, INDIGO, VIOLET}
 enum Shape { CIRCLE, SQUARE, TRIANGLE, STAR}
 
@@ -12,7 +12,10 @@ enum Shape { CIRCLE, SQUARE, TRIANGLE, STAR}
 # Dummy stats, not final
 @export var damage: int
 @export var move_speed: int
-@export var range: int
+@export var weapon_length: int
+@export var weapon_width: int
 
 @export var colour: Colour
 @export var shape: Shape
+
+@export var upgrade_behaviour: UpgradeBehaviour
