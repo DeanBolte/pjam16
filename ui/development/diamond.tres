@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://dkyr42hfxdy8x"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://dkyr42hfxdy8x"]
 
 [ext_resource type="Script" path="res://ui/item_data.gd" id="1_gqhkl"]
 [ext_resource type="Texture2D" uid="uid://dl36k0rx25he3" path="res://assets/Development/diamond.png" id="2_kf08r"]
+[ext_resource type="Resource" uid="uid://bq21c8ma26ac6" path="res://ui/development/fart_on_hit.tres" id="3_t1dif"]
 
 [resource]
 script = ExtResource("1_gqhkl")
@@ -10,7 +11,9 @@ name = "Diamond"
 description = "Definitely NOT a mana gem."
 texture = ExtResource("2_kf08r")
 damage = 10
-move_speed = 0
-range = -5
+move_speed = 40
+weapon_length = 1
+weapon_width = 1
 colour = 2
 shape = 3
+upgrade_behaviour = ExtResource("3_t1dif")
