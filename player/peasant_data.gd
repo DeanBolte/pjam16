@@ -36,6 +36,7 @@ func _pickUpgrade(inventoryItems: Array[ItemData]):
 			topUpgrade = item
 			topUpgradeVal = shapeVal + colourVal
 			
+	topUpgrade = inventoryItems[0]
 	print("The item the peasant prefers: " + topUpgrade.name)
 	Signals.apply_upgrade.emit(topUpgrade)
 	return topUpgrade

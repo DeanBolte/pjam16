@@ -1,11 +1,11 @@
 extends Weapon
 	
 func change_weapon_width(amount: float):
-	scale.x += amount
+	scale.x += (amount / 10)
 	$sword_hilt.scale.x = 1 / scale.x
 	
 func change_weapon_length(amount: float):
-	var newScale = scale.y + amount
+	var newScale = scale.y + (amount / 10)
 	
 	var old_height = $sword_sprite.texture.get_width() * scale.y 
 	var new_height = $sword_sprite.texture.get_width() * newScale 

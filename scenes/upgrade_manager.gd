@@ -8,4 +8,4 @@ func _ready() -> void:
 func _apply_upgrade(upgrade: ItemData):
 	if upgrade.upgrade_behaviour != null:
 		var behaviour_node = load(upgrade.upgrade_behaviour.behaviour_node)
-		add_child(behaviour_node)
+		add_child(behaviour_node.instantiate())
