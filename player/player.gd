@@ -96,6 +96,7 @@ func on_hit_by_enemy(damage: float) -> void:
 		start_invincibility()
 		if can_play_take_damage_sound:
 			play_random_take_damage_sound()
+	Signals.health_updated.emit(current_health)
 	print("peasant took damage, current_health: ", current_health)
 
 func die():
