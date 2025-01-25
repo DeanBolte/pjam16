@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 Signals="*res://Singletons/signals.tscn"
 PeasantData="*res://player/peasant_data.gd"
 DamageNumbers="*res://Singletons/damage_numbers.gd"
+MouseTracker="*res://Singletons/mouse_tracker.gd"
 
 [display]
 

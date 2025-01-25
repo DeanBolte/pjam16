@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var max_health: float = 30
+@export var max_health: float = 100
 @export var current_health: float = max_health
 @export var speed: int = 10000
 @export var invincibility_time: float = 1 # seconds of invincibility after being hit

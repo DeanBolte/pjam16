@@ -18,8 +18,11 @@ const TAKE_DAMAGE_SOUNDS = [
 @export var max_speed: int = 600
 @export var base_speed: int = 20
 @export var speed_multiplier = 2
-@export var damage: float = 10
 @export var invincibility_time: float = 1 # seconds of invincibility after being hit
+
+@export var damage: float = 10
+@export var swipe_speed_damage_multiplier: float = 0.01 # keep in mind, these values can be as high as 3000.
+@export var max_added_swipe_damage: float = 100 # Not sure if this is best, but the swipe damage + weird mouse stuff can potentially cause extremely high numbers. So, cap it.
 
 var is_invincible: bool = false
 var can_play_take_damage_sound: bool = true
@@ -76,7 +79,9 @@ func _apply_upgrade(upgrade: ItemData):
 
 func _on_weapon_hit(object_hit: Area2D) -> void:
 	if object_hit.has_method("process_hit"):
-		object_hit.process_hit(damage)
+		var added_swipe_damage = clamp(MouseTracker.get_swipe_speed() * swipe_speed_damage_multiplier, 0.0, max_added_swipe_damage)
+		var total_damage = damage + added_swipe_damage
+		object_hit.process_hit(total_damage)
 		Signals.enemy_hit.emit(self, object_hit, null) # TODO Get the intersection point
 
 func _on_peasant_damage_hitbox_area_entered(area: Area2D) -> void:
