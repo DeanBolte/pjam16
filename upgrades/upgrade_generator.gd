@@ -60,12 +60,16 @@ extends Node2D
 }
 @export var TIER_TWO_ITEMS: Array[ItemData] = []
 @export var TIER_THREE_ITEMS: Array[ItemData] = []
+@export var POSSIBLE_NAMES: Array[String] = ["Gem", "Diamond", "Pizza", "Rat of Justice", "Suspicious Herbs", "Heinz Tomato Soup", "One ounce jar of fermented chilli oil", "Bun Bo Hue", "remi from the hit animated pixar film ratatoullie"]
+@export var POSSIBLE_TEXTURES: Array[Texture] = [preload("res://assets/crystals/base_crystal.png"), preload("res://assets/BasicSprites/bullet.png"), preload("res://assets/BasicSprites/heart.png"), preload("res://assets/BasicSprites/shotgun-shell.png")]
+#todo: probably want names and textures to align aye
 
 func generate_upgrade(rarity: int):
 	var item: ItemData = _generate_upgrade_stats(rarity)
 	item.colour = ItemData.Colour.values().pick_random()
 	item.shape = ItemData.Shape.values().pick_random()
-	
+	item.name = POSSIBLE_NAMES.pick_random()
+	item.texture = POSSIBLE_TEXTURES.pick_random()
 	return item
 	
 

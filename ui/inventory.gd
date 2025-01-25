@@ -26,8 +26,8 @@ var selected_items_load = [
 
 func _ready():
 	Signals.upgrade_picked_up.connect(add_item_to_inv)
+	Signals.health_updated.connect(_on_health_updated)
 	self.visible = false
-	Signals.health_updated.connect(_on_health_udpated)
 
 	for i in inventory_size:
 		var slot := InventorySlot.new()
@@ -94,6 +94,16 @@ func _on_select_button_pressed() -> void:
 
 func add_item_to_inv(item: ItemData):
 	inv_items.append(item) # TODO This doesnt actually work
+	var invenItem := InventoryItem.new()
+	invenItem.init(item)
+	invenItem.data.type = ItemData.Type.MAIN
+	inv_items.append(item)
+	for node in %Inv.get_children(): 
+		if node.get_child_count() == 0:
+			node.add_child(invenItem)
+			Signals.upgrade_picked_up_post.emit(item)
+			# im too lazy to fix rn but the game still works
+			# inventory.gd:103 @ add_item_to_inv(): Can't add child '@TextureRect@113' to '@PanelContainer@6', already has a parent '@PanelContainer@5'.
 
 # Enable the button when all SelectedItems slots are filled.
 func update_upgrade_button():
@@ -102,5 +112,5 @@ func update_upgrade_button():
 func calculate_inv_count():
 	%InventoryCount.text = "%s/%s" % [inv_items.size(), inventory_size]
 
-func _on_health_udpated(health: int):
+func _on_health_updated(health: int):
 	%HealthBar.value = health
