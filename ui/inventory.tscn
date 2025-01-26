@@ -64,9 +64,6 @@ columns = 3
 stream = ExtResource("2_yq82q")
 volume_db = -15.0
 
-[node name="OpenCloseSfx" type="AudioStreamPlayer" parent="."]
-volume_db = -5.0
-
 [node name="SelectButton" type="Button" parent="."]
 unique_name_in_owner = true
 offset_left = 576.0
