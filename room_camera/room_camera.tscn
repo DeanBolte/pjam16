@@ -3,6 +3,21 @@
 [ext_resource type="Script" path="res://room_camera/room_camera.gd" id="1_4ouwj"]
 [ext_resource type="Texture2D" uid="uid://iyri13fn31l2" path="res://assets/BasicSprites/backwall.png" id="2_gcxas"]
 
+[sub_resource type="Animation" id="Animation_y1rp1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/LevelFader:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_n7dvi"]
 resource_name = "fade_in"
 tracks/0/type = "value"
@@ -30,21 +45,6 @@ tracks/1/keys = {
 "args": [],
 "method": &"_transition_complete"
 }]
-}
-
-[sub_resource type="Animation" id="Animation_y1rp1"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Control/LevelFader:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_65ddp"]
