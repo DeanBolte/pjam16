@@ -18,7 +18,7 @@ script = ExtResource("1_i7kni")
 position = Vector2(576, 320)
 texture = ExtResource("2_o2qx6")
 
-[node name="Title2" type="Label" parent="."]
+[node name="TitleBackground" type="Label" parent="."]
 layout_mode = 0
 offset_left = 452.0
 offset_top = 13.0
@@ -39,14 +39,14 @@ theme_override_fonts/font = ExtResource("2_4yvk3")
 theme_override_font_sizes/font_size = 96
 text = "Tutorial"
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="DescriptionPanel" type="PanelContainer" parent="."]
 layout_mode = 0
 offset_left = 32.0
 offset_top = 104.0
 offset_right = 1112.0
 offset_bottom = 472.0
 
-[node name="Description2" type="Label" parent="."]
+[node name="DescriptionBackground" type="Label" parent="."]
 layout_mode = 0
 offset_left = 67.0
 offset_top = 117.0
