@@ -12,8 +12,6 @@ var selected_items: Array[ItemData] = []
 
 func _ready():
 	Signals.upgrade_picked_up.connect(add_item_to_inv)
-	Signals.health_updated.connect(_on_health_updated)
-	self.visible = false
 
 	for i in inventory_size:
 		var slot := InventorySlot.new()
@@ -28,14 +26,6 @@ func _ready():
 		%SelectedItems.add_child(selected_slot)
 	
 	calculate_inv_count()
-
-func _process(delta):
-	if Input.is_action_just_pressed("inventory"):
-		%OpenCloseSfx.stream = close_sfx if self.visible else open_sfx
-		%InventoryIcon.texture = closed_icon if self.visible else open_icon
-		
-		%OpenCloseSfx.play()
-		self.visible = !self.visible
 
 func move_item(item, newType):
 	if (item.type == newType):
@@ -81,6 +71,3 @@ func update_upgrade_button():
 
 func calculate_inv_count():
 	%InventoryCount.text = "%s/%s" % [inv_items.size(), inventory_size]
-
-func _on_health_updated(health: int):
-	%HealthBar.value = health
