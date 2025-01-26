@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://b8fc2abybcvnp"]
+[gd_scene load_steps=5 format=3 uid="uid://b8fc2abybcvnp"]
 
 [ext_resource type="Script" path="res://ui/MainMenu/main_menu.gd" id="1_httsi"]
 [ext_resource type="FontFile" uid="uid://dxaajckg16ylw" path="res://assets/ui/1980v23P01.ttf" id="2_pkb8e"]
 [ext_resource type="AudioStream" uid="uid://cnx6ud46a56n1" path="res://audio/music/main_menu_theme.wav" id="3_sqjkm"]
+[ext_resource type="Material" uid="uid://co3shlfue63hr" path="res://assets/shaders/crt_material.tres" id="4_vgpn2"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -52,7 +53,16 @@ The Binding of Isaac"
 
 [node name="MusicPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_sqjkm")
+volume_db = -15.0
 autoplay = true
+
+[node name="crt_effect" type="ColorRect" parent="."]
+material = ExtResource("4_vgpn2")
+offset_right = 1152.0
+offset_bottom = 640.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/TutorialButton" to="." method="_on_tutorial_button_pressed"]

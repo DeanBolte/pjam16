@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://de7hk88yjl6gw"]
+[gd_scene load_steps=9 format=3 uid="uid://de7hk88yjl6gw"]
 
 [ext_resource type="PackedScene" uid="uid://dokp788mpuh1e" path="res://ui/inventory.tscn" id="1_08hm3"]
 [ext_resource type="Material" uid="uid://co3shlfue63hr" path="res://assets/shaders/crt_material.tres" id="1_oe5a7"]
@@ -59,6 +59,15 @@ max_value = 50.0
 value = 50.0
 rounded = true
 
+[node name="game_timer" type="Label" parent="."]
+offset_left = 472.0
+offset_top = 562.0
+offset_right = 645.0
+offset_bottom = 591.0
+theme_override_font_sizes/font_size = 18
+text = "00:00:00"
+script = ExtResource("4_u2wej")
+
 [node name="crt_effect" type="ColorRect" parent="."]
 material = ExtResource("1_oe5a7")
 offset_right = 1152.0
@@ -70,11 +79,3 @@ mouse_filter = 2
 [node name="OpenCloseSfx" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 volume_db = -5.0
-[node name="game_timer" type="Label" parent="."]
-offset_left = 19.0
-offset_top = 20.0
-offset_right = 158.0
-offset_bottom = 49.0
-theme_override_font_sizes/font_size = 12
-text = "00:00:00"
-script = ExtResource("4_u2wej")
