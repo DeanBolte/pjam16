@@ -20,6 +20,8 @@ var player: CharacterBody2D = null
 var distance_to_player := 0
 var can_shoot := true # Baloo must wait for shoot_cooldown_timer to finish before shooting again.
 
+signal enemy_dead(enemy: CharacterBody2D)
+
 func _ready():
 	# Not the best way to do this, but works for now
 	player = get_tree().get_nodes_in_group("Players")[0]
