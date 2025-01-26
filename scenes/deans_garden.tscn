@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dn1b258vpo4kg"]
+[gd_scene load_steps=8 format=3 uid="uid://dn1b258vpo4kg"]
 
 [ext_resource type="PackedScene" uid="uid://de7hk88yjl6gw" path="res://ui/ui.tscn" id="1_cv68o"]
 [ext_resource type="PackedScene" uid="uid://d1wjc1scifet6" path="res://levelgen/level_generator.tscn" id="1_dwhmm"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://didohvmx332uq" path="res://player/player.tscn" id="4_ilxjj"]
 [ext_resource type="Script" path="res://scenes/upgrade_manager.gd" id="5_wmres"]
 [ext_resource type="AudioStream" uid="uid://dlv7tbc1bijcj" path="res://audio/music/level_theme.wav" id="6_83ctj"]
+[ext_resource type="AudioStream" uid="uid://bqvqf5jrprpcx" path="res://audio/sfx/game_over.wav" id="7_ofqxo"]
 
 [node name="DeansGarden" type="Node2D"]
 
@@ -26,3 +27,7 @@ script = ExtResource("5_wmres")
 stream = ExtResource("6_83ctj")
 autoplay = true
 max_distance = 50000.0
+
+[node name="SfxManager" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("7_ofqxo")
