@@ -9,6 +9,7 @@ var closed_icon = preload("res://assets/ui/chest.png")
 func _ready():
 	Signals.health_updated.connect(_on_health_updated)
 	
+	$GameOverPopup.visible = false
 	$Inventory.visible = false
 	$PauseMenu.visible = false
 
@@ -30,7 +31,7 @@ func _process(delta):
 # Toggle the visibility of the inventory
 func toggle_inventory():
 	# Update icon based on current visibility state
-	$InventoryIcon.texture = closed_icon if $Inventory.visible else open_icon
+	%InventoryIcon.texture = closed_icon if $Inventory.visible else open_icon
 	trigger_sfx($Inventory)
 	$Inventory.visible = not $Inventory.visible
 
