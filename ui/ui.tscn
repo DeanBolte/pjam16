@@ -41,7 +41,6 @@ offset_right = 104.0
 grow_vertical = 0
 
 [node name="InventoryIcon" type="Sprite2D" parent="BoxContainer"]
-unique_name_in_owner = true
 position = Vector2(64, -24)
 scale = Vector2(4.5, 4.5)
 texture = ExtResource("1_y6xot")
