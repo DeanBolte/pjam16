@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dokp788mpuh1e"]
 
-[ext_resource type="Script" path="res://ui/inventory.gd" id="1_fikyh"]
+[ext_resource type="Script" path="res://ui/Inventory/inventory.gd" id="1_fikyh"]
 [ext_resource type="Texture2D" uid="uid://ilwq54hsw0p0" path="res://assets/ui/inventory.png" id="2_84jk4"]
 [ext_resource type="AudioStream" uid="uid://wvvf8424vd3o" path="res://audio/sfx/inv_drop.wav" id="2_yq82q"]
 [ext_resource type="FontFile" uid="uid://dxaajckg16ylw" path="res://assets/ui/1980v23P01.ttf" id="3_sopc3"]

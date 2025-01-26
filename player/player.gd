@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@onready var game_over_popup = get_node("../Ui/GameOverPopup")
+
 const BASE_SPEED = 20
 const MAX_SPEED = 600
 const SPEED_MULTIPLIER = 2
@@ -112,6 +114,7 @@ func on_hit_by_enemy(damage: float) -> void:
 
 func die():
 	print("Peasant Died! Game Over!")
+	game_over_popup.visible = true
 	queue_free()
 
 func start_invincibility():

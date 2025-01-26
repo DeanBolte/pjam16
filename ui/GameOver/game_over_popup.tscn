@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=3 uid="uid://cens7t3qd0fqv"]
+
+[ext_resource type="Texture2D" uid="uid://ilwq54hsw0p0" path="res://assets/ui/inventory.png" id="1_e4phs"]
+[ext_resource type="Script" path="res://ui/GameOver/game_over_popup.gd" id="1_m2gkd"]
+[ext_resource type="FontFile" uid="uid://dxaajckg16ylw" path="res://assets/ui/1980v23P01.ttf" id="3_shdxj"]
+
+[node name="GameOverPopup" type="CanvasLayer"]
+script = ExtResource("1_m2gkd")
+
+[node name="BoxContainer" type="BoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -448.0
+offset_top = -228.0
+offset_right = 448.0
+offset_bottom = 220.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="BoxContainer"]
+position = Vector2(448, 224)
+scale = Vector2(7, 7)
+texture = ExtResource("1_e4phs")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 364.0
+offset_top = 199.0
+offset_right = 788.0
+offset_bottom = 301.0
+theme_override_fonts/font = ExtResource("3_shdxj")
+theme_override_font_sizes/font_size = 128
+text = "GAME OVER"
+
+[node name="NewGameButton" type="Button" parent="."]
+offset_left = 224.0
+offset_top = 360.0
+offset_right = 539.0
+offset_bottom = 405.0
+theme_override_font_sizes/font_size = 32
+text = "New Game"
+
+[node name="ExitButton" type="Button" parent="."]
+offset_left = 616.0
+offset_top = 360.0
+offset_right = 970.0
+offset_bottom = 405.0
+theme_override_font_sizes/font_size = 32
+text = "Main Menu"
+
+[connection signal="pressed" from="NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
