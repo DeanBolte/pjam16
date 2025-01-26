@@ -5,6 +5,7 @@
 [ext_resource type="Script" path="res://ui/ui.gd" id="1_t6fr5"]
 [ext_resource type="PackedScene" uid="uid://dyvp3njiad4bf" path="res://ui/pause_menu.tscn" id="1_vt47o"]
 [ext_resource type="Texture2D" uid="uid://be3u37x0progx" path="res://assets/ui/chest.png" id="1_y6xot"]
+[ext_resource type="Script" path="res://ui/game_timer.gd" id="4_u2wej"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e24qb"]
 bg_color = Color(0.273873, 0.273873, 0.273873, 1)
@@ -69,3 +70,11 @@ mouse_filter = 2
 [node name="OpenCloseSfx" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 volume_db = -5.0
+[node name="game_timer" type="Label" parent="."]
+offset_left = 19.0
+offset_top = 20.0
+offset_right = 158.0
+offset_bottom = 49.0
+theme_override_font_sizes/font_size = 12
+text = "00:00:00"
+script = ExtResource("4_u2wej")

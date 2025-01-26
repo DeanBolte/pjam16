@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bcp1d4sjws45m"
-path="res://.godot/imported/pitchfork.png-553f227028a6f4a9209f40e0b39f9723.ctex"
+uid="uid://dv7bmg08t3hxx"
+path="res://.godot/imported/baloo_body.png-df738b501d26854a1b4bbf4edb52702c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/enemies/pitchfork.png"
-dest_files=["res://.godot/imported/pitchfork.png-553f227028a6f4a9209f40e0b39f9723.ctex"]
+source_file="res://assets/enemies/baloo/baloo_body.png"
+dest_files=["res://.godot/imported/baloo_body.png-df738b501d26854a1b4bbf4edb52702c.ctex"]
 
 [params]
 

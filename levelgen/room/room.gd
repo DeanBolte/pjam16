@@ -3,7 +3,10 @@ class_name Room
 
 var CRATE_RESOURCE := preload("res://levelgen/room/objects/crate.tscn")
 var LEVEL_TRANSITION_RESOURCE := preload("res://levelgen/room/objects/level_transition.tscn")
-var ENEMY_RESOURCE = preload("res://enemy/enemy.tscn")
+var ENEMY_RESOURCES: Array[Resource] = [
+	preload("res://enemy/schnoz/schnoz.tscn"),
+	preload("res://enemy/baloo/baloo.tscn")
+]
 var UPGRADE_RESOURCE = preload("res://upgrades/framework/upgrade_on_ground.tscn")
 
 var ROOM_WIDTH := 640
@@ -39,11 +42,9 @@ func _generate_crates() -> void:
 func _generate_enemies() -> void:
 	var noOfEnemies = randi_range(MIN_ENEMIES, MAX_ENEMIES)
 	for enemy in noOfEnemies:
-		var enemy_spawned = ENEMY_RESOURCE.instantiate()
-		enemy_spawned.enemy_dead.connect(spawn_drop)
-		_spawn_object_randomly(enemy_spawned)
+		_spawn_object_randomly(ENEMY_RESOURCES.pick_random().instantiate())
 
-func _get_spawn_location() -> Vector2:
+func _get_spawn_location() -> Vector2:	
 	return Vector2(randi() % SPAWN_AREA_WIDTH - SPAWN_AREA_WIDTH / 2, randi() % SPAWN_AREA_HEIGHT - SPAWN_AREA_HEIGHT / 2)
 
 func _is_location_free() -> bool:

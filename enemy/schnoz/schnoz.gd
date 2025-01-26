@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var max_health: float = 30
+@export var max_health: float = 100
 @export var current_health: float = max_health
 @export var speed: int = 10000
 @export var invincibility_time: float = 1 # seconds of invincibility after being hit
@@ -23,6 +23,7 @@ func _ready():
 	player = get_tree().get_nodes_in_group("Players")[0]
 	$invincibility_timer.wait_time = invincibility_time
 	$invincibility_timer.one_shot = true
+	$invincibility_timer.timeout.connect(Callable(self, "end_invincibility"))
 
 func _physics_process(delta: float) -> void:
 	if player == null:
@@ -97,7 +98,7 @@ func start_invincibility():
 func end_invincibility():
 	is_invincible = false
 	modulate_sprites(Color(1, 1, 1, 1))
-	
+
 # We don't have to show vulnerability this way - we can do other ways. This shade of white is just obvious for now.
 # Slightly white shade to show invincibility
 func modulate_sprites(color: Color):
