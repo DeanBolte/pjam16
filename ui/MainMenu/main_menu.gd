@@ -1,15 +1,8 @@
 extends Control
 
-
-# Called when the node enters the scene tree for the first time.
+# Ensure whenever the main menu loads, the game is not paused.
 func _ready():
 	get_tree().paused = false
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 
 func _on_play_button_pressed():
 	get_tree().change_scene_to_file("res://scenes/deans_garden.tscn")
@@ -20,8 +13,8 @@ func _on_tutorial_button_pressed():
 
 
 func _on_options_button_pressed():
-	pass # Replace with function body.
-
+	#get_tree().change_scene_to_file("res://ui/MainMenu/options_menu.tscn")
+	pass
 
 func _on_exit_button_pressed():
 	get_tree().quit()
