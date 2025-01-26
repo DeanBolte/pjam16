@@ -3,7 +3,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	get_tree().paused = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -16,7 +16,7 @@ func _on_play_button_pressed():
 
 
 func _on_tutorial_button_pressed():
-	pass # Replace with function body.
+	get_tree().change_scene_to_file("res://ui/MainMenu/tutorial_menu.tscn")
 
 
 func _on_options_button_pressed():
