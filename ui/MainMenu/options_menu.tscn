@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://e77eqxh34mcf"]
+[gd_scene load_steps=2 format=3 uid="uid://e77eqxh34mcf"]
+
+[ext_resource type="Texture2D" uid="uid://quvd6mqb3crh" path="res://assets/ui/main_menu_bg.png" id="1_oja7x"]
 
 [node name="OptionsMenu" type="Control"]
 layout_mode = 3
@@ -7,3 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(576, 320)
+texture = ExtResource("1_oja7x")
