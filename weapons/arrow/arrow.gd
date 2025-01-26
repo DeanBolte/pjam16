@@ -14,5 +14,9 @@ extends Node2D
 
 var velocity := Vector2.ZERO
 
+func _ready():
+	await get_tree().create_timer(lifetime).timeout
+	queue_free()
+
 func _physics_process(delta: float) -> void:
 	position += velocity * speed * delta
