@@ -20,6 +20,8 @@ config/icon="res://icon.svg"
 Signals="*res://Singletons/signals.tscn"
 PeasantData="*res://player/peasant_data.gd"
 DamageNumbers="*res://Singletons/damage_numbers.gd"
+UpgradeGenerator="*res://upgrades/framework/upgrade_generator.gd"
+MouseTracker="*res://Singletons/mouse_tracker.gd"
 
 [display]
 
@@ -54,6 +56,7 @@ inventory={
 2d_physics/layer_3="Enemy Hitbox"
 2d_physics/layer_4="Player Weapon"
 2d_physics/layer_5="Enemy Weapon"
+2d_physics/layer_6="upgrade_on_ground"
 
 [rendering]
 

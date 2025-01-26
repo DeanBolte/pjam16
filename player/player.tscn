@@ -45,7 +45,7 @@ texture = ExtResource("4_d7lvc")
 
 [node name="peasant_damage_hitbox" type="Area2D" parent="peasant"]
 collision_layer = 2
-collision_mask = 16
+collision_mask = 48
 script = ExtResource("5_8ro4a")
 
 [node name="peasant_damage_hitbox_shape" type="CollisionShape2D" parent="peasant/peasant_damage_hitbox"]

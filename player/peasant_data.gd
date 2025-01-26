@@ -23,12 +23,12 @@ func _ready() -> void:
 
 # this gotta be on click or some shit
 func _pickUpgrade(inventoryItems: Array[ItemData]):
-	var topUpgrade = null
+	var topUpgrade: ItemData = null
 	var topUpgradeVal = 0
 	
 	# Uses array indexes as preference weight.
 	for item in inventoryItems:
-		print("this item is: " + str(ItemData.Shape.keys()[item.shape]) + ", " + str(ItemData.Colour.keys()[item.colour]))
+		#print("this item is: " + str(ItemData.Shape.keys()[item.shape]) + ", " + str(ItemData.Colour.keys()[item.colour]))
 		var shapeVal = shapePrefVal.find(item.shape)
 		var colourVal = colourPrefVal.find(item.colour)
 	
@@ -38,5 +38,13 @@ func _pickUpgrade(inventoryItems: Array[ItemData]):
 			
 	# topUpgrade = inventoryItems[0] # Uncomment me for easier testing.
 	print("The item the peasant prefers: " + topUpgrade.name)
+	if (topUpgrade.weapon_width != 0):
+		print("modifying width: " + str(topUpgrade.weapon_width))
+	if (topUpgrade.weapon_length != 0):
+		print("modifying length: " + str(topUpgrade.weapon_length))
+	if (topUpgrade.damage != 0):
+		print("modifying damage: " + str(topUpgrade.damage))
+	if (topUpgrade.move_speed != 0):
+		print("modifying speed: " + str(topUpgrade.move_speed))
+	
 	Signals.apply_upgrade.emit(topUpgrade)
-	return topUpgrade

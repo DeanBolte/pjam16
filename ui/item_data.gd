@@ -10,10 +10,10 @@ enum Shape { CIRCLE, SQUARE, TRIANGLE, DIAMOND}
 @export var texture: Texture2D
 
 # Dummy stats, not final
-@export var damage: int
-@export var move_speed: int
-@export var weapon_length: int
-@export var weapon_width: int
+@export var damage: int = 0
+@export var move_speed: int  = 0
+@export var weapon_length: int = 0
+@export var weapon_width: int  = 0
 
 @export var colour: Colour
 @export var shape: Shape
