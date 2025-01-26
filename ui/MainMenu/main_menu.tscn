@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://b8fc2abybcvnp"]
+[gd_scene load_steps=4 format=3 uid="uid://b8fc2abybcvnp"]
 
-[ext_resource type="Script" path="res://ui/main_menu.gd" id="1_jyvo4"]
+[ext_resource type="Script" path="res://ui/MainMenu/main_menu.gd" id="1_httsi"]
+[ext_resource type="FontFile" uid="uid://dxaajckg16ylw" path="res://assets/ui/1980v23P01.ttf" id="2_pkb8e"]
+[ext_resource type="AudioStream" uid="uid://cnx6ud46a56n1" path="res://audio/music/main_menu_theme.wav" id="3_sqjkm"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -9,12 +11,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_jyvo4")
+script = ExtResource("1_httsi")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 448.0
+offset_top = 272.0
+offset_right = 760.0
+offset_bottom = 400.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -34,6 +38,21 @@ text = "Options"
 [node name="ExitButton" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Exit"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 176.0
+offset_top = 48.0
+offset_right = 1024.0
+offset_bottom = 255.0
+theme_override_fonts/font = ExtResource("2_pkb8e")
+theme_override_font_sizes/font_size = 128
+text = "   Definitely NOT 
+The Binding of Isaac"
+
+[node name="MusicPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_sqjkm")
+autoplay = true
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/TutorialButton" to="." method="_on_tutorial_button_pressed"]
