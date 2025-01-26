@@ -1,28 +1,14 @@
 extends CanvasLayer
-
-@onready var open_close_sfx = get_node("OpenCloseSfx")
-
 @export var inventory_size := 9
 @export var selected_size := 3
 
 var open_sfx = preload("res://audio/sfx/ui_open.wav")
 var open_icon = preload("res://assets/ui/chest-open.png")
 var closed_icon = preload("res://assets/ui/chest.png")
-
 var close_sfx = preload("res://audio/sfx/ui_close.wav")
 
 var inv_items: Array[ItemData] = []
 var selected_items: Array[ItemData] = []
-
-# Dummy items for initial load, remove these once ready.
-var items_load = [
-	"res://upgrades/tier-2/sword.tres",
-	"res://upgrades/tier-3/emerald.tres"
-]
-var selected_items_load = [
-	"res://upgrades/tier-3/diamond.tres",
-	"res://upgrades/tier-2/basic_crystal.tres"
-]
 
 func _ready():
 	Signals.upgrade_picked_up.connect(add_item_to_inv)
@@ -41,30 +27,14 @@ func _ready():
 		selected_slot.update_inventory.connect(move_item)
 		%SelectedItems.add_child(selected_slot)
 	
-	# TODO: Remove these once the game is ready! These are solely for testing!!!
-	for i in items_load.size():
-		var item := InventoryItem.new()
-		var test = load(items_load[i])
-		item.init(test)
-		item.data.type = ItemData.Type.MAIN
-		inv_items.append(item.data)
-		%Inv.get_child(i).add_child(item)
-	
-	for i in selected_items_load.size():
-		var selected_item := InventoryItem.new()
-		selected_item.init(load(selected_items_load[i]))
-		selected_item.data.type = ItemData.Type.SELECTED
-		selected_items.append(selected_item.data)
-		%SelectedItems.get_child(i).add_child(selected_item)
-
 	calculate_inv_count()
 
 func _process(delta):
-	if Input.is_action_just_pressed("inventory"):		
-		open_close_sfx.stream = close_sfx if self.visible else open_sfx
+	if Input.is_action_just_pressed("inventory"):
+		%OpenCloseSfx.stream = close_sfx if self.visible else open_sfx
 		%InventoryIcon.texture = closed_icon if self.visible else open_icon
-
-		open_close_sfx.play()
+		
+		%OpenCloseSfx.play()
 		self.visible = !self.visible
 
 func move_item(item, newType):
@@ -79,8 +49,6 @@ func move_item(item, newType):
 		inv_items.erase(item)
 	item.type = newType	
 	calculate_inv_count()
-
-	# Enable the button when all SelectedItems slots are filled.
 	update_upgrade_button()
 
 func _on_select_button_pressed() -> void:
