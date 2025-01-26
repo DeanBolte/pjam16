@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b06qlhcrvgqnp"
-path="res://.godot/imported/schnoz.png-b82a72d84107f2a81a5e94089dd989c2.ctex"
+uid="uid://cvvxftk88kh6l"
+path="res://.godot/imported/crossbow_arrow_spritesheet.png-fa872194519e0a32cbff1f59c51149ed.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/enemies/schnoz.png"
-dest_files=["res://.godot/imported/schnoz.png-b82a72d84107f2a81a5e94089dd989c2.ctex"]
+source_file="res://assets/weapons/crossbow_arrow_spritesheet.png"
+dest_files=["res://.godot/imported/crossbow_arrow_spritesheet.png-fa872194519e0a32cbff1f59c51149ed.ctex"]
 
 [params]
 

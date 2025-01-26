@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dl5jnehfyeby7"
-path="res://.godot/imported/schnoz_hand.png-c640653768d0e126e96842c79b3ecb9f.ctex"
+uid="uid://xx3du8k5752s"
+path="res://.godot/imported/baloo.png-a8b1f810fdd6fefe02ef0bca966cb1f2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/enemies/schnoz_hand.png"
-dest_files=["res://.godot/imported/schnoz_hand.png-c640653768d0e126e96842c79b3ecb9f.ctex"]
+source_file="res://assets/enemies/baloo/baloo.png"
+dest_files=["res://.godot/imported/baloo.png-a8b1f810fdd6fefe02ef0bca966cb1f2.ctex"]
 
 [params]
 
