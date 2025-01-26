@@ -11,6 +11,7 @@ bg_color = Color(0.273873, 0.273873, 0.273873, 1)
 bg_color = Color(0.760784, 0, 0, 1)
 
 [node name="Ui" type="CanvasLayer"]
+process_mode = 3
 
 [node name="Inventory" parent="." instance=ExtResource("1_08hm3")]
 layer = 3

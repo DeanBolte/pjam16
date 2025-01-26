@@ -84,7 +84,6 @@ func generate_upgrade(rarity: int):
 func _generate_upgrade_stats(rarity: int) -> ItemData:
 	if rarity <= 0:
 		rarity = _get_weighted_random(BASE_RARITY_WEIGHTS) + 1
-	print(rarity)
 	match rarity:
 		1:
 			return _generate_random_upgrade_stats(STAT_SCALES[1], [100, 50], [-1, 100])
