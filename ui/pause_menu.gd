@@ -11,7 +11,7 @@ func _process(delta):
 		handle_close() if self.visible else handle_open()
 
 func _on_exit_button_pressed():
-	get_tree().quit()
+	get_tree().change_scene_to_file("res://ui/main_menu.tscn")
 
 func _on_resume_button_pressed():
 	handle_close()
@@ -22,7 +22,6 @@ func handle_open():
 	self.visible = true
 
 func handle_close():
-	print("MAKE THIS RETURN TO THE MAIN MENU!!!")
 	%OpenCloseSfx.stream = close_sfx
 	%OpenCloseSfx.play()
 	self.visible = false
