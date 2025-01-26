@@ -42,14 +42,9 @@ func move_item(item, newType):
 	update_upgrade_button()
 
 func _on_select_button_pressed() -> void:
-	Signals.select_upgrade.emit(selected_items)
-	for i in selected_items.size():
-		for n in %SelectedItems.get_child(i).get_children():
-			n.free()
-	
-	selected_items.clear()
-	update_upgrade_button()
-	# remove the selected one from the loot pool
+	var selected_upgrade_slot = PeasantData.pick_upgrade(selected_items)
+	$peasant_cursor.select_slot(selected_upgrade_slot)
+
 
 func add_item_to_inv(item: ItemData):
 	for node in %Inv.get_children(): 
@@ -71,3 +66,11 @@ func update_upgrade_button():
 
 func calculate_inv_count():
 	%InventoryCount.text = "%s/%s" % [inv_items.size(), inventory_size]
+
+func _on_peasant_cursor_animation_done() -> void:
+	for i in selected_items.size():
+		for n in %SelectedItems.get_child(i).get_children():
+			n.free()
+
+	selected_items.clear()
+	update_upgrade_button()

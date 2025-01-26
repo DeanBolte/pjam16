@@ -1,9 +1,26 @@
-[gd_scene load_steps=5 format=3 uid="uid://dokp788mpuh1e"]
+[gd_scene load_steps=9 format=3 uid="uid://dokp788mpuh1e"]
 
 [ext_resource type="Script" path="res://ui/Inventory/inventory.gd" id="1_fikyh"]
 [ext_resource type="Texture2D" uid="uid://ilwq54hsw0p0" path="res://assets/ui/inventory.png" id="2_84jk4"]
 [ext_resource type="AudioStream" uid="uid://wvvf8424vd3o" path="res://audio/sfx/inv_drop.wav" id="2_yq82q"]
 [ext_resource type="FontFile" uid="uid://dxaajckg16ylw" path="res://assets/ui/1980v23P01.ttf" id="3_sopc3"]
+[ext_resource type="Texture2D" uid="uid://bf4e8scfp45wl" path="res://assets/ui/peasant_cursor.png" id="5_qnjgu"]
+[ext_resource type="Script" path="res://ui/peasant_cursor.gd" id="6_0if7h"]
+[ext_resource type="Texture2D" uid="uid://by8kdq5elyk6o" path="res://assets/ui/peasant_cursor_select.png" id="6_x1c63"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rnej5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_qnjgu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_x1c63")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Inventory" type="CanvasLayer"]
 script = ExtResource("1_fikyh")
@@ -71,7 +88,15 @@ offset_top = 336.0
 offset_right = 973.0
 offset_bottom = 392.0
 theme_override_font_sizes/font_size = 18
-disabled = true
 text = "Select upgrade"
 
+[node name="peasant_cursor" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_rnej5")
+script = ExtResource("6_0if7h")
+
+[node name="disapear_delay" type="Timer" parent="peasant_cursor"]
+one_shot = true
+
 [connection signal="pressed" from="SelectButton" to="." method="_on_select_button_pressed"]
+[connection signal="animation_done" from="peasant_cursor" to="." method="_on_peasant_cursor_animation_done"]
+[connection signal="timeout" from="peasant_cursor/disapear_delay" to="peasant_cursor" method="_on_disapear_delay_timeout"]
