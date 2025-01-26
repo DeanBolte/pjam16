@@ -30,6 +30,7 @@ const TAKE_DAMAGE_SOUNDS = [
 
 var is_invincible: bool = false
 var can_play_take_damage_sound: bool = true
+var knockback_velocity: Vector2 = Vector2.ZERO # This STORES knockback force and gradually decreases over timer
 
 var sword_starting_x = 0
 var hands_starting_x = 0
@@ -46,6 +47,11 @@ func _physics_process(delta: float) -> void:
 	var mouse_position = get_global_mouse_position()
 	var mouse_direction = global_position.direction_to(mouse_position)
 	var distanceFromMouse = $weapon.get_weapon_tip().distance_to(mouse_position)
+	
+	if knockback_velocity.length() > 1.0:
+		velocity = knockback_velocity
+		knockback_velocity = knockback_velocity.lerp(Vector2.ZERO, 5 * delta)  # Smooth decay
+		move_and_slide()
 
 	var speed = 0
 	if not Input.is_action_pressed("stop_moving"):

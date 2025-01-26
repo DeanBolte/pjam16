@@ -19,8 +19,8 @@ const SWAT_RADIUS: int = 300
 @export var speed: int = 10000
 @export var invincibility_time: float = 1 # seconds of invincibility after being hit
 @export var damage: float = 5
-@export var knockback_damage := 5
-@export var swat_knockback_force := 5000.0
+@export var swat_knockback_damage := 5
+@export var swat_knockback_force := 7500.0
 
 var is_invincible: bool = false
 var player: CharacterBody2D = null
@@ -44,13 +44,15 @@ func _process(delta: float) -> void:
 	if (distance_to_player <= SWAT_RADIUS):
 		_swat_player()
 
-# TODO: Figure out why this doesn't knockback the player. If cant figure out, remove swatting mechanic.
 func _swat_player() -> void:
+	# 'Rotate' the boss to imitate a swing
+	_swing_body()
+
 	# Check, just in case
 	if (player.has_method("on_hit_by_enemy")):
-		player.on_hit_by_enemy(knockback_damage)
+		player.on_hit_by_enemy(swat_knockback_damage)
 	var knockback_direction = (player.global_position - global_position).normalized()
-	player.velocity += knockback_direction * swat_knockback_force
+	player.knockback_velocity = knockback_direction * swat_knockback_force
 
 func _spawn_crates() -> void:
 	for i in range(CRATE_SPAWN_AMT):
@@ -96,6 +98,13 @@ func modulate_sprites(color: Color):
 	var sprites = find_children("", "Sprite2D")
 	for sprite in sprites:
 		sprite.modulate = color
+
+func _swing_body() -> void:
+	var tween = get_tree().create_tween()
+	# Rotate 60 counterclockwise, in 0.2s
+	tween.tween_property(self, "rotation_degrees", rotation_degrees - 90, 0.3).set_trans(Tween.TRANS_QUAD)
+	# Rotate back to original, after 0.5s
+	tween.tween_property(self, "rotation_degrees", rotation_degrees, 0.6).set_delay(1).set_trans(Tween.TRANS_QUAD)
 
 func _draw():
 	if (SHOW_CRATE_SPAWN_RADIUS):
