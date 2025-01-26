@@ -19,7 +19,6 @@ process_mode = 3
 script = ExtResource("1_t6fr5")
 
 [node name="GameOverPopup" parent="." instance=ExtResource("2_oypqy")]
-unique_name_in_owner = true
 layer = 5
 
 [node name="PauseMenu" parent="." instance=ExtResource("1_vt47o")]

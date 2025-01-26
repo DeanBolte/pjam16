@@ -1,6 +1,8 @@
 extends CharacterBody2D
 
-@onready var game_over_popup = get_node("../Ui/GameOverPopup")
+@onready var game_over_popup = get_node("../UserInterface/GameOverPopup")
+@onready var sfx_manager = get_node("../SfxManager")
+@onready var death_sfx = preload("res://audio/sfx/game_over.wav")
 
 const BASE_SPEED = 20
 const MAX_SPEED = 600
@@ -103,7 +105,6 @@ func on_hit_by_enemy(damage: float) -> void:
 
 	current_health -= damage
 	if current_health <= 0:
-		# TODO: Custom sound for when player dies. die() destroys player node, so make sure audio is played from a different node.
 		die()
 	else:
 		start_invincibility()
@@ -113,7 +114,8 @@ func on_hit_by_enemy(damage: float) -> void:
 	print("peasant took damage, current_health: ", current_health)
 
 func die():
-	print("Peasant Died! Game Over!")
+	sfx_manager.stream = death_sfx
+	sfx_manager.play()
 	game_over_popup.visible = true
 	queue_free()
 
