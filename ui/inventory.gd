@@ -103,6 +103,7 @@ func add_item_to_inv(item: ItemData):
 			node.add_child(invenItem)
 			Signals.upgrade_picked_up_post.emit(item)
 			break
+	calculate_inv_count()
 
 # Enable the button when all SelectedItems slots are filled.
 func update_upgrade_button():
