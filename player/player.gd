@@ -77,6 +77,8 @@ func _on_weapon_hit(object_hit: Area2D) -> void:
 	if object_hit.has_method("process_hit"):
 		object_hit.process_hit(damage)
 		Signals.enemy_hit.emit(self, object_hit, null) # TODO Get the intersection point
+	elif object_hit.has_method("pick_up"):
+		object_hit.pick_up()
 
 func _on_peasant_damage_hitbox_area_entered(area: Area2D) -> void:
 	if area.has_method("pick_up"):

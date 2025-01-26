@@ -90,7 +90,8 @@ func die():
 func start_invincibility():
 	is_invincible = true
 	$invincibility_timer.start()
-	$invincibility_timer.timeout.connect(Callable(self, "end_invincibility"))
+	if not $invincibility_timer.timeout.is_connected(end_invincibility):
+		$invincibility_timer.timeout.connect(end_invincibility)
 	modulate_sprites(Color(1, 1, 1, 0.5))
 
 func end_invincibility():

@@ -58,14 +58,18 @@ extends Node2D
 		},
 	},
 }
+@export var POSSIBLE_NAMES: Array[String] = ["Gem", "Diamond", "Pizza", "Rat of Justice", "Suspicious Herbs", "Heinz Tomato Soup", "One ounce jar of fermented chilli oil", "Bun Bo Hue", "remi from the hit animated pixar film ratatoullie"]
+
+
 @export var tier_two_items: Array[ItemData] = []
 @export var tier_three_items: Array[ItemData] = []
-@export var POSSIBLE_NAMES: Array[String] = ["Gem", "Diamond", "Pizza", "Rat of Justice", "Suspicious Herbs", "Heinz Tomato Soup", "One ounce jar of fermented chilli oil", "Bun Bo Hue", "remi from the hit animated pixar film ratatoullie"]
-@export var POSSIBLE_TEXTURES: Array[Texture] = [preload("res://assets/crystals/base_crystal.png"), preload("res://assets/BasicSprites/bullet.png"), preload("res://assets/BasicSprites/heart.png"), preload("res://assets/BasicSprites/shotgun-shell.png")]
+@export var gem_images = {}
+
 
 func _ready() -> void:
 	tier_two_items = _load_all_upgrades_in_folder("upgrades/tier-2/")
 	tier_three_items = _load_all_upgrades_in_folder("upgrades/tier-3/")
+	_load_all_upgrade_images()
 
 func generate_upgrade(rarity: int):
 	var item: ItemData = _generate_upgrade_stats(rarity)
@@ -74,9 +78,10 @@ func generate_upgrade(rarity: int):
 	
 	if item.name == null:
 		item.name = POSSIBLE_NAMES.pick_random() #todo: probably want names and textures to align aye
-	
-	if item.texture == null:
-		item.texture = POSSIBLE_TEXTURES.pick_random() # TODO Align gem shape and colour to their texture
+		
+	var colour_name = ItemData.Colour.keys()[item.colour]
+	var shape_name = ItemData.Shape.keys()[item.shape]
+	item.texture = gem_images[shape_name][colour_name]
 		
 	return item
 	
@@ -164,3 +169,11 @@ func _load_all_upgrades_in_folder(folder: String) -> Array[ItemData]:
 		upgrades.append(load(resource_to_load))
 		file_name = dir.get_next()
 	return upgrades
+
+func _load_all_upgrade_images():
+	for shape in ItemData.Shape.keys():
+		var shape_dict = {}
+		for colour in ItemData.Colour.keys():
+			var file_name = "res://assets/crystals/%s/%s_%s.png" % [shape.to_lower(), colour.to_lower(), shape.to_lower()]
+			shape_dict[colour] = load(file_name)
+		gem_images[shape] = shape_dict
