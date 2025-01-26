@@ -58,14 +58,14 @@ extends Node2D
 		},
 	},
 }
-@export var TIER_TWO_ITEMS: Array[ItemData] = []
-@export var TIER_THREE_ITEMS: Array[ItemData] = []
+@export var tier_two_items: Array[ItemData] = []
+@export var tier_three_items: Array[ItemData] = []
 @export var POSSIBLE_NAMES: Array[String] = ["Gem", "Diamond", "Pizza", "Rat of Justice", "Suspicious Herbs", "Heinz Tomato Soup", "One ounce jar of fermented chilli oil", "Bun Bo Hue", "remi from the hit animated pixar film ratatoullie"]
 @export var POSSIBLE_TEXTURES: Array[Texture] = [preload("res://assets/crystals/base_crystal.png"), preload("res://assets/BasicSprites/bullet.png"), preload("res://assets/BasicSprites/heart.png"), preload("res://assets/BasicSprites/shotgun-shell.png")]
 
 func _ready() -> void:
-	TIER_TWO_ITEMS = _load_all_upgrades_in_folder("upgrades/tier-2/")
-	TIER_THREE_ITEMS = _load_all_upgrades_in_folder("upgrades/tier-3/")
+	tier_two_items = _load_all_upgrades_in_folder("upgrades/tier-2/")
+	tier_three_items = _load_all_upgrades_in_folder("upgrades/tier-3/")
 
 func generate_upgrade(rarity: int):
 	var item: ItemData = _generate_upgrade_stats(rarity)
@@ -89,17 +89,19 @@ func _generate_upgrade_stats(rarity: int) -> ItemData:
 		1:
 			return _generate_random_upgrade_stats(STAT_SCALES[1], [100, 50], [-1, 100])
 		2:
-			var upgrade_selected = randi_range(0, TIER_TWO_ITEMS.size() - 1)
-			if upgrade_selected == TIER_TWO_ITEMS.size():
+			var upgrade_selected = randi_range(0, tier_two_items.size())
+			if upgrade_selected == tier_two_items.size():
 				return _generate_random_upgrade_stats(STAT_SCALES[2], [100, 100], [-1, 50])
 			else:
-				return TIER_TWO_ITEMS[upgrade_selected]
-		[3, ..]:
-			var upgrade_selected = randi_range(0, TIER_THREE_ITEMS.size() - 1)
-			if upgrade_selected == TIER_THREE_ITEMS.size():
+				print("Selected %s tier 2 " % upgrade_selected)
+				return tier_two_items[upgrade_selected]
+		3:
+			var upgrade_selected = randi_range(0, tier_three_items.size())
+			if upgrade_selected == tier_three_items.size():
 				return _generate_random_upgrade_stats(STAT_SCALES[3], [100, 100, 50], [-1, -1, 50])
 			else:
-				return TIER_THREE_ITEMS[upgrade_selected]
+				print("Selected %s tier 3 " % upgrade_selected)
+				return tier_three_items[upgrade_selected]
 			
 	assert("Recieved an unknown rarity, this shouldnt happen.")
 	return null
