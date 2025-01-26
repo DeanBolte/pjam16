@@ -16,6 +16,8 @@ var is_invincible: bool = false
 var knockback_velocity: Vector2 = Vector2.ZERO # This STORES knockback force and gradually decreases over timer
 var player: CharacterBody2D = null
 
+signal enemy_dead(enemy: CharacterBody2D)
+
 func _ready():
 	# Not the best way to do this, but works for now
 	player = get_tree().get_nodes_in_group("Players")[0]
@@ -83,11 +85,14 @@ func take_damage(damage: float) -> void:
 
 func die():
 	print("Enemy defeated!")
+	enemy_dead.emit(self)
 	queue_free()
 
 func start_invincibility():
 	is_invincible = true
 	$invincibility_timer.start()
+	if not $invincibility_timer.timeout.is_connected(end_invincibility):
+		$invincibility_timer.timeout.connect(end_invincibility)
 	modulate_sprites(Color(1, 1, 1, 0.5))
 
 func end_invincibility():

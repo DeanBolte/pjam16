@@ -83,12 +83,17 @@ func _on_weapon_hit(object_hit: Area2D) -> void:
 		var total_damage = damage + added_swipe_damage
 		object_hit.process_hit(total_damage)
 		Signals.enemy_hit.emit(self, object_hit, null) # TODO Get the intersection point
+	elif object_hit.has_method("pick_up"):
+		object_hit.pick_up()
 
 func _on_peasant_damage_hitbox_area_entered(area: Area2D) -> void:
-	var intersection_point = (self.global_position + area.global_position) / 2
-	 # TODO This intersection point is not even close to accurate and I give up trying to find 
-	# the correct one. 
-	Signals.player_hit.emit(area, intersection_point)
+	if area.has_method("pick_up"):
+		area.pick_up()
+	else:	
+		var intersection_point = (self.global_position + area.global_position) / 2
+		 # TODO This intersection point is not even close to accurate and I give up trying to find 
+		# the correct one. 
+		Signals.player_hit.emit(area, intersection_point)
 
 func on_hit_by_enemy(damage: float) -> void:
 	if is_invincible:

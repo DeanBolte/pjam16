@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://de7hk88yjl6gw"]
+[gd_scene load_steps=8 format=3 uid="uid://de7hk88yjl6gw"]
 
 [ext_resource type="PackedScene" uid="uid://dokp788mpuh1e" path="res://ui/inventory.tscn" id="1_08hm3"]
 [ext_resource type="Material" uid="uid://co3shlfue63hr" path="res://assets/shaders/crt_material.tres" id="1_oe5a7"]
+[ext_resource type="Script" path="res://ui/ui.gd" id="1_t6fr5"]
+[ext_resource type="PackedScene" uid="uid://dyvp3njiad4bf" path="res://ui/pause_menu.tscn" id="1_vt47o"]
 [ext_resource type="Texture2D" uid="uid://be3u37x0progx" path="res://assets/ui/chest.png" id="1_y6xot"]
 [ext_resource type="Script" path="res://ui/game_timer.gd" id="4_u2wej"]
 
@@ -12,6 +14,11 @@ bg_color = Color(0.273873, 0.273873, 0.273873, 1)
 bg_color = Color(0.760784, 0, 0, 1)
 
 [node name="Ui" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_t6fr5")
+
+[node name="PauseMenu" parent="." instance=ExtResource("1_vt47o")]
+layer = 4
 
 [node name="Inventory" parent="." instance=ExtResource("1_08hm3")]
 layer = 3
@@ -60,6 +67,9 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
 
+[node name="OpenCloseSfx" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+volume_db = -5.0
 [node name="game_timer" type="Label" parent="."]
 offset_left = 19.0
 offset_top = 20.0

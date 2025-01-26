@@ -5,4 +5,4 @@
 [resource]
 script = ExtResource("1_k22av")
 behaviour_description = "The peasant suffers from flatulence when hit "
-behaviour_node = "res://upgrades/fart_on_hit.tscn"
+behaviour_node = "res://upgrades/behaviours/fart_on_hit.tscn"

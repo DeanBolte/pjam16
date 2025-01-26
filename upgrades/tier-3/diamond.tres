@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://ui/item_data.gd" id="1_gqhkl"]
 [ext_resource type="Texture2D" uid="uid://dl36k0rx25he3" path="res://assets/Development/diamond.png" id="2_kf08r"]
-[ext_resource type="Resource" uid="uid://bq21c8ma26ac6" path="res://ui/development/fart_on_hit.tres" id="3_t1dif"]
+[ext_resource type="Resource" uid="uid://bq21c8ma26ac6" path="res://upgrades/behaviours/fart_on_hit.tres" id="3_t1dif"]
 
 [resource]
 script = ExtResource("1_gqhkl")
@@ -15,5 +15,5 @@ move_speed = 40
 weapon_length = 1
 weapon_width = 1
 colour = 2
-shape = 3
+shape = 0
 upgrade_behaviour = ExtResource("3_t1dif")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b8jy3r6m0acl8"]
 
-[ext_resource type="Script" path="res://upgrades/fart_on_hit.gd" id="1_q0ea4"]
+[ext_resource type="Script" path="res://upgrades/behaviours/fart_on_hit.gd" id="1_q0ea4"]
 [ext_resource type="AudioStream" uid="uid://8hfdxy4610wn" path="res://audio/sfx/fart.mp3" id="2_at078"]
 
 [node name="FartOnHit" type="Node2D"]

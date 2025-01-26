@@ -3,11 +3,11 @@ class_name Room
 
 var CRATE_RESOURCE := preload("res://levelgen/room/objects/crate.tscn")
 var LEVEL_TRANSITION_RESOURCE := preload("res://levelgen/room/objects/level_transition.tscn")
-
 var ENEMY_RESOURCES: Array[Resource] = [
 	preload("res://enemy/schnoz/schnoz.tscn"),
 	preload("res://enemy/baloo/baloo.tscn")
 ]
+var UPGRADE_RESOURCE = preload("res://upgrades/framework/upgrade_on_ground.tscn")
 
 var ROOM_WIDTH := 640
 var ROOM_HEIGHT := 640
@@ -44,7 +44,7 @@ func _generate_enemies() -> void:
 	for enemy in noOfEnemies:
 		_spawn_object_randomly(ENEMY_RESOURCES.pick_random().instantiate())
 
-func _get_spawn_location() -> Vector2:
+func _get_spawn_location() -> Vector2:	
 	return Vector2(randi() % SPAWN_AREA_WIDTH - SPAWN_AREA_WIDTH / 2, randi() % SPAWN_AREA_HEIGHT - SPAWN_AREA_HEIGHT / 2)
 
 func _is_location_free() -> bool:
@@ -56,6 +56,13 @@ func _generate_level_transition() -> void:
 func _spawn_object_randomly(instance: Node2D):
 	instance.position = _get_spawn_location()
 	Objects.add_child(instance)
+
+func spawn_drop(enemy: CharacterBody2D):
+	var item_on_ground = UPGRADE_RESOURCE.instantiate()
+	var item: ItemData = UpgradeGenerator.generate_upgrade(0)
+	item_on_ground.with_data(item)
+	item_on_ground.position = enemy.position
+	call_deferred("add_child", item_on_ground)
 
 
 func generate(location: Vector2i, is_last_room: bool) -> void:
