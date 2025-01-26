@@ -1,8 +1,8 @@
 class_name ItemData extends Resource
 
 enum Type { MAIN, SELECTED}
-enum Colour { RED, ORANGE, YELLOW, GREEN, BLUE, INDIGO, VIOLET}
-enum Shape { CIRCLE, SQUARE, TRIANGLE, STAR}
+enum Colour { RED, ORANGE, YELLOW, GREEN, BLUE, PURPLE, PINK}
+enum Shape { CIRCLE, SQUARE, TRIANGLE, DIAMOND}
 
 @export var type: Type
 @export var name: String

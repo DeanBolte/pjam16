@@ -15,5 +15,5 @@ move_speed = 40
 weapon_length = 1
 weapon_width = 1
 colour = 2
-shape = 3
+shape = 0
 upgrade_behaviour = ExtResource("3_t1dif")
