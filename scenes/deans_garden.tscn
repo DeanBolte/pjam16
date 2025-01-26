@@ -18,5 +18,5 @@ zoom = Vector2(1, 1)
 
 [node name="player" parent="." instance=ExtResource("4_ilxjj")]
 
-[node name="UpgradeManager" type="Node2D" parent="."]
+[node name="UpgradeContainer" type="Node2D" parent="."]
 script = ExtResource("5_wmres")
