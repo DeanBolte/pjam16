@@ -94,16 +94,18 @@ func _on_select_button_pressed() -> void:
 	# remove the selected one from the loot pool
 
 func add_item_to_inv(item: ItemData):
-	var invenItem := InventoryItem.new()
-	invenItem.init(item)
-	invenItem.data.type = ItemData.Type.MAIN
-	inv_items.append(item)
 	for node in %Inv.get_children(): 
 		if node.get_child_count() == 0:
+			var invenItem := InventoryItem.new()
+			invenItem.init(item)
+			invenItem.data.type = ItemData.Type.MAIN
+			inv_items.append(item)
+			
 			node.add_child(invenItem)
 			Signals.upgrade_picked_up_post.emit(item)
+			calculate_inv_count()
 			break
-	calculate_inv_count()
+	
 
 # Enable the button when all SelectedItems slots are filled.
 func update_upgrade_button():

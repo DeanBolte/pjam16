@@ -135,16 +135,21 @@ func _modify_item(item: ItemData, stat_name: String, amount: int):
 			item.weapon_width += amount
 
 func _get_weighted_random(weights):
-	var sum_of_weight = 0;
+	 # Calculate the total weight
+	var total_weight = 0
 	for weight in weights:
-		sum_of_weight += weight
-		
-	var rnd = randi_range(0, sum_of_weight);
-	for i in len(weights):
-		if rnd < weights[i]:
+		total_weight += weight
+
+	# Generate a random value between 0 and total_weight
+	var random_value = randi() % total_weight
+
+	# Find the corresponding weighted index
+	var accumulated_weight = 0
+	for i in range(weights.size()):
+		accumulated_weight += weights[i]
+		if random_value < accumulated_weight:
 			return i
-		rnd -= weights[i]
-	
+
 	assert(!"should never get here");
 	return 0
 	
