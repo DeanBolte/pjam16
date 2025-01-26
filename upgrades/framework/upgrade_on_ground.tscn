@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bdasdtimi0ujh"]
 
-[ext_resource type="Script" path="res://upgrades/upgrade_on_ground.gd" id="1_7yx31"]
+[ext_resource type="Script" path="res://upgrades/framework/upgrade_on_ground.gd" id="1_rk8ko"]
 [ext_resource type="Texture2D" uid="uid://vumu1iknyxdb" path="res://assets/crystals/base_crystal.png" id="2_qi2ow"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6vg1h"]
@@ -10,7 +10,7 @@ radius = 8.06226
 scale = Vector2(4, 4)
 collision_layer = 32
 collision_mask = 0
-script = ExtResource("1_7yx31")
+script = ExtResource("1_rk8ko")
 
 [node name="upgrade_shape" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_6vg1h")

@@ -20,7 +20,8 @@ config/icon="res://icon.svg"
 Signals="*res://Singletons/signals.tscn"
 PeasantData="*res://player/peasant_data.gd"
 DamageNumbers="*res://Singletons/damage_numbers.gd"
-UpgradeGenerator="*res://upgrades/upgrade_generator.gd"
+UpgradeGenerator="*res://upgrades/framework/upgrade_generator.gd"
+MouseTracker="*res://Singletons/mouse_tracker.gd"
 
 [display]
 

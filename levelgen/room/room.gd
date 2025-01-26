@@ -4,7 +4,7 @@ class_name Room
 var CRATE_RESOURCE := preload("res://levelgen/room/objects/crate.tscn")
 var LEVEL_TRANSITION_RESOURCE := preload("res://levelgen/room/objects/level_transition.tscn")
 var ENEMY_RESOURCE = preload("res://enemy/enemy.tscn")
-var UPGRADE_RESOURCE = preload("res://upgrades/upgrade_on_ground.tscn")
+var UPGRADE_RESOURCE = preload("res://upgrades/framework/upgrade_on_ground.tscn")
 
 var ROOM_WIDTH := 640
 var ROOM_HEIGHT := 640

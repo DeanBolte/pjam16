@@ -16,12 +16,12 @@ var selected_items: Array[ItemData] = []
 
 # Dummy items for initial load, remove these once ready.
 var items_load = [
-	"res://ui/development/sword.tres",
-	"res://ui/development/emerald.tres"
+	"res://upgrades/tier-2/sword.tres",
+	"res://upgrades/tier-3/emerald.tres"
 ]
 var selected_items_load = [
-	"res://ui/development/diamond.tres",
-	"res://ui/development/basic_crystal.tres"
+	"res://upgrades/tier-3/diamond.tres",
+	"res://upgrades/tier-2/basic_crystal.tres"
 ]
 
 func _ready():
@@ -44,7 +44,8 @@ func _ready():
 	# TODO: Remove these once the game is ready! These are solely for testing!!!
 	for i in items_load.size():
 		var item := InventoryItem.new()
-		item.init(load(items_load[i]))
+		var test = load(items_load[i])
+		item.init(test)
 		item.data.type = ItemData.Type.MAIN
 		inv_items.append(item.data)
 		%Inv.get_child(i).add_child(item)
