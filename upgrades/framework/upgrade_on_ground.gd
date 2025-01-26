@@ -17,3 +17,7 @@ func pick_up():
 func remove_from_ground(_item):
 	if item == _item:
 		queue_free()
+
+
+func _on_init_spawn_delay_timeout() -> void:
+	monitorable = true

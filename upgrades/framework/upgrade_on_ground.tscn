@@ -10,6 +10,8 @@ radius = 8.06226
 scale = Vector2(4, 4)
 collision_layer = 32
 collision_mask = 0
+monitoring = false
+monitorable = false
 script = ExtResource("1_rk8ko")
 
 [node name="upgrade_shape" type="CollisionShape2D" parent="."]
@@ -18,4 +20,10 @@ shape = SubResource("CircleShape2D_6vg1h")
 [node name="upgrade_sprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_qi2ow")
 
+[node name="init_spawn_delay" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="init_spawn_delay" to="." method="_on_init_spawn_delay_timeout"]
