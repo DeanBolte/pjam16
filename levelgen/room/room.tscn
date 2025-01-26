@@ -194,6 +194,7 @@ enabled = false
 tile_set = SubResource("TileSet_bhh6t")
 
 [node name="PlayerDetectionZone" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("4_pgt05")
