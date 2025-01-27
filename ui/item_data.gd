@@ -14,6 +14,7 @@ enum Shape { CIRCLE, SQUARE, TRIANGLE, DIAMOND}
 @export var move_speed: int  = 0
 @export var weapon_length: int = 0
 @export var weapon_width: int  = 0
+@export var swing_speed: int = 0
 
 @export var colour: Colour
 @export var shape: Shape

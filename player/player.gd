@@ -58,17 +58,6 @@ func _physics_process(delta: float) -> void:
 		rotation = lerp_angle(rotation, mouse_direction.angle(), rotation_speed)
 		move_and_slide()
 		Signals.player_moved.emit(self)
-
-func _input(event):
-	if event is InputEventKey and event.pressed:
-		if event.keycode == KEY_1:
-			$weapon.increase_weapon_length(0.25)
-		elif event.keycode == KEY_2:
-			$weapon.decrease_weapon_length(0.25)
-		elif event.keycode == KEY_3:
-			$weapon.increase_weapon_width(0.25)
-		elif event.keycode == KEY_4:
-			$weapon.decrease_weapon_width(0.25)
 			
 func _apply_upgrade(upgrade: ItemData):
 	if(upgrade.weapon_length):
@@ -80,6 +69,8 @@ func _apply_upgrade(upgrade: ItemData):
 		max_speed += upgrade.move_speed * speed_multiplier
 	if(upgrade.damage):
 		damage += upgrade.damage
+	if(upgrade.swing_speed):
+		rotation_speed += upgrade.swing_speed / 50
 
 func _on_weapon_hit(object_hit: Area2D) -> void:
 	if object_hit.has_method("process_hit"):
