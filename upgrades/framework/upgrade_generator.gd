@@ -37,7 +37,6 @@ extends Node2D
 
 #var behaviour_being_tested = preload("res://upgrades/behaviours/after_image.tres")
 @export var tier_two_items: Array[ItemData] = []
-@export var tier_three_items: Array[ItemData] = []
 @export var gem_images = {}
 
 
@@ -57,7 +56,9 @@ func generate_upgrade(rarity: int) -> ItemData:
 			if upgrade_selected == tier_two_items.size():
 				return _generate_random_item(rarity)
 			else:
-				return tier_two_items[upgrade_selected]
+				var item = tier_two_items[upgrade_selected]
+				tier_two_items.remove_at(upgrade_selected)
+				return item
 
 	assert("Shouldnt get here!")
 	return null
