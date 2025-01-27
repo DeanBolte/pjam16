@@ -1,12 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://b33ceopuitc8o"]
+[gd_scene load_steps=5 format=3 uid="uid://b33ceopuitc8o"]
 
 [ext_resource type="Script" path="res://levelgen/room/objects/crate.gd" id="1_evq5y"]
 [ext_resource type="Texture2D" uid="uid://byqh3nl5rwd53" path="res://assets/room_objects/crate.png" id="1_yq32i"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5mcom"]
+rough = true
+absorbent = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hs8go"]
 size = Vector2(32, 32)
 
 [node name="Crate" type="RigidBody2D"]
+mass = 40.0
+physics_material_override = SubResource("PhysicsMaterial_5mcom")
 gravity_scale = 0.0
 script = ExtResource("1_evq5y")
 

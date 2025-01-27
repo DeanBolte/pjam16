@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-@onready var sfx_manager = get_node("../../../../SfxManager")
 @onready var death_sfx = preload("res://audio/sfx/enemy_death.wav")
 
 @export var max_health: float = 100
@@ -76,7 +75,7 @@ func take_damage(damage: float, source: Node2D) -> void:
 	print("Enemy took ", damage, " dmg")
 	$hit_sound.play()
 	DamageNumbers.display_number(floor(damage), global_position)
-	
+
 	# Technically we should use the position of the hit itself, not the player position, but whatever
 	var knockback_direction = (global_position - source.global_position).normalized()
 	knockback_velocity = knockback_direction * damage * self_knockback_multiplier
@@ -87,8 +86,8 @@ func take_damage(damage: float, source: Node2D) -> void:
 		start_invincibility()
 
 func die():
-	sfx_manager.stream = death_sfx
-	sfx_manager.play()
+	SfxManager.stream = death_sfx
+	SfxManager.play()
 	enemy_dead.emit(self)
 	queue_free()
 
