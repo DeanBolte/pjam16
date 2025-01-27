@@ -1,6 +1,6 @@
 extends Node
 
-var ROOM_RESOURCE = preload("res://levelgen/room/room.tscn")
+var _room_factory: RoomFactory
 
 @export var MAX_ROOMS := 7
 @export var RETRY_ROOM_ADJACENCY_ATTEMPTS = 4
@@ -9,45 +9,57 @@ var ROOM_RESOURCE = preload("res://levelgen/room/room.tscn")
 
 # a Map of 2D Vector keys representing the room grid
 var level_map: Dictionary = {}
-var rooms_node: Node
+var _rooms_node: Node2D
 var level := 1
 
 func _ready() -> void:
+	_room_factory = RoomFactory.new_factory(_get_rooms_node())
+
 	_generate_map()
 
 	Signals.player_reached_level_transition.connect(_next_level)
 
 # ------- map generation
 func _generate_map() -> void:
-	rooms_node = Node.new()
-	add_child(rooms_node)
+	# create new container for rooms
+	_room_factory.set_rooms_node(_get_new_rooms_node())
 
-	var base_room: Room = ROOM_RESOURCE.instantiate()
-	rooms_node.add_child(base_room)
+	# add start room
+	_add_room(_room_factory.get_random_starting_room())
 
-	base_room.generate(Vector2i.ZERO, false)
-	level_map[Vector2i.ZERO] = base_room
+	# generate main set of rooms
+	while MAX_ROOMS - level_map.size() > 1:
+		_add_room(_room_factory.get_random_room(_get_next_room_candidate()))
 
-	while MAX_ROOMS - level_map.size() > 0:
-		var vacant_rooms := _get_room_candidates()
-		vacant_rooms.shuffle()
+	# generate final room
+	_add_room(_room_factory.get_random_final_room(_get_next_room_candidate()))
 
-		var room: Room = ROOM_RESOURCE.instantiate()
-		rooms_node.add_child(room)
+	_enclose_map()
 
-		if (not vacant_rooms.is_empty()):
-			var location = vacant_rooms.front()
+func _get_rooms_node() -> Node2D:
+	if _rooms_node == null:
+		_rooms_node = Node2D.new()
+		add_child(_rooms_node)
+	return _rooms_node
 
-			for r in RETRY_ROOM_ADJACENCY_ATTEMPTS:
-				if (_get_adjacent_vacant_rooms(location).size() < ROOM_ADJACENCYRETRY_SCALAR):
-					vacant_rooms.shuffle()
-					location = vacant_rooms.front()
+func _get_new_rooms_node() -> Node2D:
+	if _rooms_node != null:
+		_rooms_node.free()
+	_rooms_node = Node2D.new()
+	add_child(_rooms_node)
+	return _rooms_node
 
-			room.generate(location, MAX_ROOMS - level_map.size() == 1)
-			level_map[location] = room
+func _add_room(room: Room) -> void:
+	for location in room.get_map_locations():
+		level_map[location] = room
 
+func _enclose_map() -> void:
+	# Shut all open doorways to prevent player exiting map
 	for room in level_map.keys():
 		level_map[room].close_doors(_get_adjacent_vacant_room_directions(room))
+
+func _has_minimum_number_of_adjacent_vacant_rooms(location: Vector2i) -> bool:
+	return not _get_adjacent_vacant_rooms(location).size() < ROOM_ADJACENCYRETRY_SCALAR
 
 func _get_room_candidates() -> Array[Vector2i]:
 	var vacant_rooms: Array[Vector2i] = []
@@ -56,6 +68,17 @@ func _get_room_candidates() -> Array[Vector2i]:
 		if adjacent_rooms.size() >= MINIMUM_ADJACENT_ROOMS:
 			vacant_rooms.append_array(adjacent_rooms)
 	return vacant_rooms
+
+func _get_next_room_candidate() -> Vector2i:
+	var vacant_rooms := _get_room_candidates().filter(_has_minimum_number_of_adjacent_vacant_rooms)
+	vacant_rooms.shuffle()
+
+	var room_candidate: Vector2i
+	if vacant_rooms.is_empty():
+		room_candidate = _get_room_candidates().front()
+	else:
+		room_candidate = vacant_rooms.front()
+	return room_candidate
 
 func _get_adjacent_vacant_rooms(room: Vector2i) -> Array[Vector2i]:
 	var vacant_rooms: Array[Vector2i] = []
@@ -91,5 +114,5 @@ func _next_level() -> void:
 	Signals.new_level_reached.emit()
 
 func _destroy_level() -> void:
-	rooms_node.queue_free()
+	_rooms_node.queue_free()
 	level_map = {}

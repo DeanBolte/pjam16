@@ -1,6 +1,8 @@
 extends Node2D
 class_name Room
 
+static var ROOM_RESOURCE := preload("res://levelgen/room/room.tscn")
+
 var CRATE_RESOURCE := preload("res://levelgen/room/objects/crate.tscn")
 var LEVEL_TRANSITION_RESOURCE := preload("res://levelgen/room/objects/level_transition.tscn")
 var ENEMY_RESOURCE = preload("res://enemy/enemy.tscn")
@@ -22,6 +24,14 @@ var ROOM_HEIGHT := 640
 
 @export var SPAWN_AREA_WIDTH: int = 540
 @export var SPAWN_AREA_HEIGHT: int = 540
+
+var _map_locations: Array[Vector2i]
+
+static func _new_room(map_locations: Array[Vector2i]) -> Room:
+	var new_room: Room = ROOM_RESOURCE.instantiate()
+	new_room.set_map_locations(map_locations)
+
+	return new_room
 
 func _generate_objects() -> void:
 	_generate_crates()
@@ -64,3 +74,9 @@ func close_doors(door_locations: Array[Vector2i]) -> void:
 	BottomDoor.enabled = door_locations.has(Vector2i.DOWN)
 	RightDoor.enabled = door_locations.has(Vector2i.RIGHT)
 	LeftDoor.enabled = door_locations.has(Vector2i.LEFT)
+
+func set_map_locations(map_locations: Array[Vector2i]) -> void:
+	_map_locations = map_locations
+
+func get_map_locations() -> Array[Vector2i]:
+	return _map_locations
