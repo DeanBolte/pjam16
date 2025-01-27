@@ -13,10 +13,6 @@ var ENEMY_RESOURCE = preload("res://enemy/enemy.tscn")
 const GRID_WIDTH := 640
 
 @onready var Objects := $Objects
-@onready var LeftDoor := $LeftDoor
-@onready var RightDoor := $RightDoor
-@onready var BottomDoor := $BottomDoor
-@onready var TopDoor := $TopDoor
 @onready var BaseFloor := $BaseFloor
 
 @export var MIN_CRATES := 1
@@ -28,11 +24,13 @@ const GRID_WIDTH := 640
 @export var SPAWN_AREA_HEIGHT: int = 540
 
 @export var relative_map_positions: Array[Vector2i]
-#@export var relative_door_positions: Array This should be relative to the map positions
+@export var room_doors: Array[Door]
 
 var _map_location: Vector2i
 var _is_last_room: bool
 var _room_type: ROOMS
+
+var _are_doors_closed: bool = false
 
 static func _new_room(map_location: Vector2i, room_type: ROOMS, is_last_room: bool = false) -> Room:
 	var new_room: Room = _get_room_scene(room_type).instantiate()
@@ -91,11 +89,21 @@ func generate() -> void:
 		_generate_level_transition()
 
 func close_doors(door_locations: Array[Vector2i]) -> void:
-	#TopDoor.enabled = door_locations.has(Vector2i.UP)
-	#BottomDoor.enabled = door_locations.has(Vector2i.DOWN)
-	#RightDoor.enabled = door_locations.has(Vector2i.RIGHT)
-	#LeftDoor.enabled = door_locations.has(Vector2i.LEFT)
-	pass
+	if _are_doors_closed:
+		return
+
+	for door: Door in room_doors.filter(func(d: Door): return door_locations.has(d.relative_next_room_position)):
+		door.enabled = true
+
+	_are_doors_closed = true
+
+func get_relative_next_room_locations() -> Array[Vector2i]:
+	var locations: Array[Vector2i]
+	locations.assign(room_doors.map(func(d: Door): return d.relative_next_room_position))
+	return locations
+
+func are_doors_closed() -> bool:
+	return _are_doors_closed
 
 func set_map_location(map_location: Vector2i) -> void:
 	self._map_location = map_location

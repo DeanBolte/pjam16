@@ -2,7 +2,7 @@ extends Node
 
 var _room_factory: RoomFactory
 
-@export var MAX_ROOMS := 1
+@export var MAX_ROOMS := 7
 @export var RETRY_ROOM_ADJACENCY_ATTEMPTS = 4
 @export var ROOM_ADJACENCYRETRY_SCALAR = 3
 @export var MINIMUM_ADJACENT_ROOMS = 2
@@ -66,8 +66,10 @@ func _get_map_locations(room: Room) -> Array[Vector2i]:
 
 func _enclose_map() -> void:
 	# Shut all open doorways to prevent player exiting map
-	for room in level_map.keys():
-		level_map[room].close_doors(_get_adjacent_vacant_room_directions(room))
+	for room: Room in level_map.values():
+		var closedDoors: Array[Vector2i]
+		closedDoors.assign(room.get_relative_next_room_locations().filter(func(rel): return _is_room_vacant(rel + room.get_map_location())))
+		room.close_doors(closedDoors)
 
 func _has_minimum_number_of_adjacent_vacant_rooms(location: Vector2i) -> bool:
 	return not _get_adjacent_vacant_rooms(location).size() < ROOM_ADJACENCYRETRY_SCALAR
