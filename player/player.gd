@@ -1,7 +1,6 @@
 extends CharacterBody2D
 
 @onready var game_over_popup = get_node("../UserInterface/GameOverPopup")
-@onready var sfx_manager = get_node("../SfxManager")
 @onready var death_sfx = preload("res://audio/sfx/game_over.wav")
 
 const BASE_SPEED = 20
@@ -15,6 +14,8 @@ const TAKE_DAMAGE_SOUNDS = [
 	preload("res://assets/sounds/player/take_damage/owww.wav"),
 	preload("res://assets/sounds/player/take_damage/yeowch.wav"),
 ]
+
+const START_POSITION = Vector2.ZERO
 
 @export var max_health: float = 50
 @export var current_health: float = max_health
@@ -41,6 +42,9 @@ func _ready() -> void:
 	$invincibility_timer.timeout.connect(Callable(self, "end_invincibility"))
 	Signals.apply_upgrade.connect(_apply_upgrade)
 
+	Signals.new_level_reached.connect(_reset_player_position.bind(START_POSITION))
+
+
 func _physics_process(delta: float) -> void:
 	var mouse_position = get_global_mouse_position()
 	var mouse_direction = global_position.direction_to(mouse_position)
@@ -57,7 +61,11 @@ func _physics_process(delta: float) -> void:
 		rotation = lerp_angle(rotation, mouse_direction.angle(), rotation_speed)
 		move_and_slide()
 		Signals.player_moved.emit(self)
-			
+
+func _reset_player_position(reset_position: Vector2):
+	position = reset_position
+	Signals.player_moved.emit(self)
+
 func _apply_upgrade(upgrade: ItemData):
 	if(upgrade.weapon_length):
 		$weapon.change_weapon_length(upgrade.weapon_length)
@@ -96,8 +104,8 @@ func on_hit_by_enemy(damage: float, source: Node2D) -> void:
 	print("peasant took damage, current_health: ", current_health)
 
 func die():
-	sfx_manager.stream = death_sfx
-	sfx_manager.play()
+	SfxManager.stream = death_sfx
+	SfxManager.play()
 	game_over_popup.visible = true
 	queue_free()
 
@@ -109,7 +117,7 @@ func start_invincibility():
 func end_invincibility():
 	is_invincible = false
 	modulate_sprites(Color(1, 1, 1, 1))
-	
+
 func modulate_sprites(color: Color):
 	var sprites = find_children("", "Sprite2D")
 	for sprite in sprites:
@@ -129,15 +137,15 @@ func _on_sound_timer_timeout() -> void:
 func _on_peasant_damage_hitbox_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
 	if area.has_method("pick_up"):
 		area.pick_up()
-	else:	
+	else:
 		var body_shape2d: Shape2D = area.shape_owner_get_shape(area_shape_index, 0)
 		var area_shape2d: Shape2D = $peasant/peasant_damage_hitbox.shape_owner_get_shape(local_shape_index, 0)
-		
+
 		var body_shape2d_transform = area.shape_owner_get_owner(local_shape_index).get_global_transform()
 		var area_shape2d_transform = $peasant/peasant_damage_hitbox.shape_owner_get_owner(area_shape_index).get_global_transform()
-		
+
 		var collision_points = area_shape2d.collide_and_get_contacts(area_shape2d_transform, body_shape2d, body_shape2d_transform)
-		
+
 		var collision_sum = Vector2(0, 0)
 		for point in collision_points:
 			collision_sum += point
