@@ -147,7 +147,7 @@ physics_layer_0/collision_layer = 1
 sources/2 = SubResource("TileSetAtlasSource_d12ns")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_43tfm"]
-size = Vector2(600, 600)
+size = Vector2(1232, 600)
 
 [node name="Room" type="Node2D" node_paths=PackedStringArray("room_doors")]
 script = ExtResource("1_8gdbk")
@@ -220,21 +220,14 @@ script = ExtResource("4_acvn5")
 relative_next_room_position = Vector2i(1, -1)
 
 [node name="PlayerDetectionZone" type="Area2D" parent="."]
+position = Vector2(320, 0)
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("5_7bol4")
+WIDTH = 1280
+HEIGHT = 640
 
 [node name="Collision2D" type="CollisionShape2D" parent="PlayerDetectionZone"]
 shape = SubResource("RectangleShape2D_43tfm")
 
-[node name="PlayerDetectionZone2" type="Area2D" parent="."]
-position = Vector2(641, 0)
-collision_layer = 0
-collision_mask = 2
-script = ExtResource("5_7bol4")
-
-[node name="Collision2D" type="CollisionShape2D" parent="PlayerDetectionZone2"]
-shape = SubResource("RectangleShape2D_43tfm")
-
 [connection signal="body_entered" from="PlayerDetectionZone" to="PlayerDetectionZone" method="_on_body_entered"]
-[connection signal="body_entered" from="PlayerDetectionZone2" to="PlayerDetectionZone2" method="_on_body_entered"]

@@ -1,8 +1,8 @@
 [gd_scene load_steps=25 format=4 uid="uid://k6ra4mvps7no"]
 
 [ext_resource type="Script" path="res://levelgen/room/room.gd" id="1_6jt68"]
-[ext_resource type="Texture2D" uid="uid://bdbs8w6bbuq0r" path="res://assets/BasicSprites/backgroundtile.png" id="1_pcs8o"]
 [ext_resource type="Script" path="res://levelgen/room/base_floor.gd" id="4_bkil1"]
+[ext_resource type="Script" path="res://levelgen/room/door.gd" id="4_ehpnh"]
 [ext_resource type="Script" path="res://levelgen/room/player_detection_zone.gd" id="4_pgt05"]
 [ext_resource type="Texture2D" uid="uid://bma1ouoy4ubsj" path="res://assets/tilesetx2.png" id="5_rbtxf"]
 
@@ -149,15 +149,10 @@ sources/2 = SubResource("TileSetAtlasSource_d12ns")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_43tfm"]
 size = Vector2(600, 600)
 
-[node name="Room" type="Node2D"]
+[node name="Room" type="Node2D" node_paths=PackedStringArray("room_doors")]
 script = ExtResource("1_6jt68")
 relative_map_positions = Array[Vector2i]([Vector2i(0, 0)])
-
-[node name="Background" type="Sprite2D" parent="."]
-z_index = -100
-texture = ExtResource("1_pcs8o")
-region_enabled = true
-region_rect = Rect2(0, 0, 640, 640)
+room_doors = [NodePath("Doors/LeftDoor"), NodePath("Doors/RightDoor"), NodePath("Doors/BottomDoor"), NodePath("Doors/TopDoor")]
 
 [node name="BaseFloor" type="TileMapLayer" parent="."]
 z_index = -100
@@ -178,31 +173,43 @@ tile_set = SubResource("TileSet_bhh6t")
 
 [node name="Objects" type="Node2D" parent="."]
 
-[node name="LeftDoor" type="TileMapLayer" parent="."]
+[node name="Doors" type="Node2D" parent="."]
+
+[node name="LeftDoor" type="TileMapLayer" parent="Doors"]
 tile_map_data = PackedByteArray("AAD2/wEAAgAIAAYAAAD2/wAAAgAIAAYAAAD2////AgAIAAYAAAD2//7/AgAIAAYAAAA=")
 enabled = false
 tile_set = SubResource("TileSet_bhh6t")
+script = ExtResource("4_ehpnh")
+relative_next_room_position = Vector2i(-1, 0)
 
-[node name="RightDoor" type="TileMapLayer" parent="."]
+[node name="RightDoor" type="TileMapLayer" parent="Doors"]
 tile_map_data = PackedByteArray("AAAJAP7/AgAKAAYAAAAJAP//AgAKAAYAAAAJAAAAAgAKAAYAAAAJAAEAAgAKAAYAAAA=")
 enabled = false
 tile_set = SubResource("TileSet_bhh6t")
+script = ExtResource("4_ehpnh")
+relative_next_room_position = Vector2i(1, 0)
 
-[node name="BottomDoor" type="TileMapLayer" parent="."]
+[node name="BottomDoor" type="TileMapLayer" parent="Doors"]
 tile_map_data = PackedByteArray("AAD+/wkAAgAJAAcAAAD//wkAAgAJAAcAAAAAAAkAAgAJAAcAAAABAAkAAgAJAAcAAAA=")
 enabled = false
 tile_set = SubResource("TileSet_bhh6t")
+script = ExtResource("4_ehpnh")
+relative_next_room_position = Vector2i(0, 1)
 
-[node name="TopDoor" type="TileMapLayer" parent="."]
+[node name="TopDoor" type="TileMapLayer" parent="Doors"]
 tile_map_data = PackedByteArray("AAD+//b/AgAJAAUAAAD///b/AgAJAAUAAAAAAPb/AgAJAAUAAAABAPb/AgAJAAUAAAA=")
 enabled = false
 tile_set = SubResource("TileSet_bhh6t")
+script = ExtResource("4_ehpnh")
+relative_next_room_position = Vector2i(0, -1)
 
 [node name="PlayerDetectionZone" type="Area2D" parent="."]
 visible = false
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("4_pgt05")
+WIDTH = 640
+HEIGHT = 640
 
 [node name="Collision2D" type="CollisionShape2D" parent="PlayerDetectionZone"]
 shape = SubResource("RectangleShape2D_43tfm")

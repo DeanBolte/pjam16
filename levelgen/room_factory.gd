@@ -18,7 +18,7 @@ func _get_random_room_scene(position: Vector2i) -> Room:
 	var room_type: Room.ROOMS
 
 	if random > 25:
-		room_type = Room.ROOMS.LONG
+		room_type = Room.ROOMS.BASIC
 	else:
 		room_type = Room.ROOMS.LONG
 

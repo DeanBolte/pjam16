@@ -18,5 +18,8 @@ zoom = Vector2(1, 1)
 
 [node name="player" parent="." instance=ExtResource("4_ilxjj")]
 
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="player"]
+remote_path = NodePath("../../RoomCamera")
+
 [node name="UpgradeManager" type="Node2D" parent="."]
 script = ExtResource("5_wmres")
