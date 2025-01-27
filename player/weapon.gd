@@ -1,7 +1,7 @@
 extends CollisionShape2D
 class_name Weapon
 
-signal weapon_hit(object_hit: Area2D)
+signal weapon_hit(object_hit: Area2D, collision_point: Vector2)
 
 var weapon_starting_x = 0
 

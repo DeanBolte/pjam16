@@ -43,3 +43,4 @@ scale = Vector2(0.477, 0.477)
 texture = ExtResource("2_hlylj")
 
 [connection signal="area_entered" from="sword_edge_hitbox" to="." method="_on_weapon_edge_hitbox_area_entered"]
+[connection signal="area_shape_entered" from="sword_edge_hitbox" to="." method="_on_sword_edge_hitbox_area_shape_entered"]

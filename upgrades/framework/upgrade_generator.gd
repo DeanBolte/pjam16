@@ -42,7 +42,7 @@ extends Node2D
 
 @export var POSSIBLE_NAMES: Array[String] = ["Gem", "Diamond", "Pizza", "Rat of Justice", "Suspicious Herbs", "Heinz Tomato Soup", "One ounce jar of fermented chilli oil", "Bun Bo Hue", "remi from the hit animated pixar film ratatoullie"]
 
-
+#var behaviour_being_tested = preload("res://upgrades/behaviours/explosion_on_enemy_hit.tres")
 @export var tier_two_items: Array[ItemData] = []
 @export var tier_three_items: Array[ItemData] = []
 @export var gem_images = {}
@@ -112,6 +112,7 @@ func _generate_random_item(rarity: int) -> ItemData:
 	var shape_stat_amount = randi_range(range[0],range[1])
 	_modify_item(item, shape_stat, shape_stat_amount)
 	
+	#item.upgrade_behaviour = behaviour_being_tested
 	return item
 			
 func _modify_item(item: ItemData, stat_name: String, amount: int):

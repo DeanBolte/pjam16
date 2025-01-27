@@ -66,32 +66,23 @@ func _apply_upgrade(upgrade: ItemData):
 		$weapon.change_weapon_width(upgrade.weapon_width)
 	if(upgrade.move_speed):
 		base_speed += max(upgrade.move_speed * 2, 20)
-		speed_multiplier = upgrade.move_speed / 20
+		speed_multiplier += upgrade.move_speed / 20
 		max_speed += max(upgrade.move_speed * 2 * speed_multiplier, 1)
 	if(upgrade.damage):
 		damage += upgrade.damage
 	if(upgrade.swing_speed):
 		rotation_speed += upgrade.swing_speed / 50
 
-func _on_weapon_hit(object_hit: Area2D) -> void:
+func _on_weapon_hit(object_hit: Area2D, intersection_point: Vector2) -> void:
 	if object_hit.has_method("process_hit"):
 		var added_swipe_damage = clamp(MouseTracker.get_swipe_speed() * swipe_speed_damage_multiplier, 0.0, max_added_swipe_damage)
 		var total_damage = damage + added_swipe_damage
-		object_hit.process_hit(total_damage)
-		Signals.enemy_hit.emit(self, object_hit, null) # TODO Get the intersection point
+		object_hit.process_hit(total_damage, self, false)
+		Signals.enemy_hit.emit(self, object_hit, intersection_point)
 	elif object_hit.has_method("pick_up"):
 		object_hit.pick_up()
 
-func _on_peasant_damage_hitbox_area_entered(area: Area2D) -> void:
-	if area.has_method("pick_up"):
-		area.pick_up()
-	else:	
-		var intersection_point = (self.global_position + area.global_position) / 2
-		 # TODO This intersection point is not even close to accurate and I give up trying to find 
-		# the correct one. 
-		Signals.player_hit.emit(area, intersection_point)
-
-func on_hit_by_enemy(damage: float) -> void:
+func on_hit_by_enemy(damage: float, source: Node2D) -> void:
 	if is_invincible:
 		return
 
@@ -134,3 +125,22 @@ func play_random_take_damage_sound() -> void:
 
 func _on_sound_timer_timeout() -> void:
 	can_play_take_damage_sound = true
+
+
+func _on_peasant_damage_hitbox_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
+	if area.has_method("pick_up"):
+		area.pick_up()
+	else:	
+		var body_shape2d: Shape2D = area.shape_owner_get_shape(area_shape_index, 0)
+		var area_shape2d: Shape2D = $peasant/peasant_damage_hitbox.shape_owner_get_shape(local_shape_index, 0)
+		
+		var body_shape2d_transform = area.shape_owner_get_owner(local_shape_index).get_global_transform()
+		var area_shape2d_transform = $peasant/peasant_damage_hitbox.shape_owner_get_owner(area_shape_index).get_global_transform()
+		
+		var collision_points = area_shape2d.collide_and_get_contacts(area_shape2d_transform, body_shape2d, body_shape2d_transform)
+		
+		var collision_sum = Vector2(0, 0)
+		for point in collision_points:
+			collision_sum += point
+		var average_collision_point = collision_sum / collision_points.size()
+		Signals.player_hit.emit(area, average_collision_point)

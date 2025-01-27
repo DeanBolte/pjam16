@@ -63,4 +63,5 @@ one_shot = true
 
 [connection signal="weapon_hit" from="weapon" to="." method="_on_weapon_hit"]
 [connection signal="area_entered" from="peasant/peasant_damage_hitbox" to="." method="_on_peasant_damage_hitbox_area_entered"]
+[connection signal="area_shape_entered" from="peasant/peasant_damage_hitbox" to="." method="_on_peasant_damage_hitbox_area_shape_entered"]
 [connection signal="timeout" from="take_damage/voiceline_cooldown_timer" to="." method="_on_sound_timer_timeout"]
