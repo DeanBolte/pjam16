@@ -18,10 +18,10 @@ const TAKE_DAMAGE_SOUNDS = [
 
 @export var max_health: float = 50
 @export var current_health: float = max_health
-@export var rotation_speed: float = 0.8
-@export var max_speed: int = 600
+@export var rotation_speed: float = 0.2
+@export var max_speed: int = 570
 @export var base_speed: int = 20
-@export var speed_multiplier = 2
+@export var speed_multiplier = 1.5
 @export var invincibility_time: float = 1 # seconds of invincibility after being hit
 
 @export var damage: float = 10
@@ -65,8 +65,9 @@ func _apply_upgrade(upgrade: ItemData):
 	if(upgrade.weapon_width):
 		$weapon.change_weapon_width(upgrade.weapon_width)
 	if(upgrade.move_speed):
-		base_speed += upgrade.move_speed
-		max_speed += upgrade.move_speed * speed_multiplier
+		base_speed += max(upgrade.move_speed * 2, 20)
+		speed_multiplier = upgrade.move_speed / 20
+		max_speed += max(upgrade.move_speed * 2 * speed_multiplier, 1)
 	if(upgrade.damage):
 		damage += upgrade.damage
 	if(upgrade.swing_speed):
