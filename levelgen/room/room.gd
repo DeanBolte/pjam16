@@ -22,6 +22,7 @@ const GRID_WIDTH := 640
 
 @export var SPAWN_AREA_WIDTH: int = 540
 @export var SPAWN_AREA_HEIGHT: int = 540
+@export var SPAWN_CENTRE_OFFSET: Vector2
 
 @export var relative_map_positions: Array[Vector2i]
 @export var room_doors: Array[Door]
@@ -68,7 +69,7 @@ func _generate_enemies() -> void:
 		_spawn_object_randomly(ENEMY_RESOURCE.instantiate())
 
 func _get_spawn_location() -> Vector2:
-	return Vector2(randi() % SPAWN_AREA_WIDTH - SPAWN_AREA_WIDTH / 2, randi() % SPAWN_AREA_HEIGHT - SPAWN_AREA_HEIGHT / 2)
+	return Vector2(randi() % SPAWN_AREA_WIDTH - SPAWN_AREA_WIDTH / 2, randi() % SPAWN_AREA_HEIGHT - SPAWN_AREA_HEIGHT / 2) + SPAWN_CENTRE_OFFSET
 
 func _is_location_free() -> bool:
 	return true
@@ -76,7 +77,7 @@ func _is_location_free() -> bool:
 func _generate_level_transition() -> void:
 	_spawn_object_randomly(LEVEL_TRANSITION_RESOURCE.instantiate())
 
-func _spawn_object_randomly(instance: Node2D):
+func _spawn_object_randomly(instance: Node2D) -> void:
 	instance.position = _get_spawn_location()
 	Objects.add_child(instance)
 
