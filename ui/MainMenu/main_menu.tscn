@@ -1,0 +1,92 @@
+[gd_scene load_steps=6 format=3 uid="uid://b8fc2abybcvnp"]
+
+[ext_resource type="Script" path="res://ui/MainMenu/main_menu.gd" id="1_httsi"]
+[ext_resource type="Texture2D" uid="uid://quvd6mqb3crh" path="res://assets/ui/main_menu_bg.png" id="2_i8igw"]
+[ext_resource type="FontFile" uid="uid://dxaajckg16ylw" path="res://assets/ui/1980v23P01.ttf" id="2_pkb8e"]
+[ext_resource type="AudioStream" uid="uid://cnx6ud46a56n1" path="res://audio/music/main_menu_theme.wav" id="3_sqjkm"]
+[ext_resource type="Material" uid="uid://co3shlfue63hr" path="res://assets/shaders/crt_material.tres" id="4_vgpn2"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_httsi")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(576, 320)
+texture = ExtResource("2_i8igw")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 417.0
+offset_top = 303.0
+offset_right = 729.0
+offset_bottom = 459.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="PlayButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Play"
+
+[node name="TutorialButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Tutorial"
+
+[node name="OptionsButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Options"
+
+[node name="ExitButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Exit"
+
+[node name="GameNameBackground" type="Label" parent="."]
+layout_mode = 0
+offset_left = 171.0
+offset_top = 53.0
+offset_right = 1019.0
+offset_bottom = 260.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_pkb8e")
+theme_override_font_sizes/font_size = 128
+text = "   Definitely NOT 
+The Binding of Isaac"
+
+[node name="GameName" type="Label" parent="."]
+layout_mode = 0
+offset_left = 176.0
+offset_top = 48.0
+offset_right = 1024.0
+offset_bottom = 255.0
+theme_override_fonts/font = ExtResource("2_pkb8e")
+theme_override_font_sizes/font_size = 128
+text = "   Definitely NOT 
+The Binding of Isaac"
+
+[node name="MusicPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_sqjkm")
+volume_db = -15.0
+autoplay = true
+
+[node name="crt_effect" type="ColorRect" parent="."]
+material = ExtResource("4_vgpn2")
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 640.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/TutorialButton" to="." method="_on_tutorial_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

@@ -8,7 +8,11 @@ enum ROOMS { BASIC, LONG, CORNER, BIG }
 
 var CRATE_RESOURCE := preload("res://levelgen/room/objects/crate.tscn")
 var LEVEL_TRANSITION_RESOURCE := preload("res://levelgen/room/objects/level_transition.tscn")
-var ENEMY_RESOURCE = preload("res://enemy/enemy.tscn")
+var ENEMY_RESOURCES: Array[Resource] = [
+	preload("res://enemy/schnoz/schnoz.tscn"),
+	preload("res://enemy/baloo/baloo.tscn")
+]
+var UPGRADE_RESOURCE = preload("res://upgrades/framework/upgrade_on_ground.tscn")
 
 const GRID_WIDTH := 640
 
@@ -66,7 +70,9 @@ func _generate_crates() -> void:
 func _generate_enemies() -> void:
 	var noOfEnemies = randi_range(MIN_ENEMIES, MAX_ENEMIES)
 	for enemy in noOfEnemies:
-		_spawn_object_randomly(ENEMY_RESOURCE.instantiate())
+		var enemy_spawned = ENEMY_RESOURCES.pick_random().instantiate()
+		enemy_spawned.enemy_dead.connect(spawn_drop)
+		_spawn_object_randomly(enemy_spawned)
 
 func _get_spawn_location() -> Vector2:
 	return Vector2(randi() % SPAWN_AREA_WIDTH - SPAWN_AREA_WIDTH / 2, randi() % SPAWN_AREA_HEIGHT - SPAWN_AREA_HEIGHT / 2) + SPAWN_CENTRE_OFFSET
@@ -80,6 +86,13 @@ func _generate_level_transition() -> void:
 func _spawn_object_randomly(instance: Node2D) -> void:
 	instance.position = _get_spawn_location()
 	Objects.add_child(instance)
+
+func spawn_drop(enemy: CharacterBody2D):
+	var item_on_ground = UPGRADE_RESOURCE.instantiate()
+	var item: ItemData = UpgradeGenerator.generate_upgrade(0)
+	item_on_ground.with_data(item)
+	item_on_ground.position = enemy.position
+	call_deferred("add_child", item_on_ground)
 
 
 func generate() -> void:

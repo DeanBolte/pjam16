@@ -1,0 +1,75 @@
+[gd_scene load_steps=11 format=3 uid="uid://b22ef2m5cqcgw"]
+
+[ext_resource type="Script" path="res://enemy/baloo/baloo.gd" id="1_6b0c6"]
+[ext_resource type="Texture2D" uid="uid://dv7bmg08t3hxx" path="res://assets/enemies/baloo/baloo_body.png" id="2_c5s8g"]
+[ext_resource type="Texture2D" uid="uid://xx3du8k5752s" path="res://assets/enemies/baloo/baloo.png" id="3_dpbfr"]
+[ext_resource type="Script" path="res://enemy/schnoz/hitbox.gd" id="4_n4f3y"]
+[ext_resource type="AudioStream" uid="uid://bigdatnk5bx4e" path="res://audio/sfx/enemy_damage.wav" id="5_fmasd"]
+[ext_resource type="Texture2D" uid="uid://r2mhuej7gacr" path="res://assets/enemies/baloo/baloo_hand.png" id="5_r8q5m"]
+[ext_resource type="Texture2D" uid="uid://c2mkq5tpp77an" path="res://assets/enemies/baloo/baloo_tail.png" id="6_k014q"]
+[ext_resource type="PackedScene" uid="uid://drortw6wwkvnp" path="res://weapons/crossbow/crossbow.tscn" id="8_bvipv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hxd01"]
+size = Vector2(97, 46)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2wkcg"]
+size = Vector2(68, 48)
+
+[node name="baloo" type="CharacterBody2D"]
+position = Vector2(-2, 0)
+script = ExtResource("1_6b0c6")
+
+[node name="under_body" type="Sprite2D" parent="."]
+position = Vector2(-11, 1)
+scale = Vector2(0.0292969, 0.0292969)
+texture = ExtResource("2_c5s8g")
+
+[node name="baloo" type="Sprite2D" parent="."]
+rotation = -1.57079
+scale = Vector2(0.0161133, 0.0161133)
+texture = ExtResource("3_dpbfr")
+
+[node name="hand" type="Sprite2D" parent="."]
+position = Vector2(30, 26)
+scale = Vector2(0.0117187, 0.0117187)
+texture = ExtResource("5_r8q5m")
+
+[node name="tail" type="Sprite2D" parent="."]
+position = Vector2(-45, -2)
+rotation = -1.57079
+scale = Vector2(0.0371094, 0.0371094)
+texture = ExtResource("6_k014q")
+
+[node name="body" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-15.5, 0)
+shape = SubResource("RectangleShape2D_hxd01")
+debug_color = Color(0.344434, 0.484909, 1, 0.42)
+
+[node name="hitbox" type="Area2D" parent="." groups=["enemies"]]
+collision_layer = 4
+collision_mask = 8
+script = ExtResource("4_n4f3y")
+
+[node name="hitbox" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_2wkcg")
+
+[node name="invincibility_timer" type="Timer" parent="."]
+
+[node name="shoot_cooldown_timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="hit_sound" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5_fmasd")
+
+[node name="Crossbow" parent="." instance=ExtResource("8_bvipv")]
+position = Vector2(36, 25)
+scale = Vector2(0.0546875, 0.0546875)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]

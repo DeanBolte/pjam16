@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://dyvp3njiad4bf"]
+
+[ext_resource type="Script" path="res://ui/PauseMenu/pause_menu.gd" id="1_sluq4"]
+[ext_resource type="Texture2D" uid="uid://ilwq54hsw0p0" path="res://assets/ui/inventory.png" id="2_sce4m"]
+[ext_resource type="FontFile" uid="uid://dxaajckg16ylw" path="res://assets/ui/1980v23P01.ttf" id="3_bqnm2"]
+
+[node name="PauseMenu" type="CanvasLayer"]
+script = ExtResource("1_sluq4")
+
+[node name="BoxContainer" type="BoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -448.0
+offset_top = -228.0
+offset_right = 448.0
+offset_bottom = 220.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="BoxContainer"]
+position = Vector2(448, 224)
+scale = Vector2(7, 7)
+texture = ExtResource("2_sce4m")
+
+[node name="InvLabel" type="RichTextLabel" parent="."]
+offset_left = 504.0
+offset_top = 128.0
+offset_right = 648.0
+offset_bottom = 184.0
+theme_override_fonts/normal_font = ExtResource("3_bqnm2")
+theme_override_font_sizes/normal_font_size = 64
+text = "Paused"
+
+[node name="ResumeButton" type="Button" parent="."]
+offset_left = 416.0
+offset_top = 256.0
+offset_right = 736.0
+offset_bottom = 296.0
+theme_override_font_sizes/font_size = 24
+text = "Resume"
+
+[node name="ExitButton" type="Button" parent="."]
+offset_left = 416.0
+offset_top = 344.0
+offset_right = 736.0
+offset_bottom = 384.0
+theme_override_font_sizes/font_size = 24
+text = "Main Menu"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
+[connection signal="pressed" from="ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]

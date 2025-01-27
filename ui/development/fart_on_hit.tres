@@ -1,8 +1,0 @@
-[gd_resource type="Resource" script_class="UpgradeBehaviour" load_steps=2 format=3 uid="uid://bq21c8ma26ac6"]
-
-[ext_resource type="Script" path="res://ui/upgrade_behaviour.gd" id="1_k22av"]
-
-[resource]
-script = ExtResource("1_k22av")
-behaviour_description = "The peasant suffers from flatulence when hit "
-behaviour_node = "res://upgrades/fart_on_hit.tscn"

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://22n3035trxxi"]
+
+[ext_resource type="Script" path="res://ui/item_data.gd" id="1_sitgv"]
+[ext_resource type="Texture2D" uid="uid://cxbss13g5vuy8" path="res://assets/crystals/circle/red_circle.png" id="2_8vkwq"]
+
+[resource]
+script = ExtResource("1_sitgv")
+type = 0
+name = "Heavy Boy"
+description = ""
+texture = ExtResource("2_8vkwq")
+damage = 60
+move_speed = 0
+weapon_length = 0
+weapon_width = 0
+swing_speed = -40
+colour = 0
+shape = 0
