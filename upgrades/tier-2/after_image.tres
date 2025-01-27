@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("1_qw873")
 type = 0
-name = ""
+name = "After Image"
 description = ""
 texture = ExtResource("2_72p5f")
 damage = 0
