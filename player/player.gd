@@ -31,11 +31,10 @@ const TAKE_DAMAGE_SOUNDS = [
 var is_invincible: bool = false
 var can_play_take_damage_sound: bool = true
 
-var sword_starting_x = 0
 var hands_starting_x = 0
 
 func _ready() -> void:
-	sword_starting_x = $weapon.position.x
+	GlobalReferences.player_reference = self
 	hands_starting_x = $hands.position.x
 	$invincibility_timer.wait_time = invincibility_time
 	$invincibility_timer.one_shot = true

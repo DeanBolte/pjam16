@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="UpgradeBehaviour" load_steps=2 format=3 uid="uid://di5jrtsmvmrnd"]
+
+[ext_resource type="Script" path="res://ui/upgrade_behaviour.gd" id="1_yilek"]
+
+[resource]
+script = ExtResource("1_yilek")
+behaviour_description = "You gain an after image"
+behaviour_node = "res://upgrades/behaviours/after_image_creator.tscn"

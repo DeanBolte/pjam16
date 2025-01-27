@@ -7,6 +7,7 @@ var weapon_starting_x = 0
 
 func _ready() -> void:
 	weapon_starting_x = position.x
+	GlobalReferences.weapon_reference = self
 
 func offset_weapon(offset: float) -> void:
 	position.x = weapon_starting_x + offset

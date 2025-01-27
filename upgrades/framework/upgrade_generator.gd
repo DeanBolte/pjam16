@@ -35,7 +35,7 @@ extends Node2D
 
 @export var POSSIBLE_NAMES: Array[String] = ["Gem", "Diamond", "Pizza", "Rat of Justice", "Suspicious Herbs", "Heinz Tomato Soup", "One ounce jar of fermented chilli oil", "Bun Bo Hue", "remi from the hit animated pixar film ratatoullie"]
 
-#var behaviour_being_tested = preload("res://upgrades/behaviours/explosion_on_enemy_hit.tres")
+#var behaviour_being_tested = preload("res://upgrades/behaviours/after_image.tres")
 @export var tier_two_items: Array[ItemData] = []
 @export var tier_three_items: Array[ItemData] = []
 @export var gem_images = {}

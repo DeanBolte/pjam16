@@ -10,12 +10,11 @@ radius = 12.0
 height = 68.0
 
 [node name="sword" type="CollisionShape2D"]
-position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_0sbrh")
 script = ExtResource("1_bqtey")
 
 [node name="weapon_tip" type="Node2D" parent="."]
-position = Vector2(-0.000115871, -32)
+position = Vector2(0, -32)
 rotation = -1.5708
 
 [node name="sword_edge_hitbox" type="Area2D" parent="."]
