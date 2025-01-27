@@ -34,6 +34,6 @@ func pick_upgrade(inventoryItems: Array[ItemData]):
 		if shapeVal + colourVal > topUpgradeVal:
 			topUpgrade = i
 			topUpgradeVal = shapeVal + colourVal
-	
+
 	Signals.apply_upgrade.emit(inventoryItems[topUpgrade])
 	return topUpgrade
