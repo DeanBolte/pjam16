@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var BASE_RARITY_WEIGHTS = [70, 25, 5]
+@export var BASE_RARITY_WEIGHTS = [75, 25]
 @export var ALL_STATS = ["DAMAGE", "MOVE_SPEED", "LENGTH", "WIDTH", "SWING_SPEED"]
 @export var ATTRIBUTE_MAP = {
 	"RED": "DAMAGE",
@@ -30,19 +30,12 @@ extends Node2D
 		"COLOUR_ALL_STATS": [8,10],
 		"COLOUR_SINGLE_STAT": [10,20],
 		"RANDOM_STAT": [10,11]
-	},
-	3: {
-		"SHAPE_ALL_STATS": [16,18],
-		"SHAPE_SINGLE_STAT": [18,20],
-		"COLOUR_ALL_STATS": [18,20],
-		"COLOUR_SINGLE_STAT": [20,30],
-		"RANDOM_STAT": [20,21]
 	}
 }
 
 @export var POSSIBLE_NAMES: Array[String] = ["Gem", "Diamond", "Pizza", "Rat of Justice", "Suspicious Herbs", "Heinz Tomato Soup", "One ounce jar of fermented chilli oil", "Bun Bo Hue", "remi from the hit animated pixar film ratatoullie"]
 
-
+#var behaviour_being_tested = preload("res://upgrades/behaviours/after_image.tres")
 @export var tier_two_items: Array[ItemData] = []
 @export var tier_three_items: Array[ItemData] = []
 @export var gem_images = {}
@@ -50,7 +43,6 @@ extends Node2D
 
 func _ready() -> void:
 	tier_two_items = _load_all_upgrades_in_folder("upgrades/tier-2/")
-	tier_three_items = _load_all_upgrades_in_folder("upgrades/tier-3/")
 	_load_all_upgrade_images()
 
 func generate_upgrade(rarity: int) -> ItemData:
@@ -66,12 +58,6 @@ func generate_upgrade(rarity: int) -> ItemData:
 				return _generate_random_item(rarity)
 			else:
 				return tier_two_items[upgrade_selected]
-		3:
-			var upgrade_selected = randi_range(0, tier_three_items.size())
-			if upgrade_selected == tier_three_items.size():
-				return _generate_random_item(rarity)
-			else:
-				return tier_three_items[upgrade_selected]
 
 	assert("Shouldnt get here!")
 	return null
@@ -112,6 +98,7 @@ func _generate_random_item(rarity: int) -> ItemData:
 	var shape_stat_amount = randi_range(range[0],range[1])
 	_modify_item(item, shape_stat, shape_stat_amount)
 	
+	#item.upgrade_behaviour = behaviour_being_tested
 	return item
 			
 func _modify_item(item: ItemData, stat_name: String, amount: int):

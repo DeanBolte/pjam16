@@ -22,6 +22,7 @@ PeasantData="*res://player/peasant_data.gd"
 DamageNumbers="*res://Singletons/damage_numbers.gd"
 UpgradeGenerator="*res://upgrades/framework/upgrade_generator.gd"
 MouseTracker="*res://Singletons/mouse_tracker.gd"
+GlobalReferences="*res://upgrades/framework/global_references.gd"
 
 [display]
 

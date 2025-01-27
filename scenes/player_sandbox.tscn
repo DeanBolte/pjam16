@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://drvq2g3di805i"]
 
 [ext_resource type="PackedScene" uid="uid://didohvmx332uq" path="res://player/player.tscn" id="1_cwl6g"]
-[ext_resource type="PackedScene" path="res://enemy/schnoz/schnoz.tscn" id="2_cbr58"]
+[ext_resource type="PackedScene" uid="uid://w7ajh8n7e0yk" path="res://enemy/schnoz/schnoz.tscn" id="2_cbr58"]
 [ext_resource type="Script" path="res://upgrades/framework/upgrade_generator.gd" id="3_al7ga"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1b1fu"]
