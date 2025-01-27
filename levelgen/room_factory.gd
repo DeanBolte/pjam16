@@ -12,22 +12,35 @@ static func new_factory(rooms_node: Node2D) -> RoomFactory:
 
 	return factory
 
+
+func _get_random_room_scene(position: Vector2i) -> Room:
+	var random = randi() % 100
+	var room_type: Room.ROOMS
+
+	if random > 25:
+		room_type = Room.ROOMS.LONG
+	else:
+		room_type = Room.ROOMS.LONG
+
+	return Room._new_room(position, room_type)
+
+
 func get_random_room(position: Vector2i) -> Room:
-	var new_room := Room._new_room([position])
+	var new_room := _get_random_room_scene(position)
 	_rooms_node.add_child(new_room)
-	new_room.generate(position, false)
+	new_room.generate()
 	return new_room
 
 func get_random_starting_room() -> Room:
-	var new_room := Room._new_room([STARTING_LOCATION])
+	var new_room := _get_random_room_scene(STARTING_LOCATION)
 	_rooms_node.add_child(new_room)
-	new_room.generate(STARTING_LOCATION, false)
+	new_room.generate()
 	return new_room
 
 func get_random_final_room(position: Vector2i) -> Room:
-	var new_room := Room._new_room([position])
+	var new_room := _get_random_room_scene(position)
 	_rooms_node.add_child(new_room)
-	new_room.generate(position, true)
+	new_room.generate()
 	return new_room
 
 func get_boss_room(position: Vector2i) -> Room:
