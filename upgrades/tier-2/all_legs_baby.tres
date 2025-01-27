@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://bf4i8sggsgvw5"]
+
+[ext_resource type="Script" path="res://ui/item_data.gd" id="1_8ecmm"]
+[ext_resource type="Texture2D" uid="uid://cdcv50ganvqtg" path="res://assets/crystals/square/blue_square.png" id="2_un6n1"]
+
+[resource]
+script = ExtResource("1_8ecmm")
+type = 0
+name = "All Legs Baby"
+description = ""
+texture = ExtResource("2_un6n1")
+damage = 0
+move_speed = 60
+weapon_length = 0
+weapon_width = 0
+swing_speed = -40
+colour = 0
+shape = 0
