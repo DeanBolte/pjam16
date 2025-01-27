@@ -11,7 +11,7 @@ absorbent = true
 size = Vector2(32, 32)
 
 [node name="Crate" type="RigidBody2D"]
-mass = 15.0
+mass = 40.0
 physics_material_override = SubResource("PhysicsMaterial_5mcom")
 gravity_scale = 0.0
 script = ExtResource("1_evq5y")
