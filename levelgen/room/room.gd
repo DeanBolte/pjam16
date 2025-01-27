@@ -13,6 +13,7 @@ var ROOM_HEIGHT := 640
 @onready var RightDoor := $RightDoor
 @onready var BottomDoor := $BottomDoor
 @onready var TopDoor := $TopDoor
+@onready var BaseFloor := $BaseFloor
 
 @export var MIN_CRATES := 1
 @export var MAX_CRATES := 5

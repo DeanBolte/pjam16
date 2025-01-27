@@ -17,9 +17,9 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Signals="*res://Singletons/signals.tscn"
 PeasantData="*res://player/peasant_data.gd"
 DamageNumbers="*res://Singletons/damage_numbers.gd"
+Signals="*res://Singletons/signals.gd"
 
 [display]
 

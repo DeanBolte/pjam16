@@ -54,12 +54,10 @@ func _physics_process(delta: float) -> void:
 	if distanceFromMouse > 20 and global_position.distance_to(mouse_position) > 20:
 		rotation = lerp_angle(rotation, mouse_direction.angle(), rotation_speed)
 		move_and_slide()
-<<<<<<< HEAD
 
 func _reset_player_position(reset_position: Vector2):
 	position = reset_position
-=======
-		Signals.player_moved.emit(self)
+	Signals.player_moved.emit(self)
 
 func _input(event):
 	if event is InputEventKey and event.pressed:
@@ -71,7 +69,7 @@ func _input(event):
 			$weapon.increase_weapon_width(0.25)
 		elif event.keycode == KEY_4:
 			$weapon.decrease_weapon_width(0.25)
-			
+
 func _apply_upgrade(upgrade: ItemData):
 	if(upgrade.weapon_length):
 		$weapon.change_weapon_length(upgrade.weapon_length)
@@ -90,8 +88,8 @@ func _on_weapon_hit(object_hit: Area2D) -> void:
 
 func _on_peasant_damage_hitbox_area_entered(area: Area2D) -> void:
 	var intersection_point = (self.global_position + area.global_position) / 2
-	 # TODO This intersection point is not even close to accurate and I give up trying to find 
-	# the correct one. 
+	 # TODO This intersection point is not even close to accurate and I give up trying to find
+	# the correct one.
 	Signals.player_hit.emit(area, intersection_point)
 
 func on_hit_by_enemy(damage: float) -> void:
@@ -122,7 +120,7 @@ func start_invincibility():
 func end_invincibility():
 	is_invincible = false
 	modulate_sprites(Color(1, 1, 1, 1))
-	
+
 func modulate_sprites(color: Color):
 	var sprites = find_children("", "Sprite2D")
 	for sprite in sprites:
@@ -137,4 +135,3 @@ func play_random_take_damage_sound() -> void:
 
 func _on_sound_timer_timeout() -> void:
 	can_play_take_damage_sound = true
->>>>>>> master
