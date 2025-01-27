@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://dno3vmfs70fp1"]
+
+[ext_resource type="Script" path="res://ui/item_data.gd" id="1_dfnvi"]
+[ext_resource type="Texture2D" uid="uid://cpbwliqfl148d" path="res://assets/crystals/circle/orange_circle.png" id="2_u0f1t"]
+
+[resource]
+script = ExtResource("1_dfnvi")
+type = 0
+name = ""
+description = ""
+texture = ExtResource("2_u0f1t")
+damage = 0
+move_speed = 0
+weapon_length = -20
+weapon_width = 40
+swing_speed = 0
+colour = 1
+shape = 0

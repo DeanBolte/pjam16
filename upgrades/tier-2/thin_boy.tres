@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://c8nsuul27iuhc"]
+
+[ext_resource type="Script" path="res://ui/item_data.gd" id="1_pnprq"]
+[ext_resource type="Texture2D" uid="uid://yqsq3y7jbpak" path="res://assets/crystals/circle/yellow_circle.png" id="2_4cr1b"]
+
+[resource]
+script = ExtResource("1_pnprq")
+type = 0
+name = "Thin Boy"
+description = ""
+texture = ExtResource("2_4cr1b")
+damage = 0
+move_speed = 0
+weapon_length = 20
+weapon_width = -20
+swing_speed = 0
+colour = 2
+shape = 0
