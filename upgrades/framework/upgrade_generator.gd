@@ -1,142 +1,125 @@
 extends Node2D
 
-@export var BASE_RARITY_WEIGHTS = [70, 25, 5]
-@export var STATS = ["damage", "move_speed", "weapon_length", "weapon_width"]
-@export var STAT_SCALES = {
+@export var BASE_RARITY_WEIGHTS = [75, 25]
+@export var ALL_STATS = ["DAMAGE", "MOVE_SPEED", "LENGTH", "WIDTH", "SWING_SPEED"]
+@export var ATTRIBUTE_MAP = {
+	"RED": "DAMAGE",
+	"BLUE": "MOVE_SPEED",
+	"YELLOW": "LENGTH",
+	"ORANGE": "WIDTH",
+	"GREEN": "SWING_SPEED",
+	"PURPLE": "ALL_STATS",
+	"PINK": "ALL_RANDOM",
+	
+	"CIRCLE": "MOVE_SPEED",
+	"SQUARE": "SWING_SPEED",
+	"TRIANGLE": "DAMAGE",
+	"DIAMOND": "ALL_STATS"
+}
+@export var STAT_RANGES = {
 	1: {
-		"damage": {
-			"positive": [5, 10],
-			"negative": [-1, -5]
-		},
-		"move_speed": {
-			"positive": [10, 20],
-			"negative": [-5, -10]
-		},
-		"weapon_length": {
-			"positive": [5, 10],
-			"negative": [-1, -5]
-		},
-		"weapon_width": {
-			"positive": [5, 10],
-			"negative": [-1, -5]
-		},
+		"SHAPE_ALL_STATS": [2,3],
+		"SHAPE_SINGLE_STAT": [3,5],
+		"COLOUR_ALL_STATS": [3,5],
+		"COLOUR_SINGLE_STAT": [5,10],
+		"RANDOM_STAT": [5,6]
 	},
 	2: {
-		"damage": {
-			"positive": [10, 15],
-			"negative": [-1, -5]
-		},
-		"move_speed": {
-			"positive": [20, 30],
-			"negative": [-5, -10]
-		},
-		"weapon_length": {
-			"positive": [10, 15],
-			"negative": [-1, -5]
-		},
-		"weapon_width": {
-			"positive": [10, 15],
-			"negative": [-1, -5]
-		},
-	},
-	3: {
-		"damage": {
-			"positive": [15, 20],
-			"negative": [-5, -7]
-		},
-		"move_speed": {
-			"positive": [30, 40],
-			"negative": [-10, -15]
-		},
-		"weapon_length": {
-			"positive": [15, 20],
-			"negative": [-5, -7]
-		},
-		"weapon_width": {
-			"positive": [15, 20],
-			"negative": [-5, -7]
-		},
-	},
+		"SHAPE_ALL_STATS": [6,8],
+		"SHAPE_SINGLE_STAT": [8,10],
+		"COLOUR_ALL_STATS": [8,10],
+		"COLOUR_SINGLE_STAT": [10,20],
+		"RANDOM_STAT": [10,11]
+	}
 }
+
 @export var POSSIBLE_NAMES: Array[String] = ["Gem", "Diamond", "Pizza", "Rat of Justice", "Suspicious Herbs", "Heinz Tomato Soup", "One ounce jar of fermented chilli oil", "Bun Bo Hue", "remi from the hit animated pixar film ratatoullie"]
 
-
+#var behaviour_being_tested = preload("res://upgrades/behaviours/after_image.tres")
 @export var tier_two_items: Array[ItemData] = []
-@export var tier_three_items: Array[ItemData] = []
 @export var gem_images = {}
 
 
 func _ready() -> void:
 	tier_two_items = _load_all_upgrades_in_folder("upgrades/tier-2/")
-	tier_three_items = _load_all_upgrades_in_folder("upgrades/tier-3/")
 	_load_all_upgrade_images()
 
-func generate_upgrade(rarity: int):
-	var item: ItemData = _generate_upgrade_stats(rarity)
-	item.colour = ItemData.Colour.values().pick_random()
-	item.shape = ItemData.Shape.values().pick_random()
-	
-	if item.name == null:
-		item.name = POSSIBLE_NAMES.pick_random() #todo: probably want names and textures to align aye
-		
-	var colour_name = ItemData.Colour.keys()[item.colour]
-	var shape_name = ItemData.Shape.keys()[item.shape]
-	item.texture = gem_images[shape_name][colour_name]
-		
-	return item
-	
-
-func _generate_upgrade_stats(rarity: int) -> ItemData:
+func generate_upgrade(rarity: int) -> ItemData:
 	if rarity <= 0:
 		rarity = _get_weighted_random(BASE_RARITY_WEIGHTS) + 1
+		
 	match rarity:
 		1:
-			return _generate_random_upgrade_stats(STAT_SCALES[1], [100, 50], [-1, 100])
+			return _generate_random_item(1)
 		2:
 			var upgrade_selected = randi_range(0, tier_two_items.size())
 			if upgrade_selected == tier_two_items.size():
-				return _generate_random_upgrade_stats(STAT_SCALES[2], [100, 100], [-1, 50])
+				return _generate_random_item(rarity)
 			else:
-				print("Selected %s tier 2 " % upgrade_selected)
-				return tier_two_items[upgrade_selected]
-		3:
-			var upgrade_selected = randi_range(0, tier_three_items.size())
-			if upgrade_selected == tier_three_items.size():
-				return _generate_random_upgrade_stats(STAT_SCALES[3], [100, 100, 50], [-1, -1, 50])
-			else:
-				print("Selected %s tier 3 " % upgrade_selected)
-				return tier_three_items[upgrade_selected]
-			
-	assert("Recieved an unknown rarity, this shouldnt happen.")
+				var item = tier_two_items[upgrade_selected]
+				tier_two_items.remove_at(upgrade_selected)
+				return item
+
+	assert("Shouldnt get here!")
 	return null
-			
-func _generate_random_upgrade_stats(stat_ranges, stat_count_chances, negative_stat_chance):
+	
+	
+func _generate_random_item(rarity: int) -> ItemData:
 	var item: ItemData = ItemData.new()
+	item.colour = ItemData.Colour.values().pick_random()
+	item.shape = ItemData.Shape.values().pick_random()
 	
-	for i in len(stat_count_chances):
-		if randi_range(0, 100) <= stat_count_chances[i]:
-			var stat_selected = selected_random_stat(stat_ranges)
-			var stat_direction = "negative" if randi_range(0, 100) <= negative_stat_chance[i] else "positive"
-			var stat_amount = select_random_stat_amount(stat_ranges, stat_selected, stat_direction)
-			_modify_item(item, stat_selected, stat_amount)
+	var colour_name = ItemData.Colour.keys()[item.colour]
+	var shape_name = ItemData.Shape.keys()[item.shape]
+	item.texture = gem_images[shape_name][colour_name]
+	
+	var colour_stat = ATTRIBUTE_MAP[colour_name]
+	var shape_stat = ATTRIBUTE_MAP[shape_name]
+	
+	if colour_stat == "ALL_RANDOM":
+		for i in 2:
+			var random_stat = ALL_STATS.pick_random()
+			var range = STAT_RANGES[rarity]["COLOUR_SINGLE_STAT"]
+			var random_stat_amount = randi_range(range[0],range[1])
+			_modify_item(item, random_stat, random_stat_amount)
+	else:
+		var range: Array 
+		if shape_stat == "ALL_STATS":
+			range = STAT_RANGES[rarity]["COLOUR_ALL_STATS"]
+		else:
+			range = STAT_RANGES[rarity]["COLOUR_SINGLE_STAT"]
+		var colour_stat_amount = randi_range(range[0],range[1])
+		_modify_item(item, colour_stat, colour_stat_amount)
+		
+	var range: Array
+	if shape_stat == "ALL_STATS":
+		range = STAT_RANGES[rarity]["SHAPE_ALL_STATS"]
+	else:
+		range = STAT_RANGES[rarity]["SHAPE_SINGLE_STAT"]
+	var shape_stat_amount = randi_range(range[0],range[1])
+	_modify_item(item, shape_stat, shape_stat_amount)
+	
+	#item.upgrade_behaviour = behaviour_being_tested
 	return item
-			
-func selected_random_stat(stat_ranges):
-	return stat_ranges.keys()[randi() % stat_ranges.size()]
-	
-func select_random_stat_amount(stat_ranges, stat: String, direction: String):
-	return randi_range(stat_ranges[stat][direction][0], stat_ranges[stat][direction][1])
 			
 func _modify_item(item: ItemData, stat_name: String, amount: int):
 	match stat_name:
-		"damage":
+		"DAMAGE":
 			item.damage += amount
-		"move_speed":
+		"MOVE_SPEED":
 			item.move_speed += amount
-		"weapon_length":
+		"LENGTH":
 			item.weapon_length += amount
-		"weapon_width":
+		"WIDTH":
 			item.weapon_width += amount
+		"SWING_SPEED":
+			item.swing_speed += amount
+		"ALL_STATS":
+			item.damage += amount
+			item.move_speed += amount
+			item.weapon_length += amount
+			item.weapon_width += amount
+			item.swing_speed += amount
 
 func _get_weighted_random(weights):
 	 # Calculate the total weight

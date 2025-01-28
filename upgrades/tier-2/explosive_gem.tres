@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://b40u1a5f5smu2"]
+
+[ext_resource type="Script" path="res://ui/item_data.gd" id="1_15as5"]
+[ext_resource type="Texture2D" uid="uid://b57gia68ggeb" path="res://assets/crystals/diamond/yellow_diamond.png" id="2_noabf"]
+[ext_resource type="Resource" uid="uid://kqjphr3te1gj" path="res://upgrades/behaviours/explosion_on_enemy_hit.tres" id="3_v8vsa"]
+
+[resource]
+script = ExtResource("1_15as5")
+type = 0
+name = "Explosive Gem"
+description = ""
+texture = ExtResource("2_noabf")
+damage = 0
+move_speed = 0
+weapon_length = -20
+weapon_width = 0
+swing_speed = 0
+colour = 2
+shape = 3
+upgrade_behaviour = ExtResource("3_v8vsa")

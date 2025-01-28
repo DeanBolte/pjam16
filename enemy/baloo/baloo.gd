@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@onready var death_sfx = preload("res://assets/sounds/enemies/enemy_death.wav")
+
 @export var max_health: float = 75
 @export var current_health: float = max_health
 @export var speed: int = 300
@@ -97,23 +99,25 @@ func _process_shoot_logic() -> void:
 func handle_finish_shoot_cooldown() -> void:
 	can_shoot = true
 
-func on_hit(damage: float) -> void:
-	if is_invincible:
+func on_hit(damage: float, source: Node2D, unavoidable: bool) -> void:
+	if not unavoidable and is_invincible:
 		return
-	take_damage(damage)
+	take_damage(damage, source)
 
-func take_damage(damage: float) -> void:
+func take_damage(damage: float, source: Node2D) -> void:
 	current_health -= damage
 	print("Enemy took ", damage, " dmg")
 	$hit_sound.play()
 	DamageNumbers.display_number(floor(damage), global_position)
 	
-	var knockback_direction = (global_position - player.global_position).normalized()
+	var knockback_direction = (global_position - source.global_position).normalized()
 	knockback_velocity = knockback_direction * damage * self_knockback_multiplier
 
 	die() if current_health <= 0 else start_invincibility()
 
 func die():
+	SfxManager.stream = death_sfx
+	SfxManager.play()
 	queue_free()
 
 func start_invincibility():

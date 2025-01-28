@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://cyvknulse5xql"]
+
+[ext_resource type="Script" path="res://ui/item_data.gd" id="1_0j6tv"]
+[ext_resource type="Texture2D" uid="uid://b2pda1bj1uq5" path="res://assets/crystals/triangle/green_triangle.png" id="2_ao1mv"]
+
+[resource]
+script = ExtResource("1_0j6tv")
+type = 0
+name = "Skipped Leg Day"
+description = ""
+texture = ExtResource("2_ao1mv")
+damage = 0
+move_speed = -40
+weapon_length = 0
+weapon_width = 0
+swing_speed = 60
+colour = 3
+shape = 2

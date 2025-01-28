@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://dfw73cqyon3ro"]
+
+[ext_resource type="Script" path="res://ui/item_data.gd" id="1_776xt"]
+[ext_resource type="Texture2D" uid="uid://cdkcuft7u4rsd" path="res://assets/crystals/diamond/purple_diamond.png" id="2_rkyck"]
+[ext_resource type="Resource" uid="uid://bq21c8ma26ac6" path="res://upgrades/behaviours/fart_on_hit.tres" id="3_k8n1f"]
+
+[resource]
+script = ExtResource("1_776xt")
+type = 0
+name = "High Tier Comedy"
+description = ""
+texture = ExtResource("2_rkyck")
+damage = 30
+move_speed = 30
+weapon_length = 30
+weapon_width = 30
+swing_speed = 30
+colour = 5
+shape = 3
+upgrade_behaviour = ExtResource("3_k8n1f")

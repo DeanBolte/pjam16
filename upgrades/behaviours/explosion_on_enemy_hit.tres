@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="UpgradeBehaviour" load_steps=2 format=3 uid="uid://kqjphr3te1gj"]
+
+[ext_resource type="Script" path="res://ui/upgrade_behaviour.gd" id="1_1i1v2"]
+
+[resource]
+script = ExtResource("1_1i1v2")
+behaviour_description = "You gain an explosive edge"
+behaviour_node = "res://upgrades/behaviours/explosion_on_enemy_hit.tscn"

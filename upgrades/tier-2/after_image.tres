@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://gacns206orp2"]
+
+[ext_resource type="Script" path="res://ui/item_data.gd" id="1_qw873"]
+[ext_resource type="Texture2D" uid="uid://dcfbm1r6r2fuy" path="res://assets/crystals/triangle/orange_triangle.png" id="2_72p5f"]
+[ext_resource type="Resource" uid="uid://di5jrtsmvmrnd" path="res://upgrades/behaviours/after_image.tres" id="3_bphc2"]
+
+[resource]
+script = ExtResource("1_qw873")
+type = 0
+name = "After Image"
+description = ""
+texture = ExtResource("2_72p5f")
+damage = 0
+move_speed = 0
+weapon_length = 0
+weapon_width = 40
+swing_speed = 0
+colour = 1
+shape = 2
+upgrade_behaviour = ExtResource("3_bphc2")

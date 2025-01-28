@@ -1,0 +1,79 @@
+[gd_scene load_steps=5 format=3 uid="uid://e77eqxh34mcf"]
+
+[ext_resource type="Script" path="res://ui/MainMenu/credits_menu.gd" id="1_4b7mn"]
+[ext_resource type="Texture2D" uid="uid://quvd6mqb3crh" path="res://assets/ui/main_menu_bg.png" id="1_oja7x"]
+[ext_resource type="FontFile" uid="uid://dxaajckg16ylw" path="res://assets/ui/1980v23P01.ttf" id="2_8eqym"]
+[ext_resource type="Material" uid="uid://co3shlfue63hr" path="res://assets/shaders/crt_material.tres" id="3_rt23j"]
+
+[node name="CreditsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4b7mn")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(576, 320)
+texture = ExtResource("1_oja7x")
+
+[node name="TitleBackground" type="Label" parent="."]
+offset_left = 452.0
+offset_top = 13.0
+offset_right = 686.0
+offset_bottom = 89.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_8eqym")
+theme_override_font_sizes/font_size = 96
+text = "Credits"
+
+[node name="Title" type="Label" parent="."]
+offset_left = 457.0
+offset_top = 8.0
+offset_right = 691.0
+offset_bottom = 84.0
+theme_override_fonts/font = ExtResource("2_8eqym")
+theme_override_font_sizes/font_size = 96
+text = "Credits"
+
+[node name="DescriptionPanel" type="PanelContainer" parent="."]
+offset_left = 32.0
+offset_top = 104.0
+offset_right = 1112.0
+offset_bottom = 472.0
+
+[node name="DescriptionBackground" type="Label" parent="."]
+offset_left = 67.0
+offset_top = 117.0
+offset_right = 1075.0
+offset_bottom = 465.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "ADD INFO HERE"
+
+[node name="Description" type="Label" parent="."]
+offset_left = 72.0
+offset_top = 112.0
+offset_right = 1080.0
+offset_bottom = 460.0
+theme_override_font_sizes/font_size = 20
+text = "ADD INFO HERE"
+
+[node name="ReturnButton" type="Button" parent="."]
+offset_left = 320.0
+offset_top = 536.0
+offset_right = 832.0
+offset_bottom = 618.0
+theme_override_font_sizes/font_size = 64
+text = "Return"
+
+[node name="crt_effect" type="ColorRect" parent="."]
+material = ExtResource("3_rt23j")
+offset_right = 1152.0
+offset_bottom = 640.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[connection signal="pressed" from="ReturnButton" to="." method="_on_return_button_pressed"]

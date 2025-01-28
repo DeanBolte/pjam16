@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://ui/Inventory/inventory.gd" id="1_fikyh"]
 [ext_resource type="Texture2D" uid="uid://ilwq54hsw0p0" path="res://assets/ui/inventory.png" id="2_84jk4"]
-[ext_resource type="AudioStream" uid="uid://wvvf8424vd3o" path="res://audio/sfx/inv_drop.wav" id="2_yq82q"]
+[ext_resource type="AudioStream" uid="uid://wvvf8424vd3o" path="res://assets/sounds/ui/inv_drop.wav" id="2_yq82q"]
 [ext_resource type="FontFile" uid="uid://dxaajckg16ylw" path="res://assets/ui/1980v23P01.ttf" id="3_sopc3"]
 [ext_resource type="Texture2D" uid="uid://bf4e8scfp45wl" path="res://assets/ui/peasant_cursor.png" id="5_qnjgu"]
 [ext_resource type="Script" path="res://ui/peasant_cursor.gd" id="6_0if7h"]
@@ -77,9 +77,20 @@ offset_right = 896.0
 offset_bottom = 320.0
 columns = 3
 
+[node name="SelectedItemsBlocker" type="Panel" parent="."]
+visible = false
+offset_left = 576.0
+offset_top = 192.0
+offset_right = 960.0
+offset_bottom = 320.0
+
 [node name="DropSfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_yq82q")
 volume_db = -15.0
+
+[node name="VoiceLineSfxManager" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_yq82q")
+volume_db = 5.0
 
 [node name="SelectButton" type="Button" parent="."]
 unique_name_in_owner = true

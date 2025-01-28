@@ -7,6 +7,10 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tlhu1"]
 size = Vector2(22, 24)
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5mcom"]
+rough = true
+absorbent = true
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hs8go"]
 size = Vector2(32, 32)
 

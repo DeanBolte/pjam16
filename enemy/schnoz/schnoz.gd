@@ -1,7 +1,6 @@
 extends CharacterBody2D
 
-@onready var sfx_manager = get_node("../../../../SfxManager")
-@onready var death_sfx = preload("res://audio/sfx/enemy_death.wav")
+@onready var death_sfx = preload("res://assets/sounds/enemies/enemy_death.wav")
 
 @export var max_health: float = 100
 @export var current_health: float = max_health
@@ -66,19 +65,19 @@ func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 	velocity = safe_velocity
 	pass
 
-func on_hit(damage: float) -> void:
-	if is_invincible:
+func on_hit(damage: float, source: Node2D, unavoidable: bool) -> void:
+	if not unavoidable and is_invincible:
 		return
-	take_damage(damage)
+	take_damage(damage, source)
 
-func take_damage(damage: float) -> void:
+func take_damage(damage: float, source: Node2D) -> void:
 	current_health -= damage
 	print("Enemy took ", damage, " dmg")
 	$hit_sound.play()
 	DamageNumbers.display_number(floor(damage), global_position)
-	
+
 	# Technically we should use the position of the hit itself, not the player position, but whatever
-	var knockback_direction = (global_position - player.global_position).normalized()
+	var knockback_direction = (global_position - source.global_position).normalized()
 	knockback_velocity = knockback_direction * damage * self_knockback_multiplier
 
 	if current_health <= 0:
@@ -87,8 +86,8 @@ func take_damage(damage: float) -> void:
 		start_invincibility()
 
 func die():
-	sfx_manager.stream = death_sfx
-	sfx_manager.play()
+	SfxManager.stream = death_sfx
+	SfxManager.play()
 	enemy_dead.emit(self)
 	queue_free()
 
@@ -119,4 +118,4 @@ func _draw():
 
 func _on_weapon_hitbox_area_entered(object_hit: Area2D) -> void:
 	if (object_hit.has_method("process_hit")):
-		object_hit.process_hit(damage)
+		object_hit.process_hit(damage, self, false)
