@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ci17m1fupekwy"
-path="res://.godot/imported/boss_room_1_tileset.png-ea1a73c8346ab57c554b739920905fe8.ctex"
+uid="uid://bkjbcb0rmducm"
+path="res://.godot/imported/tileset_green_64px.png-4ccc61bc5259609a2a6b092520b04aae.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/boss_room_1_tileset.png"
-dest_files=["res://.godot/imported/boss_room_1_tileset.png-ea1a73c8346ab57c554b739920905fe8.ctex"]
+source_file="res://assets/tileset_green_64px.png"
+dest_files=["res://.godot/imported/tileset_green_64px.png-4ccc61bc5259609a2a6b092520b04aae.ctex"]
 
 [params]
 

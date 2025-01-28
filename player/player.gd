@@ -16,7 +16,7 @@ const TAKE_DAMAGE_SOUNDS = [
 	preload("res://assets/sounds/player/take_damage/yeowch.wav"),
 ]
 
-@export var max_health: float = 50
+@export var max_health: float = 100
 @export var current_health: float = max_health
 @export var rotation_speed: float = 0.8
 @export var max_speed: int = 600
@@ -113,6 +113,7 @@ func on_hit_by_enemy(damage: float) -> void:
 	if current_health <= 0:
 		die()
 	else:
+		DamageNumbers.display_number(floor(damage), global_position)
 		start_invincibility()
 		if can_play_take_damage_sound:
 			play_random_take_damage_sound()
