@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://cp1tltdwnil3p"]
+[gd_scene load_steps=27 format=4 uid="uid://cp1tltdwnil3p"]
 
 [ext_resource type="Script" path="res://levelgen/room/room.gd" id="1_gm07h"]
 [ext_resource type="Texture2D" uid="uid://bma1ouoy4ubsj" path="res://assets/tilesetx2.png" id="2_1x6bh"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://levelgen/room/door.gd" id="4_elwcm"]
 [ext_resource type="Script" path="res://levelgen/room/player_detection_zone.gd" id="5_l4v3w"]
 [ext_resource type="PackedScene" uid="uid://c35fe38l8c8vi" path="res://enemy/lord_schnoz/lord_schnoz.tscn" id="6_hh6vm"]
+[ext_resource type="AudioStream" uid="uid://b13qfyvhmm8u0" path="res://assets/sounds/music/boss_fight.wav" id="7_aguo2"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ddq3d"]
 vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
@@ -216,5 +217,10 @@ crate_spawn_area = NodePath("../crate_spawn_area")
 
 [node name="crate_spawn_area" type="Node2D" parent="."]
 position = Vector2(911, 301)
+
+[node name="BossMusicPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_aguo2")
+volume_db = -8.0
+autoplay = true
 
 [connection signal="body_entered" from="PlayerDetectionZone" to="PlayerDetectionZone" method="_on_body_entered"]

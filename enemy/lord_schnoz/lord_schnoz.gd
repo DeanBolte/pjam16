@@ -116,6 +116,9 @@ func take_damage(damage: float) -> void:
 		start_invincibility()
 
 func die():
+	var boss_music_player = get_tree().get_root().find_child("BossMusicPlayer", true, false)
+	if (boss_music_player):
+		boss_music_player.stop()
 	sfx_manager.stream = death_sfx
 	sfx_manager.play()
 	enemy_dead.emit(self)

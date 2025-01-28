@@ -45,7 +45,6 @@ func _ready() -> void:
 
 	Signals.new_level_reached.connect(_reset_player_position.bind(START_POSITION))
 
-
 func _physics_process(delta: float) -> void:
 	var mouse_position = get_global_mouse_position()
 	var mouse_direction = global_position.direction_to(mouse_position)

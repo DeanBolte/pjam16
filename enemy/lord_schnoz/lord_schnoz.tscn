@@ -21,6 +21,7 @@ radius = 41.0122
 
 [node name="LordSchnoz" type="CharacterBody2D"]
 script = ExtResource("1_k1rsc")
+max_health = 1.0
 
 [node name="body" type="CollisionShape2D" parent="."]
 visible = false
