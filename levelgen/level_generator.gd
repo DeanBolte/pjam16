@@ -136,14 +136,13 @@ func _is_room_vacant(room_location: Vector2i) -> bool:
 
 func _next_level() -> void:
 	_destroy_level()
+	_level += 1
+	Signals.new_level_reached.emit()
 
-	if _level <= BOSS_LEVEL:
+	if _level < BOSS_LEVEL:
 		call_deferred("_generate_map")
 	else:
 		call_deferred("_generate_boss_level")
-
-	_level += 1
-	Signals.new_level_reached.emit()
 
 func _destroy_level() -> void:
 	_rooms_node.queue_free()
