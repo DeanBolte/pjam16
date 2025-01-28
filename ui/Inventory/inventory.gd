@@ -2,6 +2,7 @@ extends CanvasLayer
 @export var inventory_size := 9
 @export var selected_size := 3
 
+var upgrade_selected_sfx = preload("res://assets/sounds/ui/upgrade_selected.wav")
 var open_sfx = preload("res://assets/sounds/ui/ui_open.wav")
 var open_icon = preload("res://assets/ui/chest-open.png")
 var closed_icon = preload("res://assets/ui/chest.png")
@@ -71,6 +72,9 @@ func _on_peasant_cursor_animation_done() -> void:
 	for i in selected_items.size():
 		for n in %SelectedItems.get_child(i).get_children():
 			n.free()
-
+	
+	$DropSfx.stream = upgrade_selected_sfx
+	$DropSfx.play()
+	
 	selected_items.clear()
 	update_upgrade_button()

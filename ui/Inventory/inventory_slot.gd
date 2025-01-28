@@ -2,6 +2,7 @@ class_name InventorySlot extends PanelContainer
 
 @export var type: ItemData.Type
 @onready var drop_sfx = get_node("../../DropSfx")
+var drop_fx = preload("res://assets/sounds/ui/inv_drop.wav")
 var texture_rect: TextureRect
 
 signal update_inventory(item: ItemData, newType: String)
@@ -28,6 +29,7 @@ func _drop_data(at_position: Vector2, data: Variant):
 		if item == data:
 			return
 		item.reparent(data.get_parent())
+	drop_sfx.stream = drop_fx
 	drop_sfx.play()
 	data.reparent(self)
 	update_inventory.emit(data.data, data.get_parent().type)
