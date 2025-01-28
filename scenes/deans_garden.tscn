@@ -25,9 +25,11 @@ script = ExtResource("5_wmres")
 
 [node name="MusicPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_83ctj")
+volume_db = -15.0
 autoplay = true
 max_distance = 50000.0
 
 [node name="SfxManager" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("7_ofqxo")
+volume_db = -8.0

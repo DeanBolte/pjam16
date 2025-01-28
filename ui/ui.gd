@@ -9,6 +9,7 @@ var closed_icon = preload("res://assets/ui/chest.png")
 func _ready():
 	Signals.health_updated.connect(_on_health_updated)
 	
+	$VictoryPopup.visible = false
 	$GameOverPopup.visible = false
 	$Inventory.visible = false
 	$PauseMenu.visible = false
