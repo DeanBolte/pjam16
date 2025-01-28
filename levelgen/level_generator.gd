@@ -19,9 +19,9 @@ func _ready() -> void:
 
 	#------ only have one of these uncommented
 	# generates an initial standard level
-	#_generate_map()
+	_generate_map()
 	# generates the boss room as initial level
-	_generate_boss_level()
+	#_generate_boss_level()
 
 	Signals.player_reached_level_transition.connect(_next_level)
 
