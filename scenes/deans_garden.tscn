@@ -16,6 +16,7 @@ layer = 12
 
 [node name="RoomCamera" parent="." instance=ExtResource("2_iqi8r")]
 zoom = Vector2(1, 1)
+process_callback = 0
 
 [node name="player" parent="." instance=ExtResource("4_ilxjj")]
 

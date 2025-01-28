@@ -7,15 +7,21 @@ var _room_factory: RoomFactory
 @export var ROOM_ADJACENCYRETRY_SCALAR = 3
 @export var MINIMUM_ADJACENT_ROOMS = 2
 
+const BOSS_LEVEL = 3
+
 # a Map of 2D Vector keys representing the room grid
 var level_map: Dictionary = {}
 var _rooms_node: Node2D
-var level := 1
+var _level := 1
 
 func _ready() -> void:
 	_room_factory = RoomFactory.new_factory(_get_rooms_node())
 
+	#------ only have one of these uncommented
+	# generates an initial standard level
 	_generate_map()
+	# generates the boss room as initial level
+	#_generate_boss_level()
 
 	Signals.player_reached_level_transition.connect(_next_level)
 
@@ -33,6 +39,15 @@ func _generate_map() -> void:
 
 	# generate final room
 	_add_room(_room_factory.get_random_final_room(_get_next_room_candidate()))
+
+	_enclose_map()
+
+func _generate_boss_level() -> void:
+	print("generate boss room")
+	# create new container for rooms
+	_room_factory.set_rooms_node(_get_new_rooms_node())
+
+	_add_room(_room_factory.get_boss_room(Vector2i.ZERO))
 
 	_enclose_map()
 
@@ -121,9 +136,13 @@ func _is_room_vacant(room_location: Vector2i) -> bool:
 
 func _next_level() -> void:
 	_destroy_level()
-	call_deferred("_generate_map")
 
-	level += 1
+	if _level <= BOSS_LEVEL:
+		call_deferred("_generate_map")
+	else:
+		call_deferred("_generate_boss_level")
+
+	_level += 1
 	Signals.new_level_reached.emit()
 
 func _destroy_level() -> void:

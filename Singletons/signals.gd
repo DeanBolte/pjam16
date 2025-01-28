@@ -1,7 +1,7 @@
 extends Node2D
 
 signal health_updated(health: int)
-signal player_entered_room(new_position: Vector2, dimensions: Vector2i)
+signal player_entered_room(new_position: Vector2, dimensions: Vector2i, zoom_type: RoomCamera.ZOOM_TYPE)
 signal player_reached_level_transition()
 signal new_level_reached()
 signal player_hit(hit_by: Area2D, hit_location: Vector2)

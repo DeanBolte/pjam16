@@ -3,8 +3,9 @@ class_name Room
 
 static var ROOM_RESOURCE := preload("res://levelgen/room/room.tscn")
 static var LONG_ROOM_RESOURCE := preload("res://levelgen/room/long_room.tscn")
+static var BOSS_ROOM_RESOURCE := preload("res://levelgen/room/boss_room.tscn")
 
-enum ROOMS { BASIC, LONG, CORNER, BIG }
+enum ROOMS { BASIC, LONG, BOSS }
 
 var CRATE_RESOURCE := preload("res://levelgen/room/objects/crate.tscn")
 var LEVEL_TRANSITION_RESOURCE := preload("res://levelgen/room/objects/level_transition.tscn")
@@ -47,15 +48,14 @@ static func _new_room(map_location: Vector2i, room_type: ROOMS, is_last_room: bo
 
 
 static func _get_room_scene(id: ROOMS) -> Resource:
+	print("room_id: ", id)
 	match id:
 		ROOMS.BASIC:
 			return ROOM_RESOURCE
 		ROOMS.LONG:
 			return LONG_ROOM_RESOURCE
-		ROOMS.CORNER:
-			return LONG_ROOM_RESOURCE
-		ROOMS.BIG:
-			return LONG_ROOM_RESOURCE
+		ROOMS.BOSS:
+			return BOSS_ROOM_RESOURCE
 		_:
 			return ROOM_RESOURCE
 

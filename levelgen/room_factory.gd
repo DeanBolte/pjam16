@@ -44,7 +44,10 @@ func get_random_final_room(position: Vector2i) -> Room:
 	return new_room
 
 func get_boss_room(position: Vector2i) -> Room:
-	return get_random_final_room(position)
+	var new_room = Room._new_room(position, Room.ROOMS.BOSS, false)
+	_rooms_node.add_child(new_room)
+	new_room.generate()
+	return new_room
 
 func get_rooms_node() -> Node2D:
 	return _rooms_node
