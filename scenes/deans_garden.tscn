@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://p847824ux4ub" path="res://room_camera/room_camera.tscn" id="2_iqi8r"]
 [ext_resource type="PackedScene" uid="uid://didohvmx332uq" path="res://player/player.tscn" id="4_ilxjj"]
 [ext_resource type="Script" path="res://scenes/upgrade_manager.gd" id="5_wmres"]
-[ext_resource type="AudioStream" uid="uid://dlv7tbc1bijcj" path="res://audio/music/level_theme.wav" id="6_83ctj"]
-[ext_resource type="AudioStream" uid="uid://bqvqf5jrprpcx" path="res://audio/sfx/game_over.wav" id="7_ofqxo"]
+[ext_resource type="AudioStream" uid="uid://dlv7tbc1bijcj" path="res://assets/sounds/music/level_theme.wav" id="6_83ctj"]
+[ext_resource type="AudioStream" uid="uid://bqvqf5jrprpcx" path="res://assets/sounds/player/game_over.wav" id="7_ofqxo"]
 
 [node name="DeansGarden" type="Node2D"]
 

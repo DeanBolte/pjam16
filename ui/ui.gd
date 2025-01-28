@@ -1,7 +1,7 @@
 extends CanvasLayer
 
-var open_sfx = preload("res://audio/sfx/ui_open.wav")
-var close_sfx = preload("res://audio/sfx/ui_close.wav")
+var open_sfx = preload("res://assets/sounds/ui/ui_open.wav")
+var close_sfx = preload("res://assets/sounds/ui/ui_close.wav")
 
 var open_icon = preload("res://assets/ui/chest-open.png")
 var closed_icon = preload("res://assets/ui/chest.png")

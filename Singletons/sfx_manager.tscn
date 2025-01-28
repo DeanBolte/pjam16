@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://c73wjgxntt2ow"]
+[gd_scene load_steps=2 format=3 uid="uid://c3smlhm7bgf84"]
 
-[ext_resource type="AudioStream" uid="uid://bqvqf5jrprpcx" path="res://audio/sfx/game_over.wav" id="1_e32y0"]
+[ext_resource type="AudioStream" uid="uid://bqvqf5jrprpcx" path="res://assets/sounds/player/game_over.wav" id="1_e32y0"]
 
 [node name="SfxManager" type="AudioStreamPlayer2D"]
 stream = ExtResource("1_e32y0")

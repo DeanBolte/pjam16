@@ -3,7 +3,7 @@ class_name UpgradeOnGround
 
 var item: ItemData
 
-@onready var pickup_sfx = preload("res://audio/sfx/item_pickup.wav")
+@onready var pickup_sfx = preload("res://assets/sounds/ui/item_pickup.wav")
 
 func _ready(): 
 	Signals.upgrade_picked_up_post.connect(remove_from_ground)
