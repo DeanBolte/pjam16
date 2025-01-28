@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @onready var game_over_popup = get_node("../UserInterface/GameOverPopup")
-@onready var death_sfx = preload("res://audio/sfx/game_over.wav")
+@onready var death_sfx = preload("res://assets/sounds/player/game_over.wav")
 
 const BASE_SPEED = 20
 const MAX_SPEED = 600

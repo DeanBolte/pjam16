@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@onready var death_sfx = preload("res://assets/sounds/enemies/enemy_death.wav")
+
 @export var max_health: float = 75
 @export var current_health: float = max_health
 @export var speed: int = 300
@@ -114,6 +116,8 @@ func take_damage(damage: float, source: Node2D) -> void:
 	die() if current_health <= 0 else start_invincibility()
 
 func die():
+	SfxManager.stream = death_sfx
+	SfxManager.play()
 	queue_free()
 
 func start_invincibility():

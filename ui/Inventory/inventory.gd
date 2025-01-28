@@ -2,10 +2,19 @@ extends CanvasLayer
 @export var inventory_size := 9
 @export var selected_size := 3
 
-var open_sfx = preload("res://audio/sfx/ui_open.wav")
+var upgrade_selected_sfx = preload("res://assets/sounds/ui/upgrade_selected.wav")
+var open_sfx = preload("res://assets/sounds/ui/ui_open.wav")
 var open_icon = preload("res://assets/ui/chest-open.png")
 var closed_icon = preload("res://assets/ui/chest.png")
-var close_sfx = preload("res://audio/sfx/ui_close.wav")
+var close_sfx = preload("res://assets/sounds/ui/ui_close.wav")
+
+const SELECT_UPGRADE_SOUNDS = [
+	preload("res://assets/sounds/player/upgrade_select/cant_go_wrong.wav"),
+	preload("res://assets/sounds/player/upgrade_select/i_like_this_one.wav"),
+	preload("res://assets/sounds/player/upgrade_select/I_think_we_need_this_one.wav"),
+	preload("res://assets/sounds/player/upgrade_select/ooo_shiny.wav"),
+	preload("res://assets/sounds/player/upgrade_select/this_one_looks_neat.wav")
+]
 
 var inv_items: Array[ItemData] = []
 var selected_items: Array[ItemData] = []
@@ -43,6 +52,9 @@ func move_item(item, newType):
 
 func _on_select_button_pressed() -> void:
 	var selected_upgrade_slot = PeasantData.pick_upgrade(selected_items)
+	var random_sfx = SELECT_UPGRADE_SOUNDS.pick_random()
+	$VoiceLineSfxManager.stream = random_sfx
+	$VoiceLineSfxManager.play()
 	$peasant_cursor.select_slot(selected_upgrade_slot)
 
 
@@ -71,6 +83,9 @@ func _on_peasant_cursor_animation_done() -> void:
 	for i in selected_items.size():
 		for n in %SelectedItems.get_child(i).get_children():
 			n.free()
-
+	
+	$DropSfx.stream = upgrade_selected_sfx
+	$DropSfx.play()
+	
 	selected_items.clear()
 	update_upgrade_button()

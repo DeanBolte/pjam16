@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-var close_sfx = preload("res://audio/sfx/ui_close.wav")
+var close_sfx = preload("res://assets/sounds/ui/ui_close.wav")
 
 func _on_exit_button_pressed():
 	get_tree().change_scene_to_file("res://ui/MainMenu/main_menu.tscn")
