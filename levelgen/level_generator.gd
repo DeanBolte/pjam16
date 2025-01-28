@@ -19,9 +19,9 @@ func _ready() -> void:
 
 	#------ only have one of these uncommented
 	# generates an initial standard level
-	_generate_map()
+	#_generate_map()
 	# generates the boss room as initial level
-	#_generate_boss_level()
+	_generate_boss_level()
 
 	Signals.player_reached_level_transition.connect(_next_level)
 
@@ -43,7 +43,6 @@ func _generate_map() -> void:
 	_enclose_map()
 
 func _generate_boss_level() -> void:
-	print("generate boss room")
 	# create new container for rooms
 	_room_factory.set_rooms_node(_get_new_rooms_node())
 

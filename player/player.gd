@@ -15,9 +15,9 @@ const TAKE_DAMAGE_SOUNDS = [
 	preload("res://assets/sounds/player/take_damage/yeowch.wav"),
 ]
 
+@export var max_health: float = 100
 const START_POSITION = Vector2.ZERO
 
-@export var max_health: float = 50
 @export var current_health: float = max_health
 @export var rotation_speed: float = 0.2
 @export var max_speed: int = 570
@@ -31,6 +31,7 @@ const START_POSITION = Vector2.ZERO
 
 var is_invincible: bool = false
 var can_play_take_damage_sound: bool = true
+var knockback_velocity: Vector2 = Vector2.ZERO # This STORES knockback force and gradually decreases over timer
 
 var hands_starting_x = 0
 
@@ -49,6 +50,11 @@ func _physics_process(delta: float) -> void:
 	var mouse_position = get_global_mouse_position()
 	var mouse_direction = global_position.direction_to(mouse_position)
 	var distanceFromMouse = $weapon.get_weapon_tip().distance_to(mouse_position)
+	
+	if knockback_velocity.length() > 1.0:
+		velocity = knockback_velocity
+		knockback_velocity = knockback_velocity.lerp(Vector2.ZERO, 5 * delta)  # Smooth decay
+		move_and_slide()
 
 	var speed = 0
 	if not Input.is_action_pressed("stop_moving"):
@@ -59,8 +65,9 @@ func _physics_process(delta: float) -> void:
 
 	if distanceFromMouse > 20 and global_position.distance_to(mouse_position) > 20:
 		rotation = lerp_angle(rotation, mouse_direction.angle(), rotation_speed)
-		move_and_slide()
 		Signals.player_moved.emit(self)
+		if not Input.is_action_pressed("stop_moving"):
+			move_and_slide()
 
 func _reset_player_position(reset_position: Vector2):
 	position = reset_position
@@ -97,11 +104,11 @@ func on_hit_by_enemy(damage: float, source: Node2D) -> void:
 	if current_health <= 0:
 		die()
 	else:
+		DamageNumbers.display_number(floor(damage), global_position)
 		start_invincibility()
 		if can_play_take_damage_sound:
 			play_random_take_damage_sound()
 	Signals.health_updated.emit(current_health)
-	print("peasant took damage, current_health: ", current_health)
 
 func die():
 	SfxManager.stream = death_sfx

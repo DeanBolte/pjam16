@@ -1,9 +1,9 @@
 extends Node
 
 # Configuration
-const TRACKING_DURATION: float = 0.5  # Time duration to track mouse speed (in seconds)
+const TRACKING_DURATION: float = 0.25  # Time duration to track mouse speed (in seconds)
 const MAX_SWIPE_SPEED: float = 1000.0  # Max speed (for scaling damage or effects)
-const MAX_SPEED_HISTORY_SIZE: int = 10
+const MAX_SPEED_HISTORY_SIZE: int = 4
 
 # Internal state
 var last_position: Vector2

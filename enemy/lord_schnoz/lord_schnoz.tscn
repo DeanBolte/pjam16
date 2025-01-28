@@ -1,0 +1,81 @@
+[gd_scene load_steps=11 format=3 uid="uid://c35fe38l8c8vi"]
+
+[ext_resource type="Script" path="res://enemy/lord_schnoz/lord_schnoz.gd" id="1_k1rsc"]
+[ext_resource type="Texture2D" uid="uid://cwb0sy1wbg557" path="res://assets/enemies/lord_schnoz/lord_schnoz.png" id="2_j1fuo"]
+[ext_resource type="Texture2D" uid="uid://btbjl6do83frq" path="res://assets/enemies/lord_schnoz/lord_schnoz_cape.png" id="3_lmeqc"]
+[ext_resource type="Texture2D" uid="uid://s7fcqvak02au" path="res://assets/enemies/lord_schnoz/lord_schnoz_hand.png" id="4_8s1iy"]
+[ext_resource type="Script" path="res://enemy/lord_schnoz/main_hitbox.gd" id="5_awa76"]
+[ext_resource type="AudioStream" uid="uid://bigdatnk5bx4e" path="res://assets/sounds/enemies/enemy_damage.wav" id="6_f0kfx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_er2gu"]
+radius = 138.033
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4xd1d"]
+size = Vector2(456, 392)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ofbjr"]
+radius = 41.0122
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ws76i"]
+radius = 41.0122
+
+[node name="LordSchnoz" type="CharacterBody2D"]
+script = ExtResource("1_k1rsc")
+
+[node name="body" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-2, 0)
+shape = SubResource("CircleShape2D_er2gu")
+
+[node name="cape" type="Sprite2D" parent="."]
+position = Vector2(-157, 5)
+rotation = 1.5708
+scale = Vector2(0.0806615, 0.065918)
+texture = ExtResource("3_lmeqc")
+
+[node name="LordSchnoz" type="Sprite2D" parent="."]
+rotation = -1.5708
+scale = Vector2(0.0644531, 0.0644531)
+texture = ExtResource("2_j1fuo")
+
+[node name="left_hand" type="Sprite2D" parent="."]
+position = Vector2(179, -99)
+scale = Vector2(0.0800781, 0.0800781)
+texture = ExtResource("4_8s1iy")
+
+[node name="right_hand" type="Sprite2D" parent="."]
+position = Vector2(96, 187)
+scale = Vector2(0.0800781, 0.0800781)
+texture = ExtResource("4_8s1iy")
+
+[node name="boss_main_hitbox" type="Area2D" parent="."]
+collision_layer = 4
+script = ExtResource("5_awa76")
+
+[node name="main_hitbox" type="CollisionShape2D" parent="boss_main_hitbox"]
+position = Vector2(-67, 7)
+shape = SubResource("RectangleShape2D_4xd1d")
+
+[node name="boss_left_hand_hitbox" type="Area2D" parent="."]
+
+[node name="left_hand_hitbox" type="CollisionShape2D" parent="boss_left_hand_hitbox"]
+position = Vector2(96, 187)
+shape = SubResource("CircleShape2D_ofbjr")
+
+[node name="boss_right_hand_hitbox" type="Area2D" parent="."]
+
+[node name="right_hand_hitbox" type="CollisionShape2D" parent="boss_right_hand_hitbox"]
+position = Vector2(179, -99)
+shape = SubResource("CircleShape2D_ws76i")
+
+[node name="invincibility_timer" type="Timer" parent="."]
+
+[node name="crate_spawn_timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="hit_sound" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("6_f0kfx")
+
+[connection signal="timeout" from="crate_spawn_timer" to="." method="_spawn_crates"]
