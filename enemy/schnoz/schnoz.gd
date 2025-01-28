@@ -79,7 +79,7 @@ func take_damage(damage: float, source: Node2D) -> void:
 	# Technically we should use the position of the hit itself, not the player position, but whatever
 	var knockback_direction = (global_position - source.global_position).normalized()
 	knockback_velocity = knockback_direction * damage * self_knockback_multiplier
- 
+
 	if current_health <= 0:
 		die()
 	else:

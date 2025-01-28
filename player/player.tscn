@@ -58,6 +58,8 @@ shape = SubResource("CircleShape2D_qanm4")
 wait_time = 4.0
 one_shot = true
 
+[node name="CameraRemote" type="RemoteTransform2D" parent="."]
+
 [connection signal="weapon_hit" from="weapon" to="." method="_on_weapon_hit"]
 [connection signal="area_entered" from="peasant/peasant_damage_hitbox" to="." method="_on_peasant_damage_hitbox_area_entered"]
 [connection signal="area_shape_entered" from="peasant/peasant_damage_hitbox" to="." method="_on_peasant_damage_hitbox_area_shape_entered"]
