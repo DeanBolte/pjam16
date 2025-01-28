@@ -65,8 +65,9 @@ func _physics_process(delta: float) -> void:
 
 	if distanceFromMouse > 20 and global_position.distance_to(mouse_position) > 20:
 		rotation = lerp_angle(rotation, mouse_direction.angle(), rotation_speed)
-		move_and_slide()
 		Signals.player_moved.emit(self)
+		if not Input.is_action_pressed("stop_moving"):
+			move_and_slide()
 
 func _reset_player_position(reset_position: Vector2):
 	position = reset_position
@@ -108,7 +109,6 @@ func on_hit_by_enemy(damage: float, source: Node2D) -> void:
 		if can_play_take_damage_sound:
 			play_random_take_damage_sound()
 	Signals.health_updated.emit(current_health)
-	print("peasant took damage, current_health: ", current_health)
 
 func die():
 	SfxManager.stream = death_sfx

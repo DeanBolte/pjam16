@@ -8,16 +8,16 @@ const CRATE_SPAWN_RADIUS: int = 400
 const CRATE_SPAWN_AMT: int = 3
 const CRATE_SPAWN_REGION_SIZE: Vector2 = Vector2(200, 400) # Set size manually
 const CRATE_THROW_COOLDOWN := 2 # in seconds
-const CRATE_THROW_SPEED = 3000.0 # Adjust based on gameplay balance
+const CRATE_THROW_SPEED = 5000.0 # Adjust based on gameplay balance
 
 # If player gets too close, boss will 'swat' them away, dealing damage and applying knockback.
 const SHOW_SWAT_RADIUS := true
 const SWAT_RADIUS: int = 300
 
 @onready var sfx_manager = get_node("../../../../SfxManager")
-@onready var death_sfx = preload("res://audio/sfx/enemy_death.wav")
+@onready var death_sfx = preload("res://assets/sounds/enemies/enemy_death.wav")
 
-@export var max_health: float = 300
+@export var max_health: float = 250
 @export var current_health: float = max_health
 @export var speed: int = 10000
 @export var invincibility_time: float = 1 # seconds of invincibility after being hit
@@ -58,7 +58,7 @@ func _swat_player() -> void:
 
 	# Check, just in case
 	if (player.has_method("on_hit_by_enemy")):
-		player.on_hit_by_enemy(swat_knockback_damage)
+		player.on_hit_by_enemy(swat_knockback_damage, self)
 	var knockback_direction = (player.global_position - global_position).normalized()
 	player.knockback_velocity = knockback_direction * swat_knockback_force
 

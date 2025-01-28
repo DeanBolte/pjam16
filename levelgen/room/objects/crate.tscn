@@ -5,16 +5,13 @@
 [ext_resource type="AudioStream" uid="uid://bwb4kvgdggcwa" path="res://assets/sounds/crates/break.ogg" id="3_r5l8v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tlhu1"]
-size = Vector2(22, 24)
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5mcom"]
-rough = true
-absorbent = true
+size = Vector2(26, 26)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hs8go"]
 size = Vector2(32, 32)
 
 [node name="Crate" type="RigidBody2D" groups=["Crates"]]
+mass = 5.0
 gravity_scale = 0.0
 script = ExtResource("1_evq5y")
 

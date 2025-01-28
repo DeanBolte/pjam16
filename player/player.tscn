@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://didohvmx332uq"]
+[gd_scene load_steps=7 format=3 uid="uid://didohvmx332uq"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_s8bvr"]
 [ext_resource type="PackedScene" uid="uid://bak5nlut0s6ud" path="res://player/sword.tscn" id="2_7cnl1"]
@@ -7,6 +7,9 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qanm4"]
 radius = 26.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tbhqj"]
+size = Vector2(40, 20)
 
 [node name="player" type="CharacterBody2D" groups=["Players"]]
 z_index = 100
@@ -59,6 +62,10 @@ wait_time = 4.0
 one_shot = true
 
 [node name="CameraRemote" type="RemoteTransform2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(47, 0)
+shape = SubResource("RectangleShape2D_tbhqj")
 
 [connection signal="weapon_hit" from="weapon" to="." method="_on_weapon_hit"]
 [connection signal="area_entered" from="peasant/peasant_damage_hitbox" to="." method="_on_peasant_damage_hitbox_area_entered"]

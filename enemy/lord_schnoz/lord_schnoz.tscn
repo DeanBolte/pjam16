@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://btbjl6do83frq" path="res://assets/enemies/lord_schnoz/lord_schnoz_cape.png" id="3_lmeqc"]
 [ext_resource type="Texture2D" uid="uid://s7fcqvak02au" path="res://assets/enemies/lord_schnoz/lord_schnoz_hand.png" id="4_8s1iy"]
 [ext_resource type="Script" path="res://enemy/lord_schnoz/main_hitbox.gd" id="5_awa76"]
-[ext_resource type="AudioStream" uid="uid://bigdatnk5bx4e" path="res://audio/sfx/enemy_damage.wav" id="6_f0kfx"]
+[ext_resource type="AudioStream" uid="uid://bigdatnk5bx4e" path="res://assets/sounds/enemies/enemy_damage.wav" id="6_f0kfx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_er2gu"]
 radius = 138.033
