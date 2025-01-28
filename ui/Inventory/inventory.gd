@@ -53,6 +53,7 @@ func move_item(item, newType):
 func _on_select_button_pressed() -> void:
 	var selected_upgrade_slot = PeasantData.pick_upgrade(selected_items)
 	var random_sfx = SELECT_UPGRADE_SOUNDS.pick_random()
+	%SelectButton.disabled = true
 	$VoiceLineSfxManager.stream = random_sfx
 	$VoiceLineSfxManager.play()
 	$peasant_cursor.select_slot(selected_upgrade_slot)
