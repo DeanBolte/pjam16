@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://dn1b258vpo4kg"]
+[gd_scene load_steps=8 format=3 uid="uid://dn1b258vpo4kg"]
 
 [ext_resource type="PackedScene" uid="uid://de7hk88yjl6gw" path="res://ui/ui.tscn" id="1_cv68o"]
 [ext_resource type="PackedScene" uid="uid://d1wjc1scifet6" path="res://levelgen/level_generator.tscn" id="1_dwhmm"]
 [ext_resource type="PackedScene" uid="uid://p847824ux4ub" path="res://room_camera/room_camera.tscn" id="2_iqi8r"]
 [ext_resource type="PackedScene" uid="uid://didohvmx332uq" path="res://player/player.tscn" id="4_ilxjj"]
 [ext_resource type="Script" path="res://scenes/upgrade_manager.gd" id="5_wmres"]
-[ext_resource type="AudioStream" uid="uid://dlv7tbc1bijcj" path="res://audio/music/level_theme.wav" id="6_83ctj"]
+[ext_resource type="AudioStream" uid="uid://dlv7tbc1bijcj" path="res://assets/sounds/music/level_theme.wav" id="6_83ctj"]
+[ext_resource type="AudioStream" uid="uid://bqvqf5jrprpcx" path="res://assets/sounds/player/game_over.wav" id="7_ofqxo"]
 
 [node name="DeansGarden" type="Node2D"]
 
@@ -19,14 +20,16 @@ zoom = Vector2(1, 1)
 
 [node name="player" parent="." instance=ExtResource("4_ilxjj")]
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="player"]
-remote_path = NodePath("../../RoomCamera")
-
 [node name="UpgradeContainer" type="Node2D" parent="."]
-z_index = 50
 script = ExtResource("5_wmres")
 
 [node name="MusicPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_83ctj")
+volume_db = -15.0
 autoplay = true
 max_distance = 50000.0
+
+[node name="SfxManager" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("7_ofqxo")
+volume_db = -8.0
