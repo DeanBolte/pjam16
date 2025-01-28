@@ -57,7 +57,7 @@ func _on_select_button_pressed() -> void:
 	$VoiceLineSfxManager.stream = random_sfx
 	$VoiceLineSfxManager.play()
 	$peasant_cursor.select_slot(selected_upgrade_slot)
-
+	$SelectedItemsBlocker.visible = true
 
 func add_item_to_inv(item: ItemData):
 	for node in %Inv.get_children(): 
@@ -90,3 +90,4 @@ func _on_peasant_cursor_animation_done() -> void:
 	
 	selected_items.clear()
 	update_upgrade_button()
+	$SelectedItemsBlocker.visible = false
