@@ -21,6 +21,9 @@ process_callback = 0
 
 [node name="player" parent="." instance=ExtResource("4_ilxjj")]
 
+[node name="CameraRemote" parent="player" index="5"]
+remote_path = NodePath("../../RoomCamera")
+
 [node name="UpgradeContainer" type="Node2D" parent="."]
 script = ExtResource("5_wmres")
 
@@ -34,3 +37,5 @@ max_distance = 50000.0
 unique_name_in_owner = true
 stream = ExtResource("7_ofqxo")
 volume_db = -8.0
+
+[editable path="player"]

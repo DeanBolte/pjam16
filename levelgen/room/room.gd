@@ -48,7 +48,6 @@ static func _new_room(map_location: Vector2i, room_type: ROOMS, is_last_room: bo
 
 
 static func _get_room_scene(id: ROOMS) -> Resource:
-	print("room_id: ", id)
 	match id:
 		ROOMS.BASIC:
 			return ROOM_RESOURCE
