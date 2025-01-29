@@ -118,6 +118,7 @@ func take_damage(damage: float, source: Node2D) -> void:
 func die():
 	SfxManager.stream = death_sfx
 	SfxManager.play()
+	enemy_dead.emit(self)
 	queue_free()
 
 func start_invincibility():
