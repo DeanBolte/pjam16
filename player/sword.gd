@@ -10,7 +10,7 @@ func change_weapon_width(amount: float):
 	current_width = max(MIN_WIDTH, current_width + amount)
 	
 	scale.x = current_width / 20.0
-	$sword_hilt.scale.x = 1 / scale.x
+	$sword_sprite.scale.x = 1 / scale.x
 	
 func change_weapon_length(amount: float):
 	current_length = max(MIN_LENGTH, current_length + amount)

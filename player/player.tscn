@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://didohvmx332uq"]
+[gd_scene load_steps=8 format=3 uid="uid://didohvmx332uq"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_s8bvr"]
 [ext_resource type="PackedScene" uid="uid://bak5nlut0s6ud" path="res://player/sword.tscn" id="2_7cnl1"]
+[ext_resource type="Texture2D" uid="uid://cr3kg716rd3vb" path="res://assets/BasicSprites/player-hand.png" id="3_obeop"]
 [ext_resource type="Texture2D" uid="uid://dce4ivf4ok3qc" path="res://assets/BasicSprites/player-body.png" id="4_d7lvc"]
 [ext_resource type="Script" path="res://player/peasant_damage_hitbox.gd" id="5_8ro4a"]
 
@@ -27,10 +28,12 @@ position = Vector2(29, 0)
 [node name="left_hand" type="Sprite2D" parent="hands"]
 position = Vector2(0, -8)
 rotation = -1.5708
+texture = ExtResource("3_obeop")
 
 [node name="right_hand" type="Sprite2D" parent="hands"]
 position = Vector2(0, 8)
 rotation = -1.5708
+texture = ExtResource("3_obeop")
 
 [node name="peasant" type="CollisionShape2D" parent="."]
 position = Vector2(1, 0)
