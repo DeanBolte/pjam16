@@ -8,6 +8,8 @@ var closed_icon = preload("res://assets/ui/chest.png")
 
 func _ready():
 	Signals.health_updated.connect(_on_health_updated)
+	Signals.boss_spawned.connect(_boss_spawned)
+	Signals.boss_damage.connect(_boss_damage)
 	
 	$VictoryPopup.visible = false
 	$GameOverPopup.visible = false
@@ -48,3 +50,14 @@ func trigger_sfx(node):
 
 func _on_health_updated(health: int):
 	%HealthBar.value = health
+	
+func _boss_spawned(hp: int):
+	$BossHealthBar.max_value = hp
+	$BossHealthBar.value = hp
+	$BossHealthBar.visible = true
+
+func _boss_damage(damage: int):
+	$BossHealthBar.value -= max(0, damage)
+	if $BossHealthBar.value == 0:
+		$VictoryPopup.visible = true
+		

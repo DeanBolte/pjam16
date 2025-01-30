@@ -86,3 +86,15 @@ mouse_filter = 2
 [node name="OpenCloseSfx" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 volume_db = -5.0
+
+[node name="BossHealthBar" type="ProgressBar" parent="."]
+visible = false
+offset_left = 417.0
+offset_top = 47.0
+offset_right = 737.0
+offset_bottom = 95.0
+theme_override_font_sizes/font_size = 24
+theme_override_styles/background = SubResource("StyleBoxFlat_e24qb")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1e8ml")
+value = 100.0
+rounded = true

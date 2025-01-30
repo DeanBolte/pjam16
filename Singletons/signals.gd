@@ -13,3 +13,6 @@ signal drop_upgrade(position: Vector2, rarity: int)
 signal upgrade_picked_up(item: ItemData)
 signal upgrade_picked_up_post(needsDeleting: bool)
 signal apply_upgrade(upgade: ItemData)
+
+signal boss_spawned(hp: int)
+signal boss_damage(amount: int)

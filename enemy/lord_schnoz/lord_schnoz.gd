@@ -39,6 +39,7 @@ func _ready():
 	$invincibility_timer.wait_time = invincibility_time
 	$invincibility_timer.one_shot = true
 	$invincibility_timer.timeout.connect(Callable(self, "end_invincibility"))
+	Signals.boss_spawned.emit(current_health)
 	
 func _process(delta: float) -> void:
 	if player == null:
@@ -107,6 +108,7 @@ func on_hit(damage: float) -> void:
 func take_damage(damage: float) -> void:
 	current_health -= damage
 	print("Boss took ", damage, " dmg. Remaining hp: ", current_health)
+	Signals.boss_damage.emit(damage)
 	$hit_sound.play()
 	DamageNumbers.display_number(floor(damage), global_position)
 
