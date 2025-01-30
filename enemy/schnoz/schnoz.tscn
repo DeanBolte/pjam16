@@ -1,13 +1,11 @@
 [gd_scene load_steps=10 format=3 uid="uid://w7ajh8n7e0yk"]
 
 [ext_resource type="Script" path="res://enemy/schnoz/schnoz.gd" id="1_ijp8e"]
+[ext_resource type="Texture2D" uid="uid://xomp75y3r6vm" path="res://assets/enemies/schnoz/schnoz.png" id="2_7hdmu"]
 [ext_resource type="Texture2D" uid="uid://bcp1d4sjws45m" path="res://assets/enemies/schnoz/pitchfork.png" id="2_deqkm"]
-[ext_resource type="Texture2D" uid="uid://dl5jnehfyeby7" path="res://assets/enemies/schnoz/schnoz_hand.png" id="3_jelet"]
+[ext_resource type="Texture2D" uid="uid://dwy66qvbkkjb7" path="res://assets/enemies/schnoz/schnoz_hand.png" id="3_jelet"]
 [ext_resource type="Script" path="res://enemy/schnoz/hitbox.gd" id="4_o41ub"]
 [ext_resource type="AudioStream" uid="uid://bigdatnk5bx4e" path="res://assets/sounds/enemies/enemy_damage.wav" id="5_tfo0u"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nvpn0"]
-load_path = "res://.godot/imported/schnoz.png-b82a72d84107f2a81a5e94089dd989c2.ctex"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mue5m"]
 size = Vector2(34, 20)
@@ -25,7 +23,7 @@ script = ExtResource("1_ijp8e")
 [node name="schnoz" type="Sprite2D" parent="."]
 rotation = -1.57079
 scale = Vector2(0.0161133, 0.0161133)
-texture = SubResource("CompressedTexture2D_nvpn0")
+texture = ExtResource("2_7hdmu")
 
 [node name="weapon_hitbox" type="Area2D" parent="."]
 collision_layer = 16
