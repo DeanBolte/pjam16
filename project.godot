@@ -37,6 +37,7 @@ Crates=""
 
 [gui]
 
+timers/tooltip_delay_sec=0.0
 theme/custom_font="res://assets/ui/QuinqueFive.ttf"
 
 [input]
