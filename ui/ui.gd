@@ -18,7 +18,7 @@ func _ready():
 
 func _process(delta):
 	# Pause the game if either the pause menu or inventory is visible
-	get_tree().paused = $PauseMenu.visible or $Inventory.visible
+	get_tree().paused = $PauseMenu.visible or $Inventory.visible or $VictoryPopup.visible or $GameOverPopup.visible
 	
 	if Input.is_action_just_pressed("pause"):
 		# Don't pause the game if the inventory is open.
