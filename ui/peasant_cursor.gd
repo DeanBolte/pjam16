@@ -6,11 +6,12 @@ var slot_ranges = {
 	2: [856, 944]
 }
 var target_position: Vector2
+var target_slot: int
 
-signal animation_done()
+signal animation_done(slot: int)
 
 func _ready() -> void:
-	set_process(true)
+	set_process(false)
 
 func select_slot(slot: int):
 	var viewport_size = get_viewport_rect().size
@@ -20,6 +21,7 @@ func select_slot(slot: int):
 	var target_x = randi_range(slot_ranges[slot][0], slot_ranges[slot][1])
 	var target_y = randi_range(212, 300)
 	target_position = Vector2(target_x, target_y)
+	target_slot = slot
 	
 	visible = true
 	set_process(true)
@@ -34,7 +36,7 @@ func _process(delta: float) -> void:
 		frame = 1
 		set_process(false)
 		$disapear_delay.start()
-		animation_done.emit()
+		animation_done.emit(target_slot)
 
 func _on_disapear_delay_timeout() -> void:
 	visible = false

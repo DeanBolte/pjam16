@@ -80,7 +80,8 @@ func update_upgrade_button():
 func calculate_inv_count():
 	%InventoryCount.text = "%s/%s" % [inv_items.size(), inventory_size]
 
-func _on_peasant_cursor_animation_done() -> void:
+func _on_peasant_cursor_animation_done(slot: int) -> void:
+	_add_item_to_collected_items(selected_items[slot])
 	for i in selected_items.size():
 		for n in %SelectedItems.get_child(i).get_children():
 			n.free()
@@ -91,3 +92,11 @@ func _on_peasant_cursor_animation_done() -> void:
 	selected_items.clear()
 	update_upgrade_button()
 	$SelectedItemsBlocker.visible = false
+	
+func _add_item_to_collected_items(item: ItemData):
+	var container = PanelContainer.new()
+	container.custom_minimum_size = Vector2(60, 60)
+	var inventoryItem = InventoryItem.new()
+	inventoryItem.init(item)
+	container.add_child(inventoryItem)
+	$CollectedItems.add_child(container)

@@ -108,6 +108,12 @@ script = ExtResource("6_0if7h")
 [node name="disapear_delay" type="Timer" parent="peasant_cursor"]
 one_shot = true
 
+[node name="CollectedItems" type="GridContainer" parent="."]
+offset_left = 38.0
+offset_top = 39.0
+offset_right = 122.0
+offset_bottom = 593.0
+
 [connection signal="pressed" from="SelectButton" to="." method="_on_select_button_pressed"]
 [connection signal="animation_done" from="peasant_cursor" to="." method="_on_peasant_cursor_animation_done"]
 [connection signal="timeout" from="peasant_cursor/disapear_delay" to="peasant_cursor" method="_on_disapear_delay_timeout"]
