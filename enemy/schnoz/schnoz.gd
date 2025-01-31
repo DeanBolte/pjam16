@@ -4,7 +4,7 @@ extends CharacterBody2D
 
 @export var max_health: float = 100
 @export var current_health: float = max_health
-@export var speed: int = 10000
+@export var speed: int = 150
 @export var invincibility_time: float = 1 # seconds of invincibility after being hit
 @export var damage: float = 5
 @export var self_knockback_multiplier: float = 50 # this enemy should be knocked back quite a bit
@@ -57,6 +57,7 @@ func calc_path():
 		return
 
 	if ($NavigationAgent2D.avoidance_enabled):
+		velocity = new_velocity
 		$NavigationAgent2D.set_velocity(new_velocity)
 	else:
 		_on_navigation_agent_2d_velocity_computed(new_velocity)

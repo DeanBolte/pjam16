@@ -11,18 +11,18 @@ const CRATE_THROW_COOLDOWN := 2 # in seconds
 const CRATE_THROW_SPEED = 5000.0 # Adjust based on gameplay balance
 
 # If player gets too close, boss will 'swat' them away, dealing damage and applying knockback.
-const SHOW_SWAT_RADIUS := true
-const SWAT_RADIUS: int = 300
+const SHOW_SWAT_RADIUS := false
+const SWAT_RADIUS: int = 350
 
 @onready var sfx_manager = get_node("../../../../SfxManager")
 @onready var death_sfx = preload("res://assets/sounds/enemies/enemy_death.wav")
 
-@export var max_health: float = 250
+@export var max_health: float = 300
 @export var current_health: float = max_health
 @export var speed: int = 10000
 @export var invincibility_time: float = 1 # seconds of invincibility after being hit
 @export var damage: float = 5
-@export var swat_knockback_damage := 5
+@export var swat_knockback_damage := 10
 @export var swat_knockback_force := 7500.0
 @export var crate_spawn_area: Node2D
 
