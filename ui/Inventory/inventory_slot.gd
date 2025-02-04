@@ -21,7 +21,7 @@ func _can_drop_data(_at_position: Vector2, data: Variant):
 					return true
 			return get_child(0).data.type == data.data.type
 		else:
-			return data.data.type == type		
+			return data.data.type == type
 
 func _drop_data(at_position: Vector2, data: Variant):
 	if get_child_count() > 0:

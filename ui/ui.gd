@@ -10,7 +10,7 @@ func _ready():
 	Signals.health_updated.connect(_on_health_updated)
 	Signals.boss_spawned.connect(_boss_spawned)
 	Signals.boss_damage.connect(_boss_damage)
-	
+
 	$VictoryPopup.visible = false
 	$GameOverPopup.visible = false
 	$Inventory.visible = false
@@ -19,14 +19,14 @@ func _ready():
 func _process(delta):
 	# Pause the game if either the pause menu or inventory is visible
 	get_tree().paused = $PauseMenu.visible or $Inventory.visible or $VictoryPopup.visible or $GameOverPopup.visible
-	
+
 	if Input.is_action_just_pressed("pause"):
 		# Don't pause the game if the inventory is open.
 		if $Inventory.visible:
 			toggle_inventory()
 		else:
 			toggle_pause_menu()
-	
+
 	# Only toggle the inventory if the game isn't already paused.
 	if Input.is_action_just_pressed("inventory") and not $PauseMenu.visible:
 		toggle_inventory()
@@ -50,7 +50,7 @@ func trigger_sfx(node):
 
 func _on_health_updated(health: int):
 	%HealthBar.value = health
-	
+
 func _boss_spawned(hp: int):
 	$BossHealthBar.max_value = hp
 	$BossHealthBar.value = hp
@@ -60,4 +60,3 @@ func _boss_damage(damage: int):
 	$BossHealthBar.value -= max(0, damage)
 	if $BossHealthBar.value == 0:
 		$VictoryPopup.visible = true
-		

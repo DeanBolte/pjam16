@@ -50,7 +50,7 @@ func _physics_process(delta: float) -> void:
 	var mouse_direction = global_position.direction_to(mouse_position)
 	mouse_position += mouse_direction * 200
 	var distanceFromMouse = $weapon.get_weapon_tip().distance_to(mouse_position)
-	
+
 	if knockback_velocity.length() > 1.0:
 		velocity = knockback_velocity
 		knockback_velocity = knockback_velocity.lerp(Vector2.ZERO, 5 * delta)  # Smooth decay

@@ -27,26 +27,26 @@ func _ready():
 		slot.init(ItemData.Type.MAIN, Vector2(96, 96))
 		slot.update_inventory.connect(move_item)
 		%Inv.add_child(slot)
-	
+
 	for i in selected_size:
 		var selected_slot := InventorySlot.new()
-		selected_slot.init(ItemData.Type.SELECTED, Vector2(128, 128))	
+		selected_slot.init(ItemData.Type.SELECTED, Vector2(128, 128))
 		selected_slot.update_inventory.connect(move_item)
 		%SelectedItems.add_child(selected_slot)
-	
+
 	calculate_inv_count()
 
 func move_item(item, newType):
 	if (item.type == newType):
 		return
-		
-	if (item.type == ItemData.Type.SELECTED): 
+
+	if (item.type == ItemData.Type.SELECTED):
 		inv_items.append(item)
 		selected_items.erase(item)
 	else:
 		selected_items.append(item)
 		inv_items.erase(item)
-	item.type = newType	
+	item.type = newType
 	calculate_inv_count()
 	update_upgrade_button()
 
@@ -60,18 +60,18 @@ func _on_select_button_pressed() -> void:
 	$SelectedItemsBlocker.visible = true
 
 func add_item_to_inv(item: ItemData):
-	for node in %Inv.get_children(): 
+	for node in %Inv.get_children():
 		if node.get_child_count() == 0:
 			var invenItem := InventoryItem.new()
 			invenItem.init(item)
 			invenItem.data.type = ItemData.Type.MAIN
 			inv_items.append(item)
-			
+
 			node.add_child(invenItem)
 			Signals.upgrade_picked_up_post.emit(item)
 			calculate_inv_count()
 			break
-	
+
 
 # Enable the button when all SelectedItems slots are filled.
 func update_upgrade_button():
@@ -85,14 +85,14 @@ func _on_peasant_cursor_animation_done(slot: int) -> void:
 	for i in selected_items.size():
 		for n in %SelectedItems.get_child(i).get_children():
 			n.free()
-	
+
 	$DropSfx.stream = upgrade_selected_sfx
 	$DropSfx.play()
-	
+
 	selected_items.clear()
 	update_upgrade_button()
 	$SelectedItemsBlocker.visible = false
-	
+
 func _add_item_to_collected_items(item: ItemData):
 	var container = PanelContainer.new()
 	container.custom_minimum_size = Vector2(60, 60)

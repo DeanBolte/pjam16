@@ -36,10 +36,10 @@ func _ready():
 	sleeping = false  # Wake up the body if it has velocity
 	freeze = false
 	linear_velocity = Vector2.ZERO
-	
+
 	# Apply linear damping to reduce sliding
 	linear_damp = LINEAR_DAMPING
-	
+
 	# Apply angular damping to reduce rotation speed
 	angular_damp = ANGULAR_DAMPING
 	var physics_mat = PhysicsMaterial.new()
@@ -49,7 +49,7 @@ func _ready():
 
 func _process(delta: float) -> void:
 	current_lifetime += delta
-	
+
 	if is_eligible_to_delete():
 		queue_free()
 
@@ -79,7 +79,7 @@ func _on_area_2d_area_entered(object_hit: Area2D) -> void:
 		var damage = DAMAGE_AGAINST.get(object_hit.name, DEFAULT_DAMAGE)
 		object_hit.process_hit(damage, self, false)
 		_destroy_self()
-	
+
 	# Testing by Duc: If the sword swings fast enough and hits the crate, send the crate with a strong force
 	var swing_speed = MouseTracker.get_swipe_speed()
 	if swing_speed >= MIN_SWORD_PUSH_SPEED and object_hit.name == "sword_edge_hitbox":

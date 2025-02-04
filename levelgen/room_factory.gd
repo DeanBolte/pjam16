@@ -38,7 +38,7 @@ func get_random_starting_room() -> Room:
 	return new_room
 
 func get_random_final_room(position: Vector2i) -> Room:
-	var new_room := _get_random_room_scene(position, true)
+	var new_room = Room._new_room(position, Room.ROOMS.END, true)
 	_rooms_node.add_child(new_room)
 	new_room.generate()
 	return new_room
