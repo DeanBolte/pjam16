@@ -31,11 +31,11 @@ func _move_camera_to_player(new_position: Vector2, limit_dimensions: Vector2i, z
 
 
 func _fade_into_level():
-	LevelFader.visible = true
 	TransitionPlayer.play("fade_in")
+	get_tree().paused = true
 
 func _transition_complete() -> void:
-	LevelFader.visible = false
+	get_tree().paused = false
 
 func _get_camera_zoom(zoom_type: ZOOM_TYPE) -> Vector2:
 	match zoom_type:

@@ -8,43 +8,44 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Control/LevelFader:modulate")
+tracks/0/path = NodePath("Control/LevelFader:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(0, 0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_n7dvi"]
 resource_name = "fade_in"
-tracks/0/type = "value"
+length = 3.0
+tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Control/LevelFader:modulate")
+tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.966667),
-"transitions": PackedFloat32Array(1, 2.07053, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0.478431), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(1),
+"times": PackedFloat32Array(3),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
 "method": &"_transition_complete"
 }]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/LevelFader:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.46667, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_65ddp"]
@@ -54,6 +55,7 @@ _data = {
 }
 
 [node name="RoomCamera" type="Camera2D"]
+process_mode = 3
 zoom = Vector2(0.1, 0.1)
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
@@ -76,7 +78,6 @@ region_enabled = true
 region_rect = Rect2(0, 0, 256, 640)
 
 [node name="LevelFader" type="ColorRect" parent="Control"]
-visible = false
 z_index = 110
 anchors_preset = 15
 anchor_right = 1.0
@@ -85,7 +86,8 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
-color = Color(0, 0, 0, 1)
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
 
 [node name="TransitionPlayer" type="AnimationPlayer" parent="."]
 libraries = {

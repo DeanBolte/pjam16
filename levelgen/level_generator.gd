@@ -2,7 +2,7 @@ extends Node
 
 var _room_factory: RoomFactory
 
-@export var MAX_ROOMS := 7
+@export var MAX_ROOMS := 1
 @export var RETRY_ROOM_ADJACENCY_ATTEMPTS = 4
 @export var ROOM_ADJACENCYRETRY_SCALAR = 3
 @export var MINIMUM_ADJACENT_ROOMS = 2

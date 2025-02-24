@@ -21,15 +21,19 @@ script = ExtResource("1_t6fr5")
 
 [node name="VictoryPopup" parent="." instance=ExtResource("2_uyy7o")]
 layer = 6
+visible = false
 
 [node name="GameOverPopup" parent="." instance=ExtResource("2_oypqy")]
 layer = 5
+visible = false
 
 [node name="PauseMenu" parent="." instance=ExtResource("1_vt47o")]
 layer = 4
+visible = false
 
 [node name="Inventory" parent="." instance=ExtResource("1_08hm3")]
 layer = 3
+visible = false
 
 [node name="InventoryCount" type="Label" parent="."]
 unique_name_in_owner = true
